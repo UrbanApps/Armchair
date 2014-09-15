@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d2j-86-NpT">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="j5w-HN-cOS">
+            <objects>
+                <viewController id="d2j-86-NpT" customClass="ViewController" customModule="iOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jBK-Sp-EmM"/>
+                        <viewControllerLayoutGuide type="bottom" id="MVO-Fx-XzJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mCe-MJ-dGn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chair" translatesAutoresizingMaskIntoConstraints="NO" id="pjK-Zp-UbQ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7K-BU-wrj">
+                                <rect key="frame" x="20" y="40" width="560" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ARMCHAIR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVe-fD-yl8">
+                                        <rect key="frame" x="156" y="10" width="248" height="51"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Light" family="American Typewriter" pointSize="44"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ex-RA-hKB">
+                                        <rect key="frame" x="343" y="64" width="61" height="28"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Light" family="American Typewriter" pointSize="14"/>
+                                        <state key="normal" title="Store-Kit">
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="presentStoreKitPrompt:" destination="d2j-86-NpT" eventType="touchUpInside" id="Jl4-Qp-pVB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94v-di-Sgl">
+                                        <rect key="frame" x="156" y="64" width="62" height="28"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Light" family="American Typewriter" pointSize="14"/>
+                                        <state key="normal" title="Standard">
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="presentStandardPrompt:" destination="d2j-86-NpT" eventType="touchUpInside" id="reN-Av-qJg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cx-Uc-icC">
+                                        <rect key="frame" x="240" y="64" width="79" height="28"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Light" family="American Typewriter" pointSize="14"/>
+                                        <state key="normal" title="Customized">
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="presentCustomizedPrompt:" destination="d2j-86-NpT" eventType="touchUpInside" id="ktB-ju-xvH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="94v-di-Sgl" firstAttribute="leading" secondItem="XVe-fD-yl8" secondAttribute="leading" id="6dM-Hy-V73"/>
+                                    <constraint firstItem="94v-di-Sgl" firstAttribute="bottom" secondItem="p7K-BU-wrj" secondAttribute="bottom" constant="-8" id="8fR-Kg-3vc"/>
+                                    <constraint firstAttribute="centerX" secondItem="1cx-Uc-icC" secondAttribute="centerX" constant="0.5" id="9bJ-qD-QXL"/>
+                                    <constraint firstAttribute="height" constant="100" id="JBv-8P-khM"/>
+                                    <constraint firstItem="XVe-fD-yl8" firstAttribute="trailing" secondItem="5ex-RA-hKB" secondAttribute="trailing" id="S0J-cg-KYM"/>
+                                    <constraint firstAttribute="centerX" secondItem="XVe-fD-yl8" secondAttribute="centerX" id="Wfm-fh-DS2"/>
+                                    <constraint firstAttribute="width" constant="568" id="YGh-wE-w7J"/>
+                                    <constraint firstAttribute="trailing" secondItem="5ex-RA-hKB" secondAttribute="trailing" constant="8" id="Yca-YH-Ux2"/>
+                                    <constraint firstItem="XVe-fD-yl8" firstAttribute="top" secondItem="p7K-BU-wrj" secondAttribute="top" constant="10" id="hUJ-7i-QXl"/>
+                                    <constraint firstItem="5ex-RA-hKB" firstAttribute="bottom" secondItem="p7K-BU-wrj" secondAttribute="bottom" constant="-8" id="lTG-a9-uaN"/>
+                                    <constraint firstItem="94v-di-Sgl" firstAttribute="leading" secondItem="p7K-BU-wrj" secondAttribute="leading" constant="8" id="ulR-E3-LFb"/>
+                                    <constraint firstAttribute="bottom" secondItem="1cx-Uc-icC" secondAttribute="bottom" constant="8" id="xK7-bN-m4S"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="YGh-wE-w7J"/>
+                                        <exclude reference="ulR-E3-LFb"/>
+                                        <exclude reference="Yca-YH-Ux2"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pjK-Zp-UbQ" firstAttribute="leading" secondItem="mCe-MJ-dGn" secondAttribute="leadingMargin" constant="-16" id="1PY-yN-plZ"/>
+                            <constraint firstAttribute="centerX" secondItem="p7K-BU-wrj" secondAttribute="centerX" id="94T-zn-nPn"/>
+                            <constraint firstAttribute="centerY" secondItem="pjK-Zp-UbQ" secondAttribute="centerY" id="9s8-qH-i1P"/>
+                            <constraint firstItem="pjK-Zp-UbQ" firstAttribute="height" secondItem="mCe-MJ-dGn" secondAttribute="height" id="JIc-fT-UjL"/>
+                            <constraint firstAttribute="centerY" secondItem="p7K-BU-wrj" secondAttribute="centerY" constant="244" id="JwD-6n-gDl"/>
+                            <constraint firstAttribute="centerX" secondItem="pjK-Zp-UbQ" secondAttribute="centerX" id="SKh-dx-lMw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pjK-Zp-UbQ" secondAttribute="trailing" constant="-16" id="Wco-iZ-WK3"/>
+                            <constraint firstItem="pjK-Zp-UbQ" firstAttribute="width" secondItem="mCe-MJ-dGn" secondAttribute="width" id="X4I-1D-UFn"/>
+                            <constraint firstAttribute="height" secondItem="pjK-Zp-UbQ" secondAttribute="height" id="Xex-NE-7OZ"/>
+                            <constraint firstItem="pjK-Zp-UbQ" firstAttribute="top" secondItem="jBK-Sp-EmM" secondAttribute="bottom" constant="-20" id="edj-sT-3H0"/>
+                            <constraint firstItem="MVO-Fx-XzJ" firstAttribute="top" secondItem="pjK-Zp-UbQ" secondAttribute="bottom" id="fbb-mU-rbb"/>
+                            <constraint firstItem="p7K-BU-wrj" firstAttribute="trailing" secondItem="mCe-MJ-dGn" secondAttribute="trailingMargin" id="jfw-jd-DBJ"/>
+                            <constraint firstItem="p7K-BU-wrj" firstAttribute="leading" secondItem="mCe-MJ-dGn" secondAttribute="leadingMargin" id="jku-or-cjG"/>
+                            <constraint firstItem="p7K-BU-wrj" firstAttribute="top" secondItem="jBK-Sp-EmM" secondAttribute="bottom" constant="20" id="pyj-Pq-F78"/>
+                            <constraint firstItem="p7K-BU-wrj" firstAttribute="top" secondItem="jBK-Sp-EmM" secondAttribute="bottom" constant="20" id="t4x-qR-OlB"/>
+                            <constraint firstAttribute="width" secondItem="p7K-BU-wrj" secondAttribute="width" constant="40" id="u3a-GZ-en3"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1PY-yN-plZ"/>
+                                <exclude reference="Wco-iZ-WK3"/>
+                                <exclude reference="Xex-NE-7OZ"/>
+                                <exclude reference="edj-sT-3H0"/>
+                                <exclude reference="JwD-6n-gDl"/>
+                                <exclude reference="jfw-jd-DBJ"/>
+                                <exclude reference="jku-or-cjG"/>
+                                <exclude reference="t4x-qR-OlB"/>
+                                <exclude reference="fbb-mU-rbb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="lJo-8x-S3p"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXP-CJ-uQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="647" y="-932"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chair" width="800" height="736"/>
+    </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+</document>
