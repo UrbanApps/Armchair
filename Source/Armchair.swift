@@ -23,7 +23,14 @@
 import Foundation
 import StoreKit
 import SystemConfiguration
+
+#if os(iOS)
 import UIKit
+#elseif os(OSX)
+import Appkit
+#else
+    // Not yet supported
+#endif
 
 // MARK: -
 // MARK: PUBLIC Interface
@@ -288,7 +295,10 @@ public func debugEnabled(debugEnabled: Bool) {
 #if Debug
     Manager.defaultManager.debugEnabled = debugEnabled
 #else
-    println("[Armchair] Debug is disabled on release builds. If you really want to enable debug mode, add \"DEBUG=1\" to your release Preprocessor Macros")
+    println("[Armchair] Debug is disabled on release builds.")
+    println("[Armchair]   If you really want to enable debug mode,")
+    println("[Armchair]   add \"-DDebug\" to your  Swift Compiler - Custom Flags")
+    println("[Armchair]   section in the target's build settings for release")
 #endif
 }
 
@@ -611,7 +621,12 @@ public enum ArmchairKey: String, Printable {
 
     public var description : String {
         get {
+#if os(iOS)
             return self.toRaw()
+#elseif os(OSX)
+            return self.rawValue
+#else
+#endif
         }
     }
 }
@@ -658,15 +673,19 @@ public class ArmchairManager : NSObject, NSAlertDelegate { }
 
 public class Manager : ArmchairManager {
 
-    private var iOSVersion = NSString(string: UIDevice.currentDevice().systemVersion).doubleValue
-
+#if os(iOS)
+    private var operatingSystemVersion = NSString(string: UIDevice.currentDevice().systemVersion).doubleValue
+#elseif os(OSX)
+    private var operatingSystemVersion = Double(NSProcessInfo.processInfo().operatingSystemVersion.majorVersion)
+#else
+#endif
+    
     // MARK: -
     // MARK: Review Alert & Properties
 
 #if os(iOS)
     private var ratingAlert: UIAlertView? = nil
-//    private let reviewURLTemplate = "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
-    private let reviewURLTemplate = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
+    private let reviewURLTemplate  = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
 #elseif os(OSX)
     private var ratingAlert: NSAlert? = nil
     private let reviewURLTemplate = "macappstore://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=12&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
@@ -772,7 +791,7 @@ public class Manager : ArmchairManager {
     private lazy var opensInStoreKit: Bool              = self.defaultOpensInStoreKit()
 
     private func defaultOpensInStoreKit() -> Bool {
-        return iOSVersion >= 8
+        return operatingSystemVersion >= 8
     }
 #endif
 
@@ -919,14 +938,14 @@ public class Manager : ArmchairManager {
             var timeInterval: Double? = userDefaultsObject?.doubleForKey(firstUseDateKey)
             if 0 == timeInterval {
                 timeInterval = NSDate().timeIntervalSince1970
-                userDefaultsObject?.setObject(NSNumber.numberWithDouble(timeInterval!), forKey: firstUseDateKey)
+                userDefaultsObject?.setObject(NSNumber(double: timeInterval!), forKey: firstUseDateKey)
             }
 
             // Increment the key's count
             var incrementKeyCount = userDefaultsObject?.integerForKey(incrementKey)
             userDefaultsObject?.setInteger(++incrementKeyCount!, forKey:incrementKey)
 
-            debugLog("Incremented \(incrementKeyType) count: \(incrementKeyCount)")
+            debugLog("Incremented \(incrementKeyType): \(incrementKeyCount!)")
 
         } else if tracksNewVersions {
             // it's a new version of the app, so restart tracking
@@ -935,12 +954,14 @@ public class Manager : ArmchairManager {
             userDefaultsObject?.setObject(userDefaultsObject?.objectForKey(keyForArmchairKeyType(ArmchairKey.DeclinedToRate)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionDeclinedToRate))
 
             userDefaultsObject?.setObject(currentVersion, forKey: currentVersionKey)
-            userDefaultsObject?.setObject(NSNumber.numberWithDouble(NSDate().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
-            userDefaultsObject?.setObject(NSNumber.numberWithInteger(1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
-            userDefaultsObject?.setObject(NSNumber.numberWithInteger(0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
-            userDefaultsObject?.setObject(NSNumber.numberWithBool(false), forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
-            userDefaultsObject?.setObject(NSNumber.numberWithBool(false), forKey: keyForArmchairKeyType(ArmchairKey.DeclinedToRate))
-            userDefaultsObject?.setObject(NSNumber.numberWithDouble(0), forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
+            userDefaultsObject?.setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
+            userDefaultsObject?.setObject(NSNumber(integer: 1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
+            userDefaultsObject?.setObject(NSNumber(integer: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
+            userDefaultsObject?.setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
+            userDefaultsObject?.setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.DeclinedToRate))
+            userDefaultsObject?.setObject(NSNumber(double: 0), forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
+
+            debugLog("Reset Tracking Version to: \(trackingVersion!)")
         }
     
         userDefaultsObject?.synchronize()
@@ -1095,7 +1116,7 @@ public class Manager : ArmchairManager {
 
     private func showRatingAlert() {
 #if os(iOS)
-        if iOSVersion >= 8 && usesAlertController {
+        if operatingSystemVersion >= 8 && usesAlertController {
             /* iOS 8 uses new UIAlertController API*/
             var alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
             alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.Cancel, handler: {
@@ -1143,28 +1164,26 @@ public class Manager : ArmchairManager {
         }
 
 #elseif os(OSX)
-//        NSAlert *alert = [NSAlert alertWithMessageText:self.reviewTitle
-//            defaultButton:self.rateButtonTitle
-//            alternateButton:self.cancelButtonTitle
-//            otherButton:self.remindButtonTitle
-//            informativeTextWithFormat:@"%@",self.reviewMessage];
-//        self.ratingAlert = alert;
-//
-//        NSWindow *window = [[NSApplication sharedApplication] keyWindow];
-//        if (window) {
-//            [alert beginSheetModalForWindow:[[NSApplication sharedApplication] keyWindow]
-//                modalDelegate:self
-//                didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-//            contextInfo:nil];
-//        } else {
-//            NSInteger returnCode = [alert runModal];
-//            [self handleNSAlertReturnCode:returnCode];
-//        }
-//
-//        if (self.didDisplayAlertBlock)
-//        self.didDisplayAlertBlock();
+    
+        var alert: NSAlert = NSAlert()
+        alert.messageText = reviewTitle
+        alert.informativeText = reviewMessage
+        alert.addButtonWithTitle(rateButtonTitle)
+        alert.addButtonWithTitle(remindButtonTitle)
+        alert.addButtonWithTitle(cancelButtonTitle)
+        ratingAlert = alert
+
+        if let window = NSApplication.sharedApplication().keyWindow {
+            alert.beginSheetModalForWindow(window, modalDelegate: self, didEndSelector: "alertDidEnd:returnCode:", contextInfo: nil)
+        } else {
+            var returnCode = alert.runModal()
+            handleNSAlertReturnCode(returnCode)
+        }
+        
+        if let closure = self.didDisplayAlertClosure {
+            closure()
+        }
 #else
-        println("OMG, it's that mythical new Apple product!!!")
 #endif
     }
 
@@ -1225,10 +1244,12 @@ public class Manager : ArmchairManager {
         case NSAlertOtherReturn:
             // remind them later
             remindMeLater()
+        default:
+            return
         }
     }
 
-    private func alertDidEnd(alert: NSAlert, returnCode: NSInteger, contextInfo: void) {
+    private func alertDidEnd(alert: NSAlert, returnCode: NSInteger) {
         handleNSAlertReturnCode(returnCode)
     }
 
@@ -1274,7 +1295,7 @@ public class Manager : ArmchairManager {
             if let appIDInt = appIDVal {
                 var productParameters: [NSObject:AnyObject]! = [SKStoreProductParameterITunesItemIdentifier : NSNumber(integer: appIDInt)]
 
-                if (iOSVersion >= 8) {
+                if (operatingSystemVersion >= 8) {
                     productParameters[SKStoreProductParameterAffiliateToken] = affiliateCode
                     productParameters[SKStoreProductParameterCampaignToken] = affiliateCampaignCode
                 }
@@ -1302,7 +1323,8 @@ public class Manager : ArmchairManager {
 
         //Use the standard openUrl method
         } else {
-            UIApplication.sharedApplication().openURL(NSURL(string: reviewURLString()))
+            let url = NSURL(string: reviewURLString())
+            UIApplication.sharedApplication().openURL(url)
         }
 
         if UIDevice.currentDevice().model.rangeOfString("Simulator") != nil {
@@ -1313,7 +1335,7 @@ public class Manager : ArmchairManager {
             debugLog(" - Or try copy/pasting \(fakeURL) into a browser on your computer.")
         }
 #elseif os(OSX)
-        NSWorkspace.sharedWorkspace().openURL(NSURL(reviewURLString))
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: reviewURLString()))
 #else
 #endif
     }
@@ -1457,7 +1479,7 @@ public class Manager : ArmchairManager {
             }
         }
 
-        userDefaultsObject?.setObject(NSNumber.numberWithBool(true), forKey: appiraterAlreadyCompletedKey)
+        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appiraterAlreadyCompletedKey)
         userDefaultsObject?.synchronize()
     }
 
@@ -1492,7 +1514,7 @@ public class Manager : ArmchairManager {
             }
         }
 
-        userDefaultsObject?.setObject(NSNumber.numberWithBool(true), forKey: appReviewManagerAlreadyCompletedKey)
+        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appReviewManagerAlreadyCompletedKey)
         userDefaultsObject?.synchronize()
     }
 
@@ -1531,16 +1553,8 @@ public class Manager : ArmchairManager {
         if useMainAppBundleForLocalizations {
             bundle = NSBundle.mainBundle()
         } else {
-            // These bundles are exactly the same, but splitting them by target makes Cocoapods happy.
-#if os(iOS)
-            let armchairBundleURL: NSURL? = NSBundle.mainBundle().URLForResource("Armchair-iOS", withExtension: "bundle")
-#elseif os(OSX)
-            let armchairBundleURL: NSURL? = NSBundle.mainBundle().URLForResource("Armchair-OSX", withExtension: "bundle")
-#else
-            let armchairBundleURL: NSURL? = nil
-#endif
+            let armchairBundleURL: NSURL? = NSBundle.mainBundle().URLForResource("Armchair", withExtension: "bundle")
             if let url = armchairBundleURL {
-                // Armchair-[iOS|OSX].bundle will likely only exist when used via CocoaPods
                 bundle = NSBundle(URL: url)
             } else {
                 bundle = NSBundle.mainBundle()
@@ -1603,8 +1617,8 @@ public class Manager : ArmchairManager {
                 alert.dismissWithClickedButtonIndex(alert.cancelButtonIndex, animated: false)
             }
 #elseif os(OSX)
-            NSApp.endSheet(window: NSApplication.sharedApplication().keyWindow)
-#else
+            NSApp.endSheet(NSApplication.sharedApplication().keyWindow)
+    #else
 #endif
             ratingAlert = nil
         }

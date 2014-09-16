@@ -8,9 +8,14 @@
 
 #import "AppDelegate.h"
 
+@import Armchair;
+
+//#import "Armchair-Bridging-Header.h"
+
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
+
 @end
 
 @implementation AppDelegate
