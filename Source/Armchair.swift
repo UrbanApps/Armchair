@@ -420,10 +420,10 @@ public func userDidSignificantEvent(canPromptForRating: Bool) {
 *
 * This is similar to the userDidSignificantEvent method, but allows the passing of a
 * ArmchairShouldPromptClosure that will be executed before prompting.
-* The block passes all the keys and values that Armchair uses to
+* The closure passes all the keys and values that Armchair uses to
 * determine if it the prompt conditions have been met, and it is up to you
 * to use this info and return a Bool on whether or not the prompt should be shown.
-* The block is run synchronous and on the main queue, so be sure to handle it appropriately.
+* The closure is run synchronous and on the main queue, so be sure to handle it appropriately.
 * Return true to proceed and show the prompt, return false to kill the pending presentation.
 */
 public func userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure) {
@@ -462,10 +462,10 @@ public func showPromptIfNecessary() {
 *
 * This is similar to the showPromptIfNecessary method, but allows the passing of a
 * ArmchairShouldPromptClosure that will be executed before prompting.
-* The block passes all the keys and values that Armchair uses to
+* The closure passes all the keys and values that Armchair uses to
 * determine if it the prompt conditions have been met, and it is up to you
 * to use this info and return a Bool on whether or not the prompt should be shown.
-* The block is run synchronous and on the main queue, so be sure to handle it appropriately.
+* The closure is run synchronous and on the main queue, so be sure to handle it appropriately.
 * Return true to proceed and show the prompt, return false to kill the pending presentation.
 */
 public func showPrompt(shouldPrompt: ArmchairShouldPromptClosure) {
@@ -508,7 +508,7 @@ public func rateApp() {
 
 // MARK: Closures
 /*
-* Armchair uses blocks instead of delegate methods for callbacks.
+* Armchair uses closures instead of delegate methods for callbacks.
 * Default is nil for all of them.
 */
 
@@ -540,11 +540,11 @@ public func onDidOptToRemindLater(didOptToRemindLaterClosure: ArmchairClosure?) 
 #endif
 
 /*
-* The setShouldPromptBlock is called just after all the rating coditions
+* The setShouldPromptClosure is called just after all the rating coditions
 * have been met and Armchair has decided it should display a prompt,
 * but just before the prompt actually displays.
 *
-* The block passes all the keys and values that Armchair used to
+* The closure passes all the keys and values that Armchair used to
 * determine that the prompt conditions had been met, but it is up to you
 * to use this info and return a Bool on whether or not the prompt should be shown.
 * Return true to proceed and show the prompt, return false to kill the pending presentation.
@@ -554,7 +554,7 @@ public func shouldPromptClosure(shouldPromptClosure: ArmchairShouldPromptClosure
 }
 
 /*
-* The setShouldIncrementUseBlock, if valid, is called before incrementing the use count.
+* The setShouldIncrementUseClosure, if valid, is called before incrementing the use count.
 * Returning false allows you to ignore a use.  This may be usefull in cases such as Facebook login
 * where the app is backgrounded momentarily and the resultant enter foreground event should
 * not be considered another use.
