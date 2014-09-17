@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E6D8B8F119C756A4001AD043 /* Armchair.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897FF4019AA800700AB5182 /* Armchair.swift */; };
-		E6D8B8F419C756A4001AD043 /* Armchair.h in Headers */ = {isa = PBXBuildFile; fileRef = F8111E3819A95C8B0040E7D1 /* Armchair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6D8B92D19C880A9001AD043 /* ArmchairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8B92C19C880A9001AD043 /* ArmchairTests.swift */; };
-		F8111E3919A95C8B0040E7D1 /* Armchair.h in Headers */ = {isa = PBXBuildFile; fileRef = F8111E3819A95C8B0040E7D1 /* Armchair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F897FF4119AA800700AB5182 /* Armchair.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897FF4019AA800700AB5182 /* Armchair.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,25 +106,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		E6D8B8F319C756A4001AD043 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6D8B8F419C756A4001AD043 /* Armchair.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8111E3019A95C8B0040E7D1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8111E3919A95C8B0040E7D1 /* Armchair.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		E6D8B8EF19C756A4001AD043 /* ArmchairMac */ = {
 			isa = PBXNativeTarget;
@@ -134,7 +113,6 @@
 			buildPhases = (
 				E6D8B8F019C756A4001AD043 /* Sources */,
 				E6D8B8F219C756A4001AD043 /* Frameworks */,
-				E6D8B8F319C756A4001AD043 /* Headers */,
 				E6D8B8F519C756A4001AD043 /* Resources */,
 			);
 			buildRules = (
@@ -170,7 +148,6 @@
 			buildPhases = (
 				F8111E2E19A95C8B0040E7D1 /* Sources */,
 				F8111E2F19A95C8B0040E7D1 /* Frameworks */,
-				F8111E3019A95C8B0040E7D1 /* Headers */,
 				F8111E3119A95C8B0040E7D1 /* Resources */,
 			);
 			buildRules = (

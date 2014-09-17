@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E60FA81819C9219600179D70 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E60FA81719C9219600179D70 /* logo.png */; };
 		E6D8B8EC19C75559001AD043 /* Armchair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8B8BB19C7382B001AD043 /* Armchair.framework */; };
 		E6E5F4C319C8E18E008A6C1B /* armchair.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6E5F4C219C8E18E008A6C1B /* armchair.jpg */; };
 		E6E5F4CD19C8E388008A6C1B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E5F4CC19C8E388008A6C1B /* Icon.png */; };
@@ -61,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E60FA81719C9219600179D70 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		E6C49DC519C23C91006A4544 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6E5F4C219C8E18E008A6C1B /* armchair.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = armchair.jpg; sourceTree = "<group>"; };
 		E6E5F4CC19C8E388008A6C1B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				E6E5F4CE19C8E3C6008A6C1B /* Images.xcassets */,
 				E6E5F4CC19C8E388008A6C1B /* Icon.png */,
 				E6E5F4C219C8E18E008A6C1B /* armchair.jpg */,
+				E60FA81719C9219600179D70 /* logo.png */,
 				F8111E0919A951050040E7D1 /* Info-iOS.plist */,
 			);
 			name = "Supporting Files";
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6E5F4C319C8E18E008A6C1B /* armchair.jpg in Resources */,
+				E60FA81819C9219600179D70 /* logo.png in Resources */,
 				E6E5F4CF19C8E3C6008A6C1B /* Images.xcassets in Resources */,
 				F8111E1219A951050040E7D1 /* Main.storyboard in Resources */,
 				E6E5F4CD19C8E388008A6C1B /* Icon.png in Resources */,
@@ -341,6 +345,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info-iOS.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -356,6 +361,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Info-iOS.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

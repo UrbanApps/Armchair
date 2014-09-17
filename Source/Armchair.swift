@@ -621,12 +621,7 @@ public enum ArmchairKey: String, Printable {
 
     public var description : String {
         get {
-#if os(iOS)
-            return self.toRaw()
-#elseif os(OSX)
             return self.rawValue
-#else
-#endif
         }
     }
 }
@@ -778,7 +773,13 @@ public class Manager : ArmchairManager {
     private var tracksNewVersions: Bool                 = true
     private var shouldPromptIfRated: Bool               = true
     private var useMainAppBundleForLocalizations: Bool  = false
-    private var debugEnabled: Bool                      = false
+    private var debugEnabled: Bool                      = false {
+        didSet {
+            if self.debugEnabled {
+                debugLog("Debug enabled for app: \(appID)")
+            }
+        }
+    }
 
     // If you aren't going to set an affiliate code yourself, please leave this as is.
     // It is my affiliate code. It is better that somebody's code is used rather than nobody's.
@@ -1169,12 +1170,17 @@ public class Manager : ArmchairManager {
         alert.messageText = reviewTitle
         alert.informativeText = reviewMessage
         alert.addButtonWithTitle(rateButtonTitle)
-        alert.addButtonWithTitle(remindButtonTitle)
+        if showsRemindButton() {
+            alert.addButtonWithTitle(remindButtonTitle)
+        }
         alert.addButtonWithTitle(cancelButtonTitle)
         ratingAlert = alert
 
         if let window = NSApplication.sharedApplication().keyWindow {
-            alert.beginSheetModalForWindow(window, modalDelegate: self, didEndSelector: "alertDidEnd:returnCode:", contextInfo: nil)
+            alert.beginSheetModalForWindow(window) {
+                (response: NSModalResponse) in
+                self.handleNSAlertReturnCode(response)
+            }
         } else {
             var returnCode = alert.runModal()
             handleNSAlertReturnCode(returnCode)
@@ -1235,22 +1241,22 @@ public class Manager : ArmchairManager {
 
     private func handleNSAlertReturnCode(returnCode: NSInteger) {
         switch (returnCode) {
-        case NSAlertAlternateReturn:
-            // they don't want to rate it
-            dontRate()
-        case NSAlertDefaultReturn:
+        case  NSAlertFirstButtonReturn:
             // they want to rate it
             _rateApp()
-        case NSAlertOtherReturn:
-            // remind them later
-            remindMeLater()
+        case  NSAlertSecondButtonReturn:
+            // remind them later or cancel
+            if showsRemindButton() {
+                remindMeLater()
+            } else {
+                dontRate()
+            }
+        case NSAlertThirdButtonReturn:
+            // they don't want to rate it
+            dontRate()
         default:
             return
         }
-    }
-
-    private func alertDidEnd(alert: NSAlert, returnCode: NSInteger) {
-        handleNSAlertReturnCode(returnCode)
     }
 
 #else
@@ -1324,7 +1330,7 @@ public class Manager : ArmchairManager {
         //Use the standard openUrl method
         } else {
             let url = NSURL(string: reviewURLString())
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.sharedApplication().openURL(url!)
         }
 
         if UIDevice.currentDevice().model.rangeOfString("Simulator") != nil {
@@ -1335,7 +1341,11 @@ public class Manager : ArmchairManager {
             debugLog(" - Or try copy/pasting \(fakeURL) into a browser on your computer.")
         }
 #elseif os(OSX)
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: reviewURLString()))
+        var url = NSURL(string: reviewURLString())
+        var opened = NSWorkspace.sharedWorkspace().openURL(url)
+        if !opened {
+            debugLog("Failed to open \(url)")
+        }
 #else
 #endif
     }
@@ -1617,7 +1627,10 @@ public class Manager : ArmchairManager {
                 alert.dismissWithClickedButtonIndex(alert.cancelButtonIndex, animated: false)
             }
 #elseif os(OSX)
-            NSApp.endSheet(NSApplication.sharedApplication().keyWindow)
+            if let window = NSApplication.sharedApplication().keyWindow {
+                NSApp.endSheet(window)
+            }
+    
     #else
 #endif
             ratingAlert = nil

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d2j-86-NpT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d2j-86-NpT">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6239"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -89,9 +89,24 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGK-R4-nip">
+                                <rect key="frame" x="260" y="576" width="80" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="4bP-kT-OTg"/>
+                                    <constraint firstAttribute="width" constant="80" id="68m-Sb-pvw"/>
+                                </constraints>
+                                <state key="normal" image="logo.png" backgroundImage="logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openUrbanApps:" destination="d2j-86-NpT" eventType="touchUpInside" id="gm5-65-hdf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="aGK-R4-nip" firstAttribute="centerX" secondItem="p7K-BU-wrj" secondAttribute="centerX" id="0zC-Sb-exW"/>
                             <constraint firstItem="pjK-Zp-UbQ" firstAttribute="leading" secondItem="mCe-MJ-dGn" secondAttribute="leadingMargin" constant="-16" id="1PY-yN-plZ"/>
+                            <constraint firstItem="MVO-Fx-XzJ" firstAttribute="top" secondItem="aGK-R4-nip" secondAttribute="bottom" constant="8" symbolic="YES" id="7FD-1f-35C"/>
                             <constraint firstAttribute="centerX" secondItem="p7K-BU-wrj" secondAttribute="centerX" id="94T-zn-nPn"/>
                             <constraint firstAttribute="centerY" secondItem="pjK-Zp-UbQ" secondAttribute="centerY" id="9s8-qH-i1P"/>
                             <constraint firstItem="pjK-Zp-UbQ" firstAttribute="height" secondItem="mCe-MJ-dGn" secondAttribute="height" id="JIc-fT-UjL"/>
@@ -131,6 +146,7 @@
     </scenes>
     <resources>
         <image name="armchair.jpg" width="800" height="736"/>
+        <image name="logo.png" width="1480" height="306"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

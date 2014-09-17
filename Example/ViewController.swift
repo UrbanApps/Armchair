@@ -20,16 +20,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
+class ViewController: UIViewController { }
+#elseif os(OSX)
+import Cocoa
+class ViewController: NSViewController { }
+#else
+#endif
+
 import Armchair
 
-class ViewController: UIViewController {
+extension ViewController {
     
     @IBAction func presentStandardPrompt(AnyObject) {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID("364709193") // iBooks
+        Armchair.appID(iPhoto)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -42,7 +50,7 @@ class ViewController: UIViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID("364709193") // iBooks
+        Armchair.appID(iPhoto)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -95,9 +103,10 @@ class ViewController: UIViewController {
         Armchair.onDidDisplayAlert() { println("[Example App] We just displayed the rating prompt") }
         Armchair.onDidOptToRate() { println("[Example App] The user just opted to rate") }
         Armchair.onDidOptToRemindLater({ println("[Example App] The user just opted to remind later") })
+#if os(iOS)
         Armchair.onWillPresentModalView({ println("[Example App] About to present the modal view. Animated: \($0)") })
         Armchair.onDidDismissModalView({ println("[Example App] Just dismissed the modal view. Animated: \($0)") })
-
+#endif
         // Armchair has sensible defaults for the NSUserDefault keys it uses, but you can customize that here
         Armchair.setKey("kSettingsSignificantEventTally", ArmchairKey.SignificantEventCount)
 
@@ -124,12 +133,13 @@ class ViewController: UIViewController {
             return true
         })
     }
-
+    
+#if os(iOS)
     @IBAction func presentStoreKitPrompt(AnyObject) {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID("364709193") // iBooks
+        Armchair.appID(iPhoto)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -145,8 +155,19 @@ class ViewController: UIViewController {
         // true here means it is ok to show, but it doesn't matter because we have debug on.
         Armchair.userDidSignificantEvent(true)
     }
-
+#endif
+    
     func resetAppReviewManager() {
         Armchair.resetDefaults()
+    }
+    
+    @IBAction func openUrbanApps(AnyObject) {
+        let url = NSURL(string: "http://urbanapps.com")
+#if os(iOS)
+        UIApplication.sharedApplication().openURL(url!)
+#elseif os(OSX)
+        NSWorkspace.sharedWorkspace().openURL(url)
+#else
+#endif
     }
 }

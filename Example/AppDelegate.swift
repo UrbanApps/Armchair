@@ -20,13 +20,39 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
+#if os(iOS)
+    
+    import UIKit
+        
+    @UIApplicationMain
+    class AppDelegate: UIResponder, UIApplicationDelegate {
+        var window: UIWindow?
+        
+        func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+            return true
+        }
+    }
+    
+    let iPhoto = "497786065" // iPhoto iOS
+    
+#elseif os(OSX)
+    
+    import Cocoa
+
+    @NSApplicationMain
+    class AppDelegate: NSObject, NSApplicationDelegate {
+        @IBOutlet weak var window: NSWindow!
+        
+    }
+    
+    let iPhoto = "408981381" // iPhoto Mac
+    
+#else
+#endif
+
 import Armchair
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    // MARK: - UIApplicationDelegate
+extension AppDelegate {
 
     override class func initialize() {
         AppDelegate.setupArmchair()
@@ -36,23 +62,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Normally, all the setup would be here.
         // But, because we are presenting a few different setups in the example,
         // The config will be in the view controllers
-        //	 Armchair.appID("364709193") // iBooks
+        //	 Armchair.appID("408981381") // iPhoto
         //
         // It is always best to load Armchair as early as possible
         // because it needs to receive application life-cycle notifications
         //
         // NOTE: The appID call always has to go before any other Armchair calls
-        Armchair.appID("364709193")
+        Armchair.appID(iPhoto)
         Armchair.debugEnabled(true)
     }
-    
-    var window: UIWindow?
-    
-    // MARK: - UIApplicationDelegate
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        return true
-    }
-
 }
+
 
