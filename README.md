@@ -8,6 +8,10 @@ The average end-user will only write a review if something is wrong with your Ap
 
 Here are just a few of the things that make Armchair better than the other rating frameworks and repos:
 
+##### 100% Swift
+
+While the tests to prove it seem to be missing, Apple claims that Swift is a lot faster than Objective-C. Enjoy the benefits of using a framework built entirely in Swift, and work with a familiar syntax without having to deal with bridging headers or other Objective-C shenanigans.
+
 ##### Both iOS and OS X Support
 
 Many developers publish apps for both iOS and OS X. Out of the box, Armchair supports iOS and OS X apps that are sold through the respective App Stores. The API is the same for both with the exception of a handful of iOS specific functions, described in Usage below.
