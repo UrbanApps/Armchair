@@ -55,7 +55,7 @@ Seriously. It is easy to piss off your customers by not really considering how t
 
 We think that having an app review prompt is fine, but only when presented at the right time, and only when you don't ask too frequently. The criteria for the smart display of a prompt varies for each app, but consider adding one at the end of a positive user workflow, rather than the beginning.
 
-Tweak the variables so that you don't annoy your customers, and you will enjoy the maximum benefit from your app review prompting.
+Tweak your variables so that you don't annoy your customers, and you will enjoy the maximum benefit from your app review prompting.
 
 ---
 
