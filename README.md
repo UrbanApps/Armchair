@@ -47,7 +47,7 @@ Armchair is clean code, well documented and well organized. It is easy to unders
 
 ---
 
-![The Golden Rule](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/golden-rule.png)
+<a name="the-golden-rule">![The Golden Rule](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/golden-rule.png)</a>
 
 1. "Don't be a dick."
 
