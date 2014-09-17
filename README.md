@@ -402,11 +402,7 @@ If you want to thank us for open-sourcing Armchair, you could [buy one of our ap
 
 ## Contact
 
-Follow UrbanApps on Twitter ([@UrbanApps](https://twitter.com/urbanapps))
-
-### Creator
-
-- [Matt Coneybeare](http://matt.coneybeare.me) ([@coneybeare](https://twitter.com/coneybeare))
+Follow Matt Coneybeare on Twitter ([@coneybeare](https://twitter.com/coneybeare))
 
 ## License
 
