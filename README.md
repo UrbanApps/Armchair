@@ -53,7 +53,9 @@ We think that having an app review prompt is fine, but only when presented at th
 
 Tweak the variables so that you don't annoy your customers, and you will enjoy the maximum benefit from your app review prompting.
 
---
+---
+
+## Screenshots
 
 ![iOS Example Shots](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair-iOS.png)
 ![Mac Example Shots](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair-OSX.png)
