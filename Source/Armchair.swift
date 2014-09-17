@@ -621,7 +621,8 @@ public enum ArmchairKey: String, Printable {
 
     public var description : String {
         get {
-            return self.rawValue
+            return self.toRaw()
+//          return self.rawValue // Changes to rawValue in Xcode 6.1 beta 2
         }
     }
 }
@@ -1330,7 +1331,7 @@ public class Manager : ArmchairManager {
         //Use the standard openUrl method
         } else {
             let url = NSURL(string: reviewURLString())
-            UIApplication.sharedApplication().openURL(url!)
+            UIApplication.sharedApplication().openURL(url)
         }
 
         if UIDevice.currentDevice().model.rangeOfString("Simulator") != nil {
@@ -1560,6 +1561,7 @@ public class Manager : ArmchairManager {
 
     private func bundle() -> NSBundle? {
         var bundle: NSBundle? = nil
+        
         if useMainAppBundleForLocalizations {
             bundle = NSBundle.mainBundle()
         } else {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6246" systemVersion="14A238x" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6246" systemVersion="14A238x" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
     </dependencies>
@@ -16,7 +16,12 @@
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
-        <viewController id="g9K-Nf-HDk" customClass="ViewController" customModule="Mac_Example" customModuleProvider="target"/>
+        <viewController id="g9K-Nf-HDk" customClass="ViewController" customModule="Mac_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="languageLabel" destination="TMr-De-pos" id="Pts-ch-UQq"/>
+                <outlet property="view" destination="EiT-Mj-1SZ" id="fYh-cJ-L5u"/>
+            </connections>
+        </viewController>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -670,7 +675,7 @@
         <window title="Mac Example" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES"/>
             <rect key="contentRect" x="335" y="390" width="400" height="368"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="368"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -686,13 +691,13 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="armchair" id="cpa-BH-nca"/>
                     </imageView>
                     <box autoresizesSubviews="NO" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0Gb-KD-yfU">
-                        <rect key="frame" x="17" y="237" width="366" height="113"/>
+                        <rect key="frame" x="17" y="250" width="366" height="100"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="364" height="111"/>
+                            <rect key="frame" x="1" y="1" width="364" height="98"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YED-uj-VLq">
-                                    <rect key="frame" x="16" y="42" width="332" height="81"/>
+                                    <rect key="frame" x="16" y="29" width="332" height="81"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="328" id="DsT-g1-qyE"/>
                                     </constraints>
@@ -703,7 +708,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkm-ga-2sM">
-                                    <rect key="frame" x="48" y="4" width="85" height="32"/>
+                                    <rect key="frame" x="63" y="8" width="85" height="32"/>
                                     <contentFilters>
                                         <ciFilter name="CIColorControls">
                                             <configuration>
@@ -723,7 +728,7 @@
                                     </connections>
                                 </button>
                                 <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGG-Wr-1xP">
-                                    <rect key="frame" x="211" y="4" width="105" height="32"/>
+                                    <rect key="frame" x="211" y="8" width="105" height="32"/>
                                     <contentFilters>
                                         <ciFilter name="CIColorControls">
                                             <configuration>
@@ -747,10 +752,10 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="YED-uj-VLq" secondAttribute="centerX" id="0D2-Qc-szZ"/>
                             <constraint firstItem="YED-uj-VLq" firstAttribute="top" secondItem="0Gb-KD-yfU" secondAttribute="top" constant="-13" id="0dP-ks-bhc"/>
-                            <constraint firstItem="yGG-Wr-1xP" firstAttribute="top" secondItem="YED-uj-VLq" secondAttribute="bottom" constant="6" id="FTY-wK-gxK"/>
-                            <constraint firstItem="YED-uj-VLq" firstAttribute="leading" secondItem="jkm-ga-2sM" secondAttribute="leading" constant="-30" id="V7U-7Z-CIK"/>
+                            <constraint firstItem="yGG-Wr-1xP" firstAttribute="top" secondItem="YED-uj-VLq" secondAttribute="bottom" constant="-11" id="FTY-wK-gxK"/>
+                            <constraint firstItem="YED-uj-VLq" firstAttribute="leading" secondItem="jkm-ga-2sM" secondAttribute="leading" constant="-45" id="V7U-7Z-CIK"/>
                             <constraint firstItem="jkm-ga-2sM" firstAttribute="bottom" secondItem="yGG-Wr-1xP" secondAttribute="bottom" id="WZR-Hf-JcJ"/>
-                            <constraint firstAttribute="height" constant="107" id="aN9-Sz-28k"/>
+                            <constraint firstAttribute="height" constant="94" id="aN9-Sz-28k"/>
                             <constraint firstItem="yGG-Wr-1xP" firstAttribute="trailing" secondItem="YED-uj-VLq" secondAttribute="trailing" constant="-30" id="iUR-We-Kf1"/>
                         </constraints>
                         <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -770,16 +775,26 @@
                             <action selector="openUrbanApps:" target="g9K-Nf-HDk" id="p5P-Rh-N1T"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TMr-De-pos">
+                        <rect key="frame" x="147" y="229" width="106" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Languange Label" id="k5m-JC-DUG">
+                            <font key="font" size="12" name="AmericanTypewriter"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="JWk-MV-osx" secondAttribute="centerY" id="1QU-qd-5HF"/>
                     <constraint firstAttribute="centerX" secondItem="JWk-MV-osx" secondAttribute="centerX" id="4MA-hd-vMN"/>
                     <constraint firstItem="0Gb-KD-yfU" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="BgQ-mm-2V4"/>
                     <constraint firstAttribute="bottom" secondItem="OSk-p7-dUM" secondAttribute="bottom" constant="8" id="Eg9-AS-cIz"/>
+                    <constraint firstAttribute="centerX" secondItem="TMr-De-pos" secondAttribute="centerX" id="H7z-0n-mbL"/>
                     <constraint firstAttribute="trailing" secondItem="0Gb-KD-yfU" secondAttribute="trailing" constant="20" id="Jd9-NU-hNd"/>
                     <constraint firstAttribute="centerX" secondItem="0Gb-KD-yfU" secondAttribute="centerX" id="JvA-go-nfg"/>
                     <constraint firstItem="OSk-p7-dUM" firstAttribute="centerX" secondItem="0Gb-KD-yfU" secondAttribute="centerX" constant="152" id="NDh-HU-3OR"/>
                     <constraint firstItem="0Gb-KD-yfU" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="SUA-nW-p1P"/>
+                    <constraint firstItem="TMr-De-pos" firstAttribute="top" secondItem="0Gb-KD-yfU" secondAttribute="bottom" constant="8" id="b8y-Oh-srw"/>
                 </constraints>
             </view>
         </window>

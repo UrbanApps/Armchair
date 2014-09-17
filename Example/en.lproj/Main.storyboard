@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d2j-86-NpT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d2j-86-NpT">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6239"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -102,6 +102,12 @@
                                     <action selector="openUrbanApps:" destination="d2j-86-NpT" eventType="touchUpInside" id="gm5-65-hdf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRH-yo-5R5">
+                                <rect key="frame" x="255" y="148" width="90" height="14"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="aGK-R4-nip" firstAttribute="centerX" secondItem="p7K-BU-wrj" secondAttribute="centerX" id="0zC-Sb-exW"/>
@@ -111,10 +117,12 @@
                             <constraint firstAttribute="centerY" secondItem="pjK-Zp-UbQ" secondAttribute="centerY" id="9s8-qH-i1P"/>
                             <constraint firstItem="pjK-Zp-UbQ" firstAttribute="height" secondItem="mCe-MJ-dGn" secondAttribute="height" id="JIc-fT-UjL"/>
                             <constraint firstAttribute="centerY" secondItem="p7K-BU-wrj" secondAttribute="centerY" constant="244" id="JwD-6n-gDl"/>
+                            <constraint firstItem="cRH-yo-5R5" firstAttribute="top" secondItem="p7K-BU-wrj" secondAttribute="bottom" constant="8" id="QNw-JV-8Hj"/>
                             <constraint firstAttribute="centerX" secondItem="pjK-Zp-UbQ" secondAttribute="centerX" id="SKh-dx-lMw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pjK-Zp-UbQ" secondAttribute="trailing" constant="-16" id="Wco-iZ-WK3"/>
                             <constraint firstItem="pjK-Zp-UbQ" firstAttribute="width" secondItem="mCe-MJ-dGn" secondAttribute="width" id="X4I-1D-UFn"/>
                             <constraint firstAttribute="height" secondItem="pjK-Zp-UbQ" secondAttribute="height" id="Xex-NE-7OZ"/>
+                            <constraint firstAttribute="centerX" secondItem="cRH-yo-5R5" secondAttribute="centerX" id="dcA-rF-XxK"/>
                             <constraint firstItem="pjK-Zp-UbQ" firstAttribute="top" secondItem="jBK-Sp-EmM" secondAttribute="bottom" constant="-20" id="edj-sT-3H0"/>
                             <constraint firstItem="MVO-Fx-XzJ" firstAttribute="top" secondItem="pjK-Zp-UbQ" secondAttribute="bottom" id="fbb-mU-rbb"/>
                             <constraint firstItem="p7K-BU-wrj" firstAttribute="trailing" secondItem="mCe-MJ-dGn" secondAttribute="trailingMargin" id="jfw-jd-DBJ"/>
@@ -138,6 +146,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="lJo-8x-S3p"/>
+                    <connections>
+                        <outlet property="languageLabel" destination="cRH-yo-5R5" id="adV-Qt-4rt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXP-CJ-uQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

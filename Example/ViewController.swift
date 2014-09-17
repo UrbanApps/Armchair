@@ -22,17 +22,58 @@
 
 #if os(iOS)
 import UIKit
-class ViewController: UIViewController { }
+class ViewController: UIViewController {
+    @IBOutlet weak var languageLabel: UILabel!
+}
 #elseif os(OSX)
 import Cocoa
-class ViewController: NSViewController { }
+class ViewController: NSViewController {
+    @IBOutlet weak var languageLabel: NSTextField!
+}
 #else
 #endif
 
 import Armchair
 
 extension ViewController {
+
+#if os(iOS)
+    override func viewDidLoad() {
+        setLanguageLabel()
+    }
+#elseif os(OSX)
     
+    override func awakeFromNib() {
+        setLanguageLabel()
+    }
+    
+#else
+#endif
+
+    func setLanguageLabel() {
+        var languageLabelText = ""
+
+        // Only set it if we are using Armchair localizations
+        if !Armchair.useMainAppBundleForLocalizations() {
+            var currentLocalization: NSString = NSBundle.mainBundle().preferredLocalizations[0] as NSString
+            // Only set it if we are using a different language than this apps development language
+            if let developmentLocalization = NSBundle.mainBundle().developmentLocalization {
+                if currentLocalization != developmentLocalization {
+                    languageLabelText = currentLocalization
+                    if let displayName = NSLocale(localeIdentifier: currentLocalization).displayNameForKey(NSLocaleIdentifier, value:currentLocalization) {
+                        languageLabelText = "\(displayName): \(currentLocalization)"
+                    }
+                }
+            }
+        }
+#if os(iOS)
+        languageLabel.text = languageLabelText
+#elseif os(OSX)
+        languageLabel.stringValue = languageLabelText
+#else
+#endif
+    }
+
     @IBAction func presentStandardPrompt(AnyObject) {
         resetAppReviewManager()
 
@@ -156,7 +197,7 @@ extension ViewController {
         Armchair.userDidSignificantEvent(true)
     }
 #endif
-    
+
     func resetAppReviewManager() {
         Armchair.resetDefaults()
     }
@@ -164,7 +205,7 @@ extension ViewController {
     @IBAction func openUrbanApps(AnyObject) {
         let url = NSURL(string: "http://urbanapps.com")
 #if os(iOS)
-        UIApplication.sharedApplication().openURL(url!)
+        UIApplication.sharedApplication().openURL(url)
 #elseif os(OSX)
         NSWorkspace.sharedWorkspace().openURL(url)
 #else

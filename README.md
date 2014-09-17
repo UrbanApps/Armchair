@@ -14,7 +14,7 @@ While the tests to prove it seem to be missing, Apple claims that Swift is a lot
 
 ##### Both iOS and OS X Support
 
-Many developers publish apps for both iOS and OS X. Out of the box, Armchair supports iOS and OS X apps that are sold through the respective App Stores. The API is the same for both with the exception of a handful of iOS specific functions, described in Usage below.
+Many developers publish apps for both iOS and OS X. Out of the box, Armchair supports iOS and OS X apps that are sold through the respective App Stores. The API is the same for both with the exception of a handful of iOS specific functions, described in [Usage](#usage).
 
 ##### Fully Configurable at Runtime
 

@@ -7,8 +7,72 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E6A0AF8F19C9D1E800C3A7DC /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF6F19C9D1E800C3A7DC /* ar.lproj */; };
+		E6A0AF9019C9D1E800C3A7DC /* arm.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7019C9D1E800C3A7DC /* arm.lproj */; };
+		E6A0AF9119C9D1E800C3A7DC /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7119C9D1E800C3A7DC /* ca.lproj */; };
+		E6A0AF9219C9D1E800C3A7DC /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7219C9D1E800C3A7DC /* cs.lproj */; };
+		E6A0AF9319C9D1E800C3A7DC /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7319C9D1E800C3A7DC /* da.lproj */; };
+		E6A0AF9419C9D1E800C3A7DC /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7419C9D1E800C3A7DC /* de.lproj */; };
+		E6A0AF9519C9D1E800C3A7DC /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7519C9D1E800C3A7DC /* el.lproj */; };
+		E6A0AF9619C9D1E800C3A7DC /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7619C9D1E800C3A7DC /* en.lproj */; };
+		E6A0AF9719C9D1E800C3A7DC /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7719C9D1E800C3A7DC /* es.lproj */; };
+		E6A0AF9819C9D1E800C3A7DC /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7819C9D1E800C3A7DC /* fi.lproj */; };
+		E6A0AF9919C9D1E800C3A7DC /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7919C9D1E800C3A7DC /* fr.lproj */; };
+		E6A0AF9A19C9D1E800C3A7DC /* he.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7A19C9D1E800C3A7DC /* he.lproj */; };
+		E6A0AF9B19C9D1E800C3A7DC /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7B19C9D1E800C3A7DC /* hu.lproj */; };
+		E6A0AF9C19C9D1E800C3A7DC /* id.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7C19C9D1E800C3A7DC /* id.lproj */; };
+		E6A0AF9D19C9D1E800C3A7DC /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7D19C9D1E800C3A7DC /* it.lproj */; };
+		E6A0AF9E19C9D1E800C3A7DC /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7E19C9D1E800C3A7DC /* ja.lproj */; };
+		E6A0AF9F19C9D1E800C3A7DC /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7F19C9D1E800C3A7DC /* ko.lproj */; };
+		E6A0AFA019C9D1E800C3A7DC /* ms.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8019C9D1E800C3A7DC /* ms.lproj */; };
+		E6A0AFA119C9D1E800C3A7DC /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8119C9D1E800C3A7DC /* nb.lproj */; };
+		E6A0AFA219C9D1E800C3A7DC /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8219C9D1E800C3A7DC /* nl.lproj */; };
+		E6A0AFA319C9D1E800C3A7DC /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8319C9D1E800C3A7DC /* pl.lproj */; };
+		E6A0AFA419C9D1E800C3A7DC /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8419C9D1E800C3A7DC /* pt-BR.lproj */; };
+		E6A0AFA519C9D1E800C3A7DC /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8519C9D1E800C3A7DC /* pt.lproj */; };
+		E6A0AFA619C9D1E800C3A7DC /* ro.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8619C9D1E800C3A7DC /* ro.lproj */; };
+		E6A0AFA719C9D1E800C3A7DC /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8719C9D1E800C3A7DC /* ru.lproj */; };
+		E6A0AFA819C9D1E800C3A7DC /* sk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8819C9D1E800C3A7DC /* sk.lproj */; };
+		E6A0AFA919C9D1E800C3A7DC /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8919C9D1E800C3A7DC /* sv.lproj */; };
+		E6A0AFAA19C9D1E800C3A7DC /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8A19C9D1E800C3A7DC /* th.lproj */; };
+		E6A0AFAB19C9D1E800C3A7DC /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8B19C9D1E800C3A7DC /* tr.lproj */; };
+		E6A0AFAC19C9D1E800C3A7DC /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8C19C9D1E800C3A7DC /* vi.lproj */; };
+		E6A0AFAD19C9D1E800C3A7DC /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8D19C9D1E800C3A7DC /* zh-Hans.lproj */; };
+		E6A0AFAE19C9D1E800C3A7DC /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8E19C9D1E800C3A7DC /* zh-Hant.lproj */; };
 		E6D8B8F119C756A4001AD043 /* Armchair.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897FF4019AA800700AB5182 /* Armchair.swift */; };
 		E6D8B92D19C880A9001AD043 /* ArmchairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8B92C19C880A9001AD043 /* ArmchairTests.swift */; };
+		E6F6157119C9FFDA00C0B51C /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7B19C9D1E800C3A7DC /* hu.lproj */; };
+		E6F6157219C9FFDA00C0B51C /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8319C9D1E800C3A7DC /* pl.lproj */; };
+		E6F6157319C9FFDA00C0B51C /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8519C9D1E800C3A7DC /* pt.lproj */; };
+		E6F6157419C9FFDA00C0B51C /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7619C9D1E800C3A7DC /* en.lproj */; };
+		E6F6157519C9FFDA00C0B51C /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8419C9D1E800C3A7DC /* pt-BR.lproj */; };
+		E6F6157619C9FFDA00C0B51C /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8A19C9D1E800C3A7DC /* th.lproj */; };
+		E6F6157719C9FFDA00C0B51C /* arm.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7019C9D1E800C3A7DC /* arm.lproj */; };
+		E6F6157819C9FFDA00C0B51C /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8219C9D1E800C3A7DC /* nl.lproj */; };
+		E6F6157919C9FFDA00C0B51C /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7119C9D1E800C3A7DC /* ca.lproj */; };
+		E6F6157A19C9FFDA00C0B51C /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF6F19C9D1E800C3A7DC /* ar.lproj */; };
+		E6F6157B19C9FFDA00C0B51C /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7519C9D1E800C3A7DC /* el.lproj */; };
+		E6F6157C19C9FFDA00C0B51C /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8D19C9D1E800C3A7DC /* zh-Hans.lproj */; };
+		E6F6157D19C9FFDA00C0B51C /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7F19C9D1E800C3A7DC /* ko.lproj */; };
+		E6F6157E19C9FFDA00C0B51C /* ms.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8019C9D1E800C3A7DC /* ms.lproj */; };
+		E6F6157F19C9FFDA00C0B51C /* id.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7C19C9D1E800C3A7DC /* id.lproj */; };
+		E6F6158019C9FFDA00C0B51C /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8719C9D1E800C3A7DC /* ru.lproj */; };
+		E6F6158119C9FFDA00C0B51C /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7319C9D1E800C3A7DC /* da.lproj */; };
+		E6F6158219C9FFDA00C0B51C /* sk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8819C9D1E800C3A7DC /* sk.lproj */; };
+		E6F6158319C9FFDA00C0B51C /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7E19C9D1E800C3A7DC /* ja.lproj */; };
+		E6F6158419C9FFDA00C0B51C /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8B19C9D1E800C3A7DC /* tr.lproj */; };
+		E6F6158519C9FFDA00C0B51C /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8119C9D1E800C3A7DC /* nb.lproj */; };
+		E6F6158619C9FFDA00C0B51C /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7919C9D1E800C3A7DC /* fr.lproj */; };
+		E6F6158719C9FFDA00C0B51C /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7419C9D1E800C3A7DC /* de.lproj */; };
+		E6F6158819C9FFDA00C0B51C /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7719C9D1E800C3A7DC /* es.lproj */; };
+		E6F6158919C9FFDA00C0B51C /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7819C9D1E800C3A7DC /* fi.lproj */; };
+		E6F6158A19C9FFDA00C0B51C /* he.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7A19C9D1E800C3A7DC /* he.lproj */; };
+		E6F6158B19C9FFDA00C0B51C /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7D19C9D1E800C3A7DC /* it.lproj */; };
+		E6F6158C19C9FFDA00C0B51C /* ro.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8619C9D1E800C3A7DC /* ro.lproj */; };
+		E6F6158D19C9FFDA00C0B51C /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8E19C9D1E800C3A7DC /* zh-Hant.lproj */; };
+		E6F6158E19C9FFDA00C0B51C /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8919C9D1E800C3A7DC /* sv.lproj */; };
+		E6F6158F19C9FFDA00C0B51C /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8C19C9D1E800C3A7DC /* vi.lproj */; };
+		E6F6159019C9FFDA00C0B51C /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7219C9D1E800C3A7DC /* cs.lproj */; };
 		F897FF4119AA800700AB5182 /* Armchair.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897FF4019AA800700AB5182 /* Armchair.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,17 +87,59 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E6A0AF6519C9CFF400C3A7DC /* Armchair.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Armchair.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6A0AF6819C9CFF500C3A7DC /* Info-Localizable.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Localizable.plist"; sourceTree = "<group>"; };
+		E6A0AF6F19C9D1E800C3A7DC /* ar.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ar.lproj; path = Localization/ar.lproj; sourceTree = "<group>"; };
+		E6A0AF7019C9D1E800C3A7DC /* arm.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = arm.lproj; path = Localization/arm.lproj; sourceTree = "<group>"; };
+		E6A0AF7119C9D1E800C3A7DC /* ca.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ca.lproj; path = Localization/ca.lproj; sourceTree = "<group>"; };
+		E6A0AF7219C9D1E800C3A7DC /* cs.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cs.lproj; path = Localization/cs.lproj; sourceTree = "<group>"; };
+		E6A0AF7319C9D1E800C3A7DC /* da.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = da.lproj; path = Localization/da.lproj; sourceTree = "<group>"; };
+		E6A0AF7419C9D1E800C3A7DC /* de.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = de.lproj; path = Localization/de.lproj; sourceTree = "<group>"; };
+		E6A0AF7519C9D1E800C3A7DC /* el.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = el.lproj; path = Localization/el.lproj; sourceTree = "<group>"; };
+		E6A0AF7619C9D1E800C3A7DC /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = Localization/en.lproj; sourceTree = "<group>"; };
+		E6A0AF7719C9D1E800C3A7DC /* es.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = es.lproj; path = Localization/es.lproj; sourceTree = "<group>"; };
+		E6A0AF7819C9D1E800C3A7DC /* fi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fi.lproj; path = Localization/fi.lproj; sourceTree = "<group>"; };
+		E6A0AF7919C9D1E800C3A7DC /* fr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fr.lproj; path = Localization/fr.lproj; sourceTree = "<group>"; };
+		E6A0AF7A19C9D1E800C3A7DC /* he.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = he.lproj; path = Localization/he.lproj; sourceTree = "<group>"; };
+		E6A0AF7B19C9D1E800C3A7DC /* hu.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = hu.lproj; path = Localization/hu.lproj; sourceTree = "<group>"; };
+		E6A0AF7C19C9D1E800C3A7DC /* id.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = id.lproj; path = Localization/id.lproj; sourceTree = "<group>"; };
+		E6A0AF7D19C9D1E800C3A7DC /* it.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = it.lproj; path = Localization/it.lproj; sourceTree = "<group>"; };
+		E6A0AF7E19C9D1E800C3A7DC /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ja.lproj; path = Localization/ja.lproj; sourceTree = "<group>"; };
+		E6A0AF7F19C9D1E800C3A7DC /* ko.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ko.lproj; path = Localization/ko.lproj; sourceTree = "<group>"; };
+		E6A0AF8019C9D1E800C3A7DC /* ms.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ms.lproj; path = Localization/ms.lproj; sourceTree = "<group>"; };
+		E6A0AF8119C9D1E800C3A7DC /* nb.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nb.lproj; path = Localization/nb.lproj; sourceTree = "<group>"; };
+		E6A0AF8219C9D1E800C3A7DC /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = nl.lproj; path = Localization/nl.lproj; sourceTree = "<group>"; };
+		E6A0AF8319C9D1E800C3A7DC /* pl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pl.lproj; path = Localization/pl.lproj; sourceTree = "<group>"; };
+		E6A0AF8419C9D1E800C3A7DC /* pt-BR.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "pt-BR.lproj"; path = "Localization/pt-BR.lproj"; sourceTree = "<group>"; };
+		E6A0AF8519C9D1E800C3A7DC /* pt.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = pt.lproj; path = Localization/pt.lproj; sourceTree = "<group>"; };
+		E6A0AF8619C9D1E800C3A7DC /* ro.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ro.lproj; path = Localization/ro.lproj; sourceTree = "<group>"; };
+		E6A0AF8719C9D1E800C3A7DC /* ru.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ru.lproj; path = Localization/ru.lproj; sourceTree = "<group>"; };
+		E6A0AF8819C9D1E800C3A7DC /* sk.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sk.lproj; path = Localization/sk.lproj; sourceTree = "<group>"; };
+		E6A0AF8919C9D1E800C3A7DC /* sv.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sv.lproj; path = Localization/sv.lproj; sourceTree = "<group>"; };
+		E6A0AF8A19C9D1E800C3A7DC /* th.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = th.lproj; path = Localization/th.lproj; sourceTree = "<group>"; };
+		E6A0AF8B19C9D1E800C3A7DC /* tr.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tr.lproj; path = Localization/tr.lproj; sourceTree = "<group>"; };
+		E6A0AF8C19C9D1E800C3A7DC /* vi.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = vi.lproj; path = Localization/vi.lproj; sourceTree = "<group>"; };
+		E6A0AF8D19C9D1E800C3A7DC /* zh-Hans.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-Hans.lproj"; path = "Localization/zh-Hans.lproj"; sourceTree = "<group>"; };
+		E6A0AF8E19C9D1E800C3A7DC /* zh-Hant.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-Hant.lproj"; path = "Localization/zh-Hant.lproj"; sourceTree = "<group>"; };
 		E6D8B8B519C7274F001AD043 /* Armchair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Armchair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D8B8F919C756A4001AD043 /* Armchair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Armchair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D8B92819C880A9001AD043 /* ArmchairTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArmchairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D8B92B19C880A9001AD043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6D8B92C19C880A9001AD043 /* ArmchairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmchairTests.swift; sourceTree = "<group>"; };
+		E6F6159419C9FFDA00C0B51C /* Armchair.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Armchair.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3819A95C8B0040E7D1 /* Armchair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Armchair.h; sourceTree = "<group>"; };
 		F897FF4019AA800700AB5182 /* Armchair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Armchair.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E6A0AF6219C9CFF400C3A7DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6D8B8F219C756A4001AD043 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,6 +148,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E6D8B92519C880A9001AD043 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6F6156F19C9FFDA00C0B51C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,6 +171,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E6A0AF6E19C9D1D300C3A7DC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				E6A0AF6F19C9D1E800C3A7DC /* ar.lproj */,
+				E6A0AF7019C9D1E800C3A7DC /* arm.lproj */,
+				E6A0AF7119C9D1E800C3A7DC /* ca.lproj */,
+				E6A0AF7219C9D1E800C3A7DC /* cs.lproj */,
+				E6A0AF7319C9D1E800C3A7DC /* da.lproj */,
+				E6A0AF7419C9D1E800C3A7DC /* de.lproj */,
+				E6A0AF7519C9D1E800C3A7DC /* el.lproj */,
+				E6A0AF7619C9D1E800C3A7DC /* en.lproj */,
+				E6A0AF7719C9D1E800C3A7DC /* es.lproj */,
+				E6A0AF7819C9D1E800C3A7DC /* fi.lproj */,
+				E6A0AF7919C9D1E800C3A7DC /* fr.lproj */,
+				E6A0AF7A19C9D1E800C3A7DC /* he.lproj */,
+				E6A0AF7B19C9D1E800C3A7DC /* hu.lproj */,
+				E6A0AF7C19C9D1E800C3A7DC /* id.lproj */,
+				E6A0AF7D19C9D1E800C3A7DC /* it.lproj */,
+				E6A0AF7E19C9D1E800C3A7DC /* ja.lproj */,
+				E6A0AF7F19C9D1E800C3A7DC /* ko.lproj */,
+				E6A0AF8019C9D1E800C3A7DC /* ms.lproj */,
+				E6A0AF8119C9D1E800C3A7DC /* nb.lproj */,
+				E6A0AF8219C9D1E800C3A7DC /* nl.lproj */,
+				E6A0AF8319C9D1E800C3A7DC /* pl.lproj */,
+				E6A0AF8419C9D1E800C3A7DC /* pt-BR.lproj */,
+				E6A0AF8519C9D1E800C3A7DC /* pt.lproj */,
+				E6A0AF8619C9D1E800C3A7DC /* ro.lproj */,
+				E6A0AF8719C9D1E800C3A7DC /* ru.lproj */,
+				E6A0AF8819C9D1E800C3A7DC /* sk.lproj */,
+				E6A0AF8919C9D1E800C3A7DC /* sv.lproj */,
+				E6A0AF8A19C9D1E800C3A7DC /* th.lproj */,
+				E6A0AF8B19C9D1E800C3A7DC /* tr.lproj */,
+				E6A0AF8C19C9D1E800C3A7DC /* vi.lproj */,
+				E6A0AF8D19C9D1E800C3A7DC /* zh-Hans.lproj */,
+				E6A0AF8E19C9D1E800C3A7DC /* zh-Hant.lproj */,
+			);
+			name = Localization;
+			sourceTree = "<group>";
+		};
 		E6D8B92919C880A9001AD043 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,11 +230,14 @@
 		F8111E2919A95C8B0040E7D1 = {
 			isa = PBXGroup;
 			children = (
+				E6A0AF6E19C9D1D300C3A7DC /* Localization */,
 				F8111E3519A95C8B0040E7D1 /* Source */,
 				E6D8B92919C880A9001AD043 /* Tests */,
 				E6D8B8B519C7274F001AD043 /* Armchair.framework */,
 				E6D8B8F919C756A4001AD043 /* Armchair.framework */,
 				E6D8B92819C880A9001AD043 /* ArmchairTests.xctest */,
+				E6A0AF6519C9CFF400C3A7DC /* Armchair.bundle */,
+				E6F6159419C9FFDA00C0B51C /* Armchair.bundle */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				F8111E3719A95C8B0040E7D1 /* Info.plist */,
+				E6A0AF6819C9CFF500C3A7DC /* Info-Localizable.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -107,6 +263,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E6A0AF6419C9CFF400C3A7DC /* ArmchairLocalizable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6A0AF6919C9CFF500C3A7DC /* Build configuration list for PBXNativeTarget "ArmchairLocalizable" */;
+			buildPhases = (
+				E6A0AF6119C9CFF400C3A7DC /* Sources */,
+				E6A0AF6219C9CFF400C3A7DC /* Frameworks */,
+				E6A0AF6319C9CFF400C3A7DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArmchairLocalizable;
+			productName = ArmchairLocalizable;
+			productReference = E6A0AF6519C9CFF400C3A7DC /* Armchair.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		E6D8B8EF19C756A4001AD043 /* ArmchairMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6D8B8F619C756A4001AD043 /* Build configuration list for PBXNativeTarget "ArmchairMac" */;
@@ -142,6 +315,23 @@
 			productReference = E6D8B92819C880A9001AD043 /* ArmchairTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E6F6156D19C9FFDA00C0B51C /* ArmchairLocalizableMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6F6159119C9FFDA00C0B51C /* Build configuration list for PBXNativeTarget "ArmchairLocalizableMac" */;
+			buildPhases = (
+				E6F6156E19C9FFDA00C0B51C /* Sources */,
+				E6F6156F19C9FFDA00C0B51C /* Frameworks */,
+				E6F6157019C9FFDA00C0B51C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArmchairLocalizableMac;
+			productName = ArmchairLocalizable;
+			productReference = E6F6159419C9FFDA00C0B51C /* Armchair.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		F8111E3219A95C8B0040E7D1 /* Armchair */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8111E4619A95C8B0040E7D1 /* Build configuration list for PBXNativeTarget "Armchair" */;
@@ -168,6 +358,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Armchair;
 				TargetAttributes = {
+					E6A0AF6419C9CFF400C3A7DC = {
+						CreatedOnToolsVersion = 6.0;
+					};
 					E6D8B92719C880A9001AD043 = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -190,12 +383,53 @@
 			targets = (
 				F8111E3219A95C8B0040E7D1 /* Armchair */,
 				E6D8B8EF19C756A4001AD043 /* ArmchairMac */,
+				E6A0AF6419C9CFF400C3A7DC /* ArmchairLocalizable */,
+				E6F6156D19C9FFDA00C0B51C /* ArmchairLocalizableMac */,
 				E6D8B92719C880A9001AD043 /* ArmchairTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E6A0AF6319C9CFF400C3A7DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6A0AF9B19C9D1E800C3A7DC /* hu.lproj in Resources */,
+				E6A0AFA319C9D1E800C3A7DC /* pl.lproj in Resources */,
+				E6A0AFA519C9D1E800C3A7DC /* pt.lproj in Resources */,
+				E6A0AF9619C9D1E800C3A7DC /* en.lproj in Resources */,
+				E6A0AFA419C9D1E800C3A7DC /* pt-BR.lproj in Resources */,
+				E6A0AFAA19C9D1E800C3A7DC /* th.lproj in Resources */,
+				E6A0AF9019C9D1E800C3A7DC /* arm.lproj in Resources */,
+				E6A0AFA219C9D1E800C3A7DC /* nl.lproj in Resources */,
+				E6A0AF9119C9D1E800C3A7DC /* ca.lproj in Resources */,
+				E6A0AF8F19C9D1E800C3A7DC /* ar.lproj in Resources */,
+				E6A0AF9519C9D1E800C3A7DC /* el.lproj in Resources */,
+				E6A0AFAD19C9D1E800C3A7DC /* zh-Hans.lproj in Resources */,
+				E6A0AF9F19C9D1E800C3A7DC /* ko.lproj in Resources */,
+				E6A0AFA019C9D1E800C3A7DC /* ms.lproj in Resources */,
+				E6A0AF9C19C9D1E800C3A7DC /* id.lproj in Resources */,
+				E6A0AFA719C9D1E800C3A7DC /* ru.lproj in Resources */,
+				E6A0AF9319C9D1E800C3A7DC /* da.lproj in Resources */,
+				E6A0AFA819C9D1E800C3A7DC /* sk.lproj in Resources */,
+				E6A0AF9E19C9D1E800C3A7DC /* ja.lproj in Resources */,
+				E6A0AFAB19C9D1E800C3A7DC /* tr.lproj in Resources */,
+				E6A0AFA119C9D1E800C3A7DC /* nb.lproj in Resources */,
+				E6A0AF9919C9D1E800C3A7DC /* fr.lproj in Resources */,
+				E6A0AF9419C9D1E800C3A7DC /* de.lproj in Resources */,
+				E6A0AF9719C9D1E800C3A7DC /* es.lproj in Resources */,
+				E6A0AF9819C9D1E800C3A7DC /* fi.lproj in Resources */,
+				E6A0AF9A19C9D1E800C3A7DC /* he.lproj in Resources */,
+				E6A0AF9D19C9D1E800C3A7DC /* it.lproj in Resources */,
+				E6A0AFA619C9D1E800C3A7DC /* ro.lproj in Resources */,
+				E6A0AFAE19C9D1E800C3A7DC /* zh-Hant.lproj in Resources */,
+				E6A0AFA919C9D1E800C3A7DC /* sv.lproj in Resources */,
+				E6A0AFAC19C9D1E800C3A7DC /* vi.lproj in Resources */,
+				E6A0AF9219C9D1E800C3A7DC /* cs.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6D8B8F519C756A4001AD043 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,6 +444,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E6F6157019C9FFDA00C0B51C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6F6157119C9FFDA00C0B51C /* hu.lproj in Resources */,
+				E6F6157219C9FFDA00C0B51C /* pl.lproj in Resources */,
+				E6F6157319C9FFDA00C0B51C /* pt.lproj in Resources */,
+				E6F6157419C9FFDA00C0B51C /* en.lproj in Resources */,
+				E6F6157519C9FFDA00C0B51C /* pt-BR.lproj in Resources */,
+				E6F6157619C9FFDA00C0B51C /* th.lproj in Resources */,
+				E6F6157719C9FFDA00C0B51C /* arm.lproj in Resources */,
+				E6F6157819C9FFDA00C0B51C /* nl.lproj in Resources */,
+				E6F6157919C9FFDA00C0B51C /* ca.lproj in Resources */,
+				E6F6157A19C9FFDA00C0B51C /* ar.lproj in Resources */,
+				E6F6157B19C9FFDA00C0B51C /* el.lproj in Resources */,
+				E6F6157C19C9FFDA00C0B51C /* zh-Hans.lproj in Resources */,
+				E6F6157D19C9FFDA00C0B51C /* ko.lproj in Resources */,
+				E6F6157E19C9FFDA00C0B51C /* ms.lproj in Resources */,
+				E6F6157F19C9FFDA00C0B51C /* id.lproj in Resources */,
+				E6F6158019C9FFDA00C0B51C /* ru.lproj in Resources */,
+				E6F6158119C9FFDA00C0B51C /* da.lproj in Resources */,
+				E6F6158219C9FFDA00C0B51C /* sk.lproj in Resources */,
+				E6F6158319C9FFDA00C0B51C /* ja.lproj in Resources */,
+				E6F6158419C9FFDA00C0B51C /* tr.lproj in Resources */,
+				E6F6158519C9FFDA00C0B51C /* nb.lproj in Resources */,
+				E6F6158619C9FFDA00C0B51C /* fr.lproj in Resources */,
+				E6F6158719C9FFDA00C0B51C /* de.lproj in Resources */,
+				E6F6158819C9FFDA00C0B51C /* es.lproj in Resources */,
+				E6F6158919C9FFDA00C0B51C /* fi.lproj in Resources */,
+				E6F6158A19C9FFDA00C0B51C /* he.lproj in Resources */,
+				E6F6158B19C9FFDA00C0B51C /* it.lproj in Resources */,
+				E6F6158C19C9FFDA00C0B51C /* ro.lproj in Resources */,
+				E6F6158D19C9FFDA00C0B51C /* zh-Hant.lproj in Resources */,
+				E6F6158E19C9FFDA00C0B51C /* sv.lproj in Resources */,
+				E6F6158F19C9FFDA00C0B51C /* vi.lproj in Resources */,
+				E6F6159019C9FFDA00C0B51C /* cs.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8111E3119A95C8B0040E7D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,6 +493,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E6A0AF6119C9CFF400C3A7DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6D8B8F019C756A4001AD043 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +513,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6D8B92D19C880A9001AD043 /* ArmchairTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6F6156E19C9FFDA00C0B51C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +542,41 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		E6A0AF6A19C9CFF500C3A7DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Source/Info-Localizable.plist";
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Armchair;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		E6A0AF6B19C9CFF500C3A7DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "Source/Info-Localizable.plist";
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Armchair;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		E6D8B8F719C756A4001AD043 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -331,6 +653,43 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E6F6159219C9FFDA00C0B51C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Source/Info-Localizable.plist";
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Armchair;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		E6F6159319C9FFDA00C0B51C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "Source/Info-Localizable.plist";
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Armchair;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -462,6 +821,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E6A0AF6919C9CFF500C3A7DC /* Build configuration list for PBXNativeTarget "ArmchairLocalizable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6A0AF6A19C9CFF500C3A7DC /* Debug */,
+				E6A0AF6B19C9CFF500C3A7DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E6D8B8F619C756A4001AD043 /* Build configuration list for PBXNativeTarget "ArmchairMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -476,6 +844,15 @@
 			buildConfigurations = (
 				E6D8B92F19C880A9001AD043 /* Debug */,
 				E6D8B93019C880A9001AD043 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6F6159119C9FFDA00C0B51C /* Build configuration list for PBXNativeTarget "ArmchairLocalizableMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6F6159219C9FFDA00C0B51C /* Debug */,
+				E6F6159319C9FFDA00C0B51C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
