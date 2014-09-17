@@ -107,12 +107,12 @@ The `appName` is used in several places on the review prompt popup. It can be co
     GETTER: Armchair.appName() -> String
     SETTER: Armchair.appName(appName: String)
 
-The `reviewTitle` is the title to use on the review prompt popup. It's default value is a localized "Rate <appName>", but you can set it to anything you want.
+The `reviewTitle` is the title to use on the review prompt popup. It's default value is a localized "Rate \<appName\>", but you can set it to anything you want.
 
     GETTER: Armchair.reviewTitle() -> String
     SETTER: Armchair.reviewTitle(reviewTitle: String)
 
-The `reviewMessage` is the message to use on the review prompt popup. It's default value is a localized "If you enjoy using <appName>, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", but you can change it specifically if you want. However, if you do change it, you will need to provide your own localization strings as shown farther down below.
+The `reviewMessage` is the message to use on the review prompt popup. It's default value is a localized "If you enjoy using \<appName\>, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", but you can change it specifically if you want. However, if you do change it, you will need to provide your own localization strings as shown farther down below.
 
     GETTER: Armchair.reviewMessage() -> String
     SETTER: Armchair.reviewMessage(reviewMessage: String)
@@ -122,7 +122,7 @@ The `cancelButtonTitle` is the button title to use on the review prompt popup fo
     GETTER: Armchair.cancelButtonTitle() -> String
     SETTER: Armchair.cancelButtonTitle(cancelButtonTitle: String)
 
-The `rateButtonTitle` is the button title to use on the review prompt popup for the "Rate" action. Its default value is a localized "Rate <appName>"
+The `rateButtonTitle` is the button title to use on the review prompt popup for the "Rate" action. Its default value is a localized "Rate \<appName\>"
 
     GETTER: Armchair.rateButtonTitle() -> String
     SETTER: Armchair.rateButtonTitle(rateButtonTitle: String)
@@ -183,7 +183,7 @@ The `affiliateCode` configuration is optional and is used to configure with the 
 	GETTER: Armchair.affiliateCode() -> String
     SETTER: Armchair.affiliateCode(affiliateCode: String)
 
-The `affiliateCampaignCode` configuration is optional and is used to configure the review URL. It provides context to the affiliate code and defaults to "Armchair-<appID>".
+The `affiliateCampaignCode` configuration is optional and is used to configure the review URL. It provides context to the affiliate code and defaults to "Armchair-\<appID\>".
 	
     GETTER: Armchair.affiliateCampaignCode() -> String
     SETTER: Armchair.affiliateCampaignCode(affiliateCampaignCode: String)
@@ -296,7 +296,7 @@ When using these functions instead of their `Bool` sister-functions, none of the
 
 ### NSUserDefaults and Keys
 
-Armchair has sensible defaults for the `NSUserDefaults` keys it uses, but you can customize that here if you want. Get/Set the `NSUserDefaults` keys that store the usage data for Armchair. Default values are all in the form of "<appID>_Armchair<Setting>"
+Armchair has sensible defaults for the `NSUserDefaults` keys it uses, but you can customize that here if you want. Get/Set the `NSUserDefaults` keys that store the usage data for Armchair. Default values are all in the form of "\<appID\>_Armchair\<Setting\>"
 
     GETTER Armchair.keyForArmchairKeyType(keyType: ArmchairKey) -> String
     SETTER Armchair.setKey(key: NSString, armchairKeyType: ArmchairKey)
