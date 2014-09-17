@@ -1,6 +1,6 @@
 ![Armchair: A simple yet powerful App Review Manager for iOS and OSX in Swift](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair.png)
 
-Armchair is a simple yet powerful App Review Manager for iOS and OSX written in Swift. It is based on [Armchair](https://github.com/UrbanApps/Armchair) and [Appirater](https://github.com/arashpayan/appirater) but completely rewritten for apps that want to benefit from the power of this new language.
+Armchair is a simple yet powerful App Review Manager for iOS and OSX written in Swift. It is based on [UAAppReviewManager](https://github.com/UrbanApps/UAAppReviewManager) and [Appirater](https://github.com/arashpayan/appirater) but completely rewritten for apps that want to benefit from the power of this new language.
 
 ## Why Armchair?
 
