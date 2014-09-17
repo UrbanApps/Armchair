@@ -1,8 +1,6 @@
 ![Armchair: A simple yet powerful App Review Manager for iOS and OSX in Swift](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair.png)
 
-Armchair is a simple yet powerful App Review Manager for iOS and OSX written in Swift. It is based on [Armchair](https://github.com/UrbanApps/Armchair) and [Appirater](https://github.com/arashpayan/appirater) but completely rewritten for apps that want to leverage the power of this new language.
-
-Armchair is still the best App Review library available for Mac OS X and iOS, and can easily be used in Swift, just like any other Objective-C code. **Armchair is stable and reliable, and isn't going anywhere.** But for anyone looking for something a little more idiomatic to Swift, Armchair may be right up your alley.
+Armchair is a simple yet powerful App Review Manager for iOS and OSX written in Swift. It is based on [Armchair](https://github.com/UrbanApps/Armchair) and [Appirater](https://github.com/arashpayan/appirater) but completely rewritten for apps that want to benefit from the power of this new language.
 
 ## Why Armchair?
 
@@ -42,6 +40,8 @@ If you are an iTunes Affiliate, you can easily setup Armchair to use your code a
 ##### Ready For Primetime
 
 Armchair is clean code, well documented and well organized. It is easy to understand the logic flow and the purpose of each function. It doesn't mix logic up randomly between Class functions and Instance functions. It's API is clean and predictable.
+
+## The golden rule
 
 ## Screenshots
 
