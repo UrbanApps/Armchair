@@ -1,4 +1,4 @@
-![Armchair: A simple and lightweight App Review Manager for iOS and OSX in Swift](http://files.urbanapps.com/armchair/armchair.png)
+![Armchair: A simple and lightweight App Review Manager for iOS and OSX in Swift](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair.png)
 
 ---
 
