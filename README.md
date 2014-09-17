@@ -41,9 +41,25 @@ If you are an iTunes Affiliate, you can easily setup Armchair to use your code a
 
 Armchair is clean code, well documented and well organized. It is easy to understand the logic flow and the purpose of each function. It doesn't mix logic up randomly between Class functions and Instance functions. It's API is clean and predictable.
 
-## The golden rule
+--
+---
+![The Golden Rule](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/golden-rule.png)
 
-## Screenshots
+---
+
+1. "Don't be a dick."
+
+---
+
+
+Seriously. It is easy to piss off your customers by not really considering how the prompting popup interrupts their flow. This was widely discussed in early 2014 by many well-know tech bloggers ad caused a big hooplah in the community.
+
+We think that having an app review prompt is fine, but only when presented at the right time, and only when you don't ask too frequently. The criteria for the smart display of a prompt varies for each app, but consider adding one at the end of a positive user workflow, rather than the beginning.
+
+Tweak the variables so that you don't annoy your customers, and you will enjoy the maximum benefit from your app review prompting.
+
+---
+
 
 ![iOS Example Shots](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair-iOS.png)
 ![Mac Example Shots](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/armchair-OSX.png)
