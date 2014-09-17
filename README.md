@@ -51,7 +51,7 @@ Armchair is clean code, well documented and well organized. It is easy to unders
 
 1. "Don't be a dick."
 
-Seriously. It is easy to piss off your customers by not really considering how the prompting popup interrupts their flow. This was widely discussed in early 2014 by many well-know tech bloggers ad caused a big hooplah in the community.
+Seriously. It is easy to piss off your customers by not really considering how the prompting popup interrupts their flow. This was widely discussed in early 2014 by many well-known tech bloggers ad caused a big hooplah in the community.
 
 We think that having an app review prompt is fine, but only when presented at the right time, and only when you don't ask too frequently. The criteria for the smart display of a prompt varies for each app, but consider adding one at the end of a positive user workflow, rather than the beginning.
 
