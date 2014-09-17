@@ -386,7 +386,7 @@ There are some ideas we have for future versions of Armchair. Feel free to fork/
 Let us know if you see ways to improve Armchair or see something wrong with it. We are happy to pull in pull requests that have clean code, and have features that are useful for most people. While the Swift community is still deciding on proper code structure and style, please refrain from simple style complaints (space > tabs, etc...)
 
 ## What Does Armchair stand for?
-The "Arm" is for (A)pp (R)eview (M)anager. the chair is so we could have a cool picture on the page.
+The "Arm" is for (A)pp (R)eview (M)anager. The chair is so we could have a cool picture on the page.
 
 ## Who makes Armchair?
 [Matt Coneybeare](http://matt.coneybeare.me) of [Urban Apps](http://urbanapps.com). We make neat stuff. Check us out.
@@ -397,7 +397,7 @@ The "Arm" is for (A)pp (R)eview (M)anager. the chair is so we could have a cool 
 - [UAModalPanel](https://github.com/UrbanApps/UAModalPanel) - An animated modal panel alternative for iOS
 - [UALogger](https://github.com/UrbanApps/UALogger) - A logging utility for Mac/iOS apps
 - [UAObfuscatedString](https://github.com/UrbanApps/UAObfuscatedString) - A simple NSString category to hide sensitive strings
-- [UAProgressView](https://github.com/UrbanApps/UAProgressView) A simple and lightweight, yet powerful animated circular progress view
+- [UAProgressView](https://github.com/UrbanApps/UAProgressView) - A simple and lightweight, yet powerful animated circular progress view
 - [Urban](https://github.com/UrbanApps/Urban) - An Xcode color scheme that uses a soft dark background, with subtle blue, orange and yellow colors
 
 ## Feeling Generous?
