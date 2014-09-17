@@ -261,7 +261,7 @@ Armchair uses optional closures instead of delegate functions for callbacks. Def
     Armchair.onDidOptToRate(didOptToRateClosure: ArmchairClosure?)
     Armchair.onDidOptToRemindLater(didOptToRemindLaterClosure: ArmchairClosure?)    
 
-##### iOS Only Block Callbacks
+##### iOS Only Closures
 
    	Armchair.onWillPresentModalView(willPresentModalViewClosure: ArmchairAnimateClosure?)
    	Armchair.onDidDismissModalView(didDismissModalViewClosure: ArmchairAnimateClosure?)
@@ -288,9 +288,9 @@ In addition to the global `shouldPromptClosure`, the Armchair functions that tri
     Armchair.showPrompt(shouldPrompt: ArmchairShouldPromptClosure)
     Armchair.userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure)
     
-When using these functions instead of their `Bool` sister-functions, none of the internal Armchair logic is used to determine whether or not to display the prompt. **Only** your closure is used to decide whether or not it should be presented, based solely on the return value you pass back in the closure. This also means that even the global `shouldPromptBlock()` (if set) will not be called when using these functions.
+When using these functions instead of their `Bool` sister-functions, none of the internal Armchair logic is used to determine whether or not to display the prompt. **Only** your closure is used to decide whether or not it should be presented, based solely on the return value you pass back in the closure. This also means that even the global `shouldPromptClosure()` (if set) will not be called when using these functions.
 
-**Note:** The `shouldPromptBlock()` is run synchronous and on the main queue, so be sure to handle it appropriately.
+**Note:** The `shouldPromptClosure()` is run synchronous and on the main queue, so be sure to handle it appropriately.
 
 ### NSUserDefaults and Keys
 
@@ -358,7 +358,7 @@ I started addressing these issues in a fork of Appirater, but quickly realized t
 - Available for iOS and Mac
 - Runs as a Singleton, with Class level, pass-through convenience methods.
 - Every aspect is configurable at runtime through an established API.
-- Uses Blocks for all event callbacks and notifications.
+- Uses Closures for all event callbacks and notifications.
 - Allows developers to disable the prompt easily on minor updates
 - Allows iTunes affiliate codes to be used.
 - Allows you to prevent prompts for the same app and version on two separate devices
