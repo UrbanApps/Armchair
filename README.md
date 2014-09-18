@@ -8,7 +8,7 @@ The average end-user will only write a review if something is wrong with your Ap
 
 Here are just a few of the things that make Armchair better than the other rating frameworks and repos:
 
-##### ![100% Swift](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/swift.png)
+<img align="center" src="https://raw.githubusercontent.com/UrbanApps/Armchair/assets/swift.png">
 
 While the tests to prove it seem to be missing, Apple claims that Swift is a lot faster than Objective-C. Enjoy the benefits of using a framework built entirely in Swift, and work with a familiar syntax without having to deal with bridging headers or other Objective-C shenanigans.
 
