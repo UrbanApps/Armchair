@@ -388,7 +388,7 @@ There are some ideas we have for future versions of Armchair. Feel free to fork/
 Let us know if you see ways to improve Armchair or see something wrong with it. We are happy to pull in pull requests that have clean code, and have features that are useful for most people. While the Swift community is still deciding on proper code structure and style, please refrain from simple style complaints (space > tabs, etc...)
 
 ## What Does Armchair stand for?
-The "Arm" is for (A)pp (R)eview (M)anager. The chair is so we could have a cool picture on the page.
+The "Arm" is for **A**pp **R**eview **M**anager. The chair is so we could have a cool picture on the page.
 
 ## Who makes Armchair?
 [Matt Coneybeare](http://matt.coneybeare.me) of [Urban Apps](http://urbanapps.com). We make neat stuff. Check us out.
