@@ -405,5 +405,3 @@ The "Arm" is for App Review Manager. The chair is so we could have a cool pictur
 ## License
 
 Armchair is released under an MIT license. See LICENSE for more information.
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/urbanapps/armchair/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
