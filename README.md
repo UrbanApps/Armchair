@@ -402,10 +402,6 @@ The "Arm" is for (A)pp (R)eview (M)anager. The chair is so we could have a cool 
 - [UAProgressView](https://github.com/UrbanApps/UAProgressView) - A simple and lightweight, yet powerful animated circular progress view
 - [Urban](https://github.com/UrbanApps/Urban) - An Xcode color scheme that uses a soft dark background, with subtle blue, orange and yellow colors
 
-## Feeling Generous?
-
-If you want to thank us for open-sourcing Armchair, you could [buy one of our apps](http://itunes.com/apps/urbanapps?at=11l7j9&ct=github).
-
 ## Contact
 
 Follow Matt Coneybeare on Twitter ([@coneybeare](https://twitter.com/coneybeare))
