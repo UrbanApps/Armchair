@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		E60FA81819C9219600179D70 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E60FA81719C9219600179D70 /* logo.png */; };
 		E6A0AFB419C9D30900C3A7DC /* Armchair.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AFB319C9D24000C3A7DC /* Armchair.bundle */; };
-		E6D8B8EC19C75559001AD043 /* Armchair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8B8BB19C7382B001AD043 /* Armchair.framework */; };
+		E6D06B5B19CB413600DE5D11 /* Armchair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8B8BB19C7382B001AD043 /* Armchair.framework */; };
+		E6D06B5C19CB413600DE5D11 /* Armchair.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6D8B8BB19C7382B001AD043 /* Armchair.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6E5F4C319C8E18E008A6C1B /* armchair.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6E5F4C219C8E18E008A6C1B /* armchair.jpg */; };
 		E6E5F4CD19C8E388008A6C1B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E5F4CC19C8E388008A6C1B /* Icon.png */; };
 		E6E5F4CF19C8E3C6008A6C1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6E5F4CE19C8E3C6008A6C1B /* Images.xcassets */; };
@@ -33,7 +34,21 @@
 			remoteGlobalIDString = E6A0AF6519C9CFF400C3A7DC;
 			remoteInfo = ArmchairLocalizable;
 		};
-		E6C9055D19C6433500F41311 /* PBXContainerItemProxy */ = {
+		E6D06B5519CB412500DE5D11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8111E4E19A95D7C0040E7D1 /* Armchair.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E6F6159419C9FFDA00C0B51C;
+			remoteInfo = ArmchairLocalizableMac;
+		};
+		E6D06B5919CB412500DE5D11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8111E4E19A95D7C0040E7D1 /* Armchair.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = Armchair;
+		};
+		E6D06B5D19CB413600DE5D11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F8111E4E19A95D7C0040E7D1 /* Armchair.xcodeproj */;
 			proxyType = 1;
@@ -64,12 +79,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E6C9055419C63AAF00F41311 /* Embed Frameworks */ = {
+		E6D06B5F19CB413600DE5D11 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E6D06B5C19CB413600DE5D11 /* Armchair.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6D8B8EC19C75559001AD043 /* Armchair.framework in Frameworks */,
+				E6D06B5B19CB413600DE5D11 /* Armchair.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +123,7 @@
 				E6D8B8BB19C7382B001AD043 /* Armchair.framework */,
 				E6E5F4C119C8E156008A6C1B /* Armchair.framework */,
 				E6A0AFB319C9D24000C3A7DC /* Armchair.bundle */,
+				E6D06B5619CB412500DE5D11 /* Armchair.bundle */,
 				E6D8B8BD19C7382B001AD043 /* ArmchairTests.xctest */,
 			);
 			name = Products;
@@ -155,13 +172,14 @@
 				F8111E0119A951050040E7D1 /* Sources */,
 				F8111E0219A951050040E7D1 /* Frameworks */,
 				F8111E0319A951050040E7D1 /* Resources */,
-				E6C9055419C63AAF00F41311 /* Embed Frameworks */,
+				E6D06B5F19CB413600DE5D11 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E6C9055E19C6433500F41311 /* PBXTargetDependency */,
 				E6A0AFB019C9D24000C3A7DC /* PBXTargetDependency */,
+				E6D06B5A19CB412500DE5D11 /* PBXTargetDependency */,
+				E6D06B5E19CB413600DE5D11 /* PBXTargetDependency */,
 			);
 			name = "iOS Example";
 			productName = Armchair;
@@ -211,6 +229,13 @@
 			fileType = wrapper.cfbundle;
 			path = Armchair.bundle;
 			remoteRef = E6A0AFB219C9D24000C3A7DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E6D06B5619CB412500DE5D11 /* Armchair.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Armchair.bundle;
+			remoteRef = E6D06B5519CB412500DE5D11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E6D8B8BB19C7382B001AD043 /* Armchair.framework */ = {
@@ -270,10 +295,15 @@
 			name = ArmchairLocalizable;
 			targetProxy = E6A0AFAF19C9D24000C3A7DC /* PBXContainerItemProxy */;
 		};
-		E6C9055E19C6433500F41311 /* PBXTargetDependency */ = {
+		E6D06B5A19CB412500DE5D11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Armchair;
-			targetProxy = E6C9055D19C6433500F41311 /* PBXContainerItemProxy */;
+			targetProxy = E6D06B5919CB412500DE5D11 /* PBXContainerItemProxy */;
+		};
+		E6D06B5E19CB413600DE5D11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Armchair;
+			targetProxy = E6D06B5D19CB413600DE5D11 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -33,7 +33,7 @@
         }
     }
     
-    let iPhoto = "497786065" // iPhoto iOS
+    let Pages = "361309726" // Pages iOS
     
 #elseif os(OSX)
     
@@ -45,7 +45,7 @@
         
     }
     
-    let iPhoto = "408981381" // iPhoto Mac
+    let Pages = "409201541" // Pages Mac
     
 #else
 #endif
@@ -62,13 +62,13 @@ extension AppDelegate {
         // Normally, all the setup would be here.
         // But, because we are presenting a few different setups in the example,
         // The config will be in the view controllers
-        //	 Armchair.appID("408981381") // iPhoto
+        //	 Armchair.appID("408981381") // Pages
         //
         // It is always best to load Armchair as early as possible
         // because it needs to receive application life-cycle notifications
         //
         // NOTE: The appID call always has to go before any other Armchair calls
-        Armchair.appID(iPhoto)
+        Armchair.appID(Pages)
         Armchair.debugEnabled(true)
     }
 }

@@ -78,10 +78,15 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(iPhoto)
+        Armchair.appID(Pages)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
+
+#if os(iOS)
+        // Explicitly disable the storeKit as the default may be true if on iOS 8
+        Armchair.opensInStoreKit(false)
+#endif
 
         // true here means it is ok to show, but it doesn't matter because we have debug on.
         Armchair.userDidSignificantEvent(true)
@@ -91,7 +96,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(iPhoto)
+        Armchair.appID(Pages)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -132,6 +137,11 @@ extension ViewController {
         // UAAppReviewManager comes with standard translations for dozens of Languages. If you want to provide your own translations instead,
         //  or you change the default title, message or button titles, set this to YES.
         Armchair.useMainAppBundleForLocalizations(true)
+
+        #if os(iOS)
+            // Explicitly disable the storeKit as the default may be true if on iOS 8
+            Armchair.opensInStoreKit(false)
+        #endif
 
         // This sets the Affiliate code you want to use, but is not required.
         Armchair.affiliateCode("11l7j9")
@@ -180,12 +190,12 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(iPhoto)
+        Armchair.appID(Pages)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
 
-        // This overrides the default of NO and is iOS 6+. Instead of going to the review page in the App Store App,
+        // This overrides the default of NO in iOS 7. Instead of going to the review page in the App Store App,
         //  the user goes to the main page of the app, in side of this app. Downsides are that it doesn't go directly to
         //  reviews and doesn't take affiliate codes
         Armchair.opensInStoreKit(true)
