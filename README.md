@@ -393,11 +393,7 @@ The "Arm" is for (A)pp (R)eview (M)anager. The chair is so we could have a cool 
 ## Who makes Armchair?
 [Matt Coneybeare](http://matt.coneybeare.me) of [Urban Apps](http://urbanapps.com). We make neat stuff. Check us out.
 
-## Contact
-
-Follow Matt Coneybeare on Twitter ([@coneybeare](https://twitter.com/coneybeare))
-
-## Open-Source Urban Apps Projects
+## Other Open-Source Urban Apps Projects
 
 - [UAAppReviewManager](https://github.com/UrbanApps/UAAppReviewManager) - A review prompting tool for iOS and Mac App Store apps (Obj-C).
 - [UAModalPanel](https://github.com/UrbanApps/UAModalPanel) - An animated modal panel alternative for iOS
