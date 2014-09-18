@@ -71,7 +71,7 @@ Tweak the variables so that you don't annoy your customers, and you will enjoy t
 
 ## Installation
 
-_The infrastructure and best practices for distributing Swift libraries is currently in flux during this beta period of the language and Xcode. In the meantime, you can simply add Armrest as a git submodule, drag the `Armchair.xcodeproj` file into your Xcode project, and add the framework product as a dependency for your application target. (This is how the example project is structured)_
+_The infrastructure and best practices for distributing Swift libraries is currently in flux during this beta period of the language and Xcode. In the meantime, you can simply grab the code, drag the `Armchair.xcodeproj` file into your Xcode project, and add the framework product as a dependency for your application's target. (This is how the example projects are structured)_
 
 For more detailed installation instructions, including a video, see [Basic Installation](https://github.com/UrbanApps/Armchair/wiki/Basic-Installation)
 
