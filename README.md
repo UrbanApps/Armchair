@@ -404,4 +404,4 @@ The "Arm" is for App Review Manager. The chair is so we could have a cool pictur
 
 ## License
 
-Armchair is released under an MIT license. See LICENSE for more information.
+Armchair is released under an MIT license. See [LICENSE](https://github.com/UrbanApps/Armchair/blob/master/LICENSE) for more information.
