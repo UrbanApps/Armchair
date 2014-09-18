@@ -35,7 +35,7 @@ Armchair listens for ApplicationDidLaunch and ApplicationWillEnterForeground not
 
 ##### Easy to Setup
 
-It takes only 2 lines of code to get started. Armchair is very powerful when digging under the hood, but also very simple to setup for standard configurations.
+It takes only 1 line of code to get started. Armchair is very powerful when digging under the hood, but also very simple to setup for standard configurations.
 
 ##### iTunes Affiliate Codes
 
