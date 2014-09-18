@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Armchair.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>ArmchairLocalizable.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>ArmchairLocalizableMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>ArmchairMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E6A0AF6419C9CFF400C3A7DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6D8B8EF19C756A4001AD043</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6D8B92719C880A9001AD043</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6F6156D19C9FFDA00C0B51C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F8111E3219A95C8B0040E7D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
