@@ -393,6 +393,10 @@ The "Arm" is for (A)pp (R)eview (M)anager. The chair is so we could have a cool 
 ## Who makes Armchair?
 [Matt Coneybeare](http://matt.coneybeare.me) of [Urban Apps](http://urbanapps.com). We make neat stuff. Check us out.
 
+## Contact
+
+Follow Matt Coneybeare on Twitter ([@coneybeare](https://twitter.com/coneybeare))
+
 ## Open-Source Urban Apps Projects
 
 - [UAAppReviewManager](https://github.com/UrbanApps/UAAppReviewManager) - A review prompting tool for iOS and Mac App Store apps (Obj-C).
@@ -401,10 +405,6 @@ The "Arm" is for (A)pp (R)eview (M)anager. The chair is so we could have a cool 
 - [UAObfuscatedString](https://github.com/UrbanApps/UAObfuscatedString) - A simple NSString category to hide sensitive strings
 - [UAProgressView](https://github.com/UrbanApps/UAProgressView) - A simple and lightweight, yet powerful animated circular progress view
 - [Urban](https://github.com/UrbanApps/Urban) - An Xcode color scheme that uses a soft dark background, with subtle blue, orange and yellow colors
-
-## Contact
-
-Follow Matt Coneybeare on Twitter ([@coneybeare](https://twitter.com/coneybeare))
 
 ## License
 
