@@ -49,7 +49,7 @@ Armchair is clean code, well documented and well organized. It is easy to unders
 
 <a name="the-golden-rule">![The Golden Rule](https://raw.githubusercontent.com/UrbanApps/Armchair/assets/golden-rule.png)</a>
 
-1. "Don't be a dick."
+1. Don't be a dick.
 
 Seriously. It is easy to piss off your customers by not really considering how the prompting popup interrupts their flow. This was widely discussed in early 2014 by many well-known tech bloggers and caused a big hooplah in the community.
 
