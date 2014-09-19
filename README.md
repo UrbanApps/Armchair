@@ -380,6 +380,7 @@ Armchair will automatically convert the NSUserDefault keys stored under Appirate
 
 There are some ideas we have for future versions of Armchair. Feel free to fork/implement if you would like to expedite the process.
 
+- Get 100% Unit Test coverage
 - Add the ability to present the prompt using a custom class other than a `UIAlertView`, `UIAlertController` or `NSAlert`
 - Add additional localizations: ongoing
 -  [Your idea](https://github.com/UrbanApps/Armchair/issues)
