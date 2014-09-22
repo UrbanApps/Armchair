@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ekE-KZ-IOg">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6239"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="GLt-TA-m7w">
+            <objects>
+                <viewController id="ekE-KZ-IOg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gfL-jH-trc"/>
+                        <viewControllerLayoutGuide type="bottom" id="mJm-h3-k3T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gaw-FT-LdY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="armchair.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PMt-XF-iHa">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2Y-oX-pAK">
+                                <rect key="frame" x="20" y="40" width="560" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ARMCHAIR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geY-Mg-MpD">
+                                        <rect key="frame" x="156" y="10" width="248" height="51"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter-Light" family="American Typewriter" pointSize="44"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="geY-Mg-MpD" secondAttribute="centerX" id="6O4-RW-9TZ"/>
+                                    <constraint firstAttribute="width" constant="568" id="6pU-vO-kvt"/>
+                                    <constraint firstAttribute="height" constant="100" id="ao3-y6-czE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="f6k-1p-SZY"/>
+                                    <constraint firstItem="geY-Mg-MpD" firstAttribute="top" secondItem="d2Y-oX-pAK" secondAttribute="top" constant="10" id="g4t-hY-e27"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6pU-vO-kvt"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="d2Y-oX-pAK" firstAttribute="width" secondItem="Gaw-FT-LdY" secondAttribute="width" constant="-40" id="5Dw-1T-0EN"/>
+                            <constraint firstItem="PMt-XF-iHa" firstAttribute="width" secondItem="Gaw-FT-LdY" secondAttribute="width" id="FOV-sF-E7h"/>
+                            <constraint firstAttribute="centerX" secondItem="d2Y-oX-pAK" secondAttribute="centerX" id="XSm-PT-Kic"/>
+                            <constraint firstItem="PMt-XF-iHa" firstAttribute="height" secondItem="Gaw-FT-LdY" secondAttribute="height" id="g5v-Su-tKv"/>
+                            <constraint firstAttribute="centerY" secondItem="PMt-XF-iHa" secondAttribute="centerY" id="tq4-Lo-g9v"/>
+                            <constraint firstAttribute="centerX" secondItem="PMt-XF-iHa" secondAttribute="centerX" id="vKV-nj-bCA"/>
+                            <constraint firstItem="d2Y-oX-pAK" firstAttribute="top" secondItem="gfL-jH-trc" secondAttribute="bottom" constant="20" id="ywk-Yl-ecv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vtb-BQ-XAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="152"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="armchair.jpg" width="800" height="736"/>
+    </resources>
+</document>
