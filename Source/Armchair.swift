@@ -1203,7 +1203,7 @@ public class Manager : ArmchairManager {
         if (alertView.cancelButtonIndex == buttonIndex || 0 == buttonIndex) {
             // they don't want to rate it
             dontRate()
-        } else if (showsRemindButton() && alertView.firstOtherButtonIndex == buttonIndex) {
+        } else if (showsRemindButton() && 1 == buttonIndex) {
             // remind them later
             remindMeLater()
         } else {
