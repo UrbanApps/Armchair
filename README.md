@@ -344,27 +344,27 @@ For more information on how to use and setup Armchair, please see the Example Pr
 
 [Appirater](https://github.com/arashpayan/appirater) is great and has been used by many, many developers since its introduction in 2009. It has been updated throughout the years and suits the need of many people, yet leaves a ton left to be desired for the experienced developer. Appirater is:
 
-- Not available in Swift
-- Only available for iOS
-- Mixes a bunch of class methods and instance methods unnecessarily
-- Relies on a confusing mixture of MACROS and runtime configs for setup when either way would be better on its own
-- Utilizes the ancient Delegate pattern for callbacks in the age of Blocks and Closures
-- Is not able to be disabled on minor patch updates
-- No iTunes affiliate support
-- No way to prevent dual prompts for the same app and version on two separate devices
-- Makes the implementer write more code for lifecycle events
+- [ ] Not available in Swift
+- [ ] Only available for iOS
+- [ ] Mixes a bunch of class methods and instance methods unnecessarily
+- [ ] Relies on a confusing mixture of MACROS and runtime configs for setup when either way would be better on its own
+- [ ] Utilizes the ancient Delegate pattern for callbacks in the age of Blocks and Closures
+- [ ] Is not able to be disabled on minor patch updates
+- [ ] No iTunes affiliate support
+- [ ] No way to prevent dual prompts for the same app and version on two separate devices
+- [ ] Makes the implementer write more code for lifecycle events
 
 I started addressing these issues in a fork of Appirater, but quickly realized that the entire project could be re-written in a better way to address the above points. Armchair is:
 
-- Using a full Swift implemention
-- Available for iOS and Mac
-- Runs as a Singleton, with Class level, pass-through convenience methods.
-- Every aspect is configurable at runtime through an established API.
-- Uses Closures for all event callbacks and notifications.
-- Allows developers to disable the prompt easily on minor updates
-- Allows iTunes affiliate codes to be used.
-- Allows you to prevent prompts for the same app and version on two separate devices
-- Makes the implementer write less code by listening to notifications of lifecycle events
+- [x] Using a full Swift implemention
+- [x] Available for iOS and Mac
+- [x] Runs as a Singleton, with Class level, pass-through convenience methods.
+- [x] Every aspect is configurable at runtime through an established API.
+- [x] Uses Closures for all event callbacks and notifications.
+- [x] Allows developers to disable the prompt easily on minor updates
+- [x] Allows iTunes affiliate codes to be used.
+- [x] Allows you to prevent prompts for the same app and version on two separate devices
+- [x] Makes the implementer write less code by listening to notifications of lifecycle events
 
 Once all these additions, alteration and features were added, it was too much to push back up to Appirater, so Armchair was born. That being said, some of the existing code logic, methods, and language translations (over 32 of them!) are used from [Appirater](https://github.com/arashpayan/appirater) and due credit needs to be given. Armchair could not have existed without it. Thank you!
 
