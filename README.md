@@ -73,6 +73,14 @@ Tweak the variables so that you don't annoy your customers, and you will enjoy t
 
 _The infrastructure and best practices for distributing Swift libraries is currently in flux during this beta period of the language and Xcode. In the meantime, you can simply grab the code, drag the `Armchair.xcodeproj` file into your Xcode project, and add the framework product as a dependency for your application's target. (This is how the example projects are structured)_
 
+1. Add Armchair as a submodule by opening the Terminal, cd-ing into your top-level project directory, and entering the command git submodule add https://github.com/UrbanApps/Armchair.git
+2. Open the Armchair folder, and drag Armchair.xcodeproj into the file navigator of your app project.
+3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
+4. Ensure that the deployment target of Armchair.framework matches that of the application target.
+5. In the tab bar at the top of that window, open the "Build Phases" panel.
+6. Expand the "Target Dependencies" group, and add Armchair.framework.
+7. Click on the + button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add Armchair.framework.
+
 For more detailed installation instructions, including a video, see [Basic Installation](https://github.com/UrbanApps/Armchair/wiki/Basic-Installation)
 
 ## Usage
