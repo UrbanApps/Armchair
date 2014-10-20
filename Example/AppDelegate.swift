@@ -39,7 +39,7 @@
     
     import Cocoa
 
-//    @NSApplicationMain // TODO - Needs Xcode 6.1 beta 2 to compile. Figure out a way to support both for the time being
+    @NSApplicationMain
     class AppDelegate: NSObject, NSApplicationDelegate {
         @IBOutlet weak var window: NSWindow!
         

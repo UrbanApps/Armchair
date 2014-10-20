@@ -213,12 +213,13 @@ extension ViewController {
     }
     
     @IBAction func openUrbanApps(AnyObject) {
-        let url = NSURL(string: "http://urbanapps.com")
+        if let url = NSURL(string: "http://urbanapps.com") {
 #if os(iOS)
-        UIApplication.sharedApplication().openURL(url)
+            UIApplication.sharedApplication().openURL(url)
 #elseif os(OSX)
-        NSWorkspace.sharedWorkspace().openURL(url)
+            NSWorkspace.sharedWorkspace().openURL(url)
 #else
 #endif
+        }
     }
 }

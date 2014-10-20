@@ -621,8 +621,7 @@ public enum ArmchairKey: String, Printable {
 
     public var description : String {
         get {
-            return self.toRaw()
-//          return self.rawValue // Changes to rawValue in Xcode 6.1 beta 2
+            return self.rawValue
         }
     }
 }
@@ -920,7 +919,11 @@ public class Manager : ArmchairManager {
         var incrementKey = keyForArmchairKeyType(incrementKeyType)
 
         // App's version. Not settable as the other ivars because that would be crazy.
-        var currentVersion: String = NSBundle.mainBundle().infoDictionary[kCFBundleVersionKey] as NSString
+        let currentVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey) as? NSString
+        if currentVersion == nil {
+            assertionFailure("Could not read kCFBundleVersionKey from InfoDictionary")
+            return
+        }
 
         // Get the version number that we've been tracking thus far
         var currentVersionKey = keyForArmchairKeyType(ArmchairKey.CurrentVersion)
@@ -1137,7 +1140,7 @@ public class Manager : ArmchairManager {
             }))
 
             // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.sharedApplication().keyWindow.rootViewController {
+            if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
                     topController.presentViewController(alertView, animated: usesAnimation) {
                         println("presentViewController() completed")
@@ -1172,7 +1175,7 @@ public class Manager : ArmchairManager {
         alert.informativeText = reviewMessage
         alert.addButtonWithTitle(rateButtonTitle)
         if showsRemindButton() {
-            alert.addButtonWithTitle(remindButtonTitle)
+            alert.addButtonWithTitle(remindButtonTitle!)
         }
         alert.addButtonWithTitle(cancelButtonTitle)
         ratingAlert = alert
@@ -1225,7 +1228,7 @@ public class Manager : ArmchairManager {
             modalPanelOpen = false
 
             // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.sharedApplication().keyWindow.rootViewController {
+            if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
                     topController.dismissViewControllerAnimated(usesAnimation) {
                         if let closure = self.didDismissModalViewClosure {
@@ -1325,8 +1328,9 @@ public class Manager : ArmchairManager {
 
         //Use the standard openUrl method
         } else {
-            let url = NSURL(string: reviewURLString())
-            UIApplication.sharedApplication().openURL(url)
+            if let url = NSURL(string: reviewURLString()) {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
 
         if UIDevice.currentDevice().model.rangeOfString("Simulator") != nil {
@@ -1337,10 +1341,11 @@ public class Manager : ArmchairManager {
             debugLog(" - Or try copy/pasting \(fakeURL) into a browser on your computer.")
         }
 #elseif os(OSX)
-        var url = NSURL(string: reviewURLString())
-        var opened = NSWorkspace.sharedWorkspace().openURL(url)
-        if !opened {
-            debugLog("Failed to open \(url)")
+        if let url = NSURL(string: reviewURLString()) {
+            var opened = NSWorkspace.sharedWorkspace().openURL(url)
+            if !opened {
+                debugLog("Failed to open \(url)")
+            }
         }
 #else
 #endif
@@ -1592,23 +1597,25 @@ public class Manager : ArmchairManager {
     }
 
     private func getRootViewController() -> UIViewController? {
-        var window: UIWindow = UIApplication.sharedApplication().keyWindow
-        if window.windowLevel != UIWindowLevelNormal {
-            var windows: NSArray = UIApplication.sharedApplication().windows
-            for window in windows {
-                if window.windowLevel == UIWindowLevelNormal {
-                    break
+        if let window = UIApplication.sharedApplication().keyWindow {
+
+            if window.windowLevel != UIWindowLevelNormal {
+                var windows: NSArray = UIApplication.sharedApplication().windows
+                for window in windows {
+                    if window.windowLevel == UIWindowLevelNormal {
+                        break
+                    }
                 }
             }
-        }
 
-        for subView in window.subviews {
-            var nextResponder: UIResponder? = subView.nextResponder()
-            if let responder = nextResponder {
-                if responder.isKindOfClass(UIViewController) {
-                    return topMostViewController(responder as? UIViewController)
+            for subView in window.subviews {
+                var nextResponder: UIResponder? = subView.nextResponder()
+                if let responder = nextResponder {
+                    if responder.isKindOfClass(UIViewController) {
+                        return topMostViewController(responder as? UIViewController)
+                    }
+
                 }
-
             }
         }
 
