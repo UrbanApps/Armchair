@@ -66,7 +66,7 @@ Tweak the variables so that you don't annoy your customers, and you will enjoy t
 
 ## Requirements
 
-- Xcode 6 (for Swift)
+- Xcode 6.1
 - iOS 7.0+, Mac OS X 10.10+
 
 ## Installation
