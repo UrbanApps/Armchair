@@ -586,20 +586,20 @@ public func shouldIncrementUseCountClosure(shouldIncrementUseCountClosure: Armch
 public class StandardUserDefaults: ArmchairDefaultsObject {
     let defaults = NSUserDefaults.standardUserDefaults()
 
-    public func objectForKey(defaultName: String) -> AnyObject?             { return defaults.objectForKey(defaultName) }
-    public func setObject(value: AnyObject?, forKey defaultName: String)    { defaults.setObject(value, forKey: defaultName) }
-    public func removeObjectForKey(defaultName: String)                     { defaults.removeObjectForKey(defaultName) }
+    @objc public func objectForKey(defaultName: String) -> AnyObject?             { return defaults.objectForKey(defaultName) }
+    @objc public func setObject(value: AnyObject?, forKey defaultName: String)    { defaults.setObject(value, forKey: defaultName) }
+    @objc public func removeObjectForKey(defaultName: String)                     { defaults.removeObjectForKey(defaultName) }
 
-    public func stringForKey(defaultName: String) -> String?                { return defaults.stringForKey(defaultName) }
-    public func integerForKey(defaultName: String) -> Int                   { return defaults.integerForKey(defaultName) }
-    public func doubleForKey(defaultName: String) -> Double                 { return defaults.doubleForKey(defaultName) }
-    public func boolForKey(defaultName: String) -> Bool                     { return defaults.boolForKey(defaultName) }
+    @objc public func stringForKey(defaultName: String) -> String?                { return defaults.stringForKey(defaultName) }
+    @objc public func integerForKey(defaultName: String) -> Int                   { return defaults.integerForKey(defaultName) }
+    @objc public func doubleForKey(defaultName: String) -> Double                 { return defaults.doubleForKey(defaultName) }
+    @objc public func boolForKey(defaultName: String) -> Bool                     { return defaults.boolForKey(defaultName) }
 
-    public func setInteger(value: Int, forKey defaultName: String)          { defaults.setInteger(value, forKey: defaultName) }
-    public func setDouble(value: Double, forKey defaultName: String)        { defaults.setDouble(value, forKey: defaultName) }
-    public func setBool(value: Bool, forKey defaultName: String)            { defaults.setBool(value, forKey: defaultName) }
+    @objc public func setInteger(value: Int, forKey defaultName: String)          { defaults.setInteger(value, forKey: defaultName) }
+    @objc public func setDouble(value: Double, forKey defaultName: String)        { defaults.setDouble(value, forKey: defaultName) }
+    @objc public func setBool(value: Bool, forKey defaultName: String)            { defaults.setBool(value, forKey: defaultName) }
 
-    public func synchronize() -> Bool                                       { return defaults.synchronize() }
+    @objc public func synchronize() -> Bool                                       { return defaults.synchronize() }
 }
 
 public enum ArmchairKey: String, Printable {
@@ -691,8 +691,8 @@ public class Manager : ArmchairManager {
     private func defaultAppName() -> String {
         let mainBundle = NSBundle.mainBundle()
         let displayName = mainBundle.objectForInfoDictionaryKey("CFBundleDisplayName") as? String
-        let bundleNameKey = kCFBundleNameKey as NSString?
-        let name = mainBundle.objectForInfoDictionaryKey(bundleNameKey as String) as? String
+        let bundleNameKey = kCFBundleNameKey as String
+        let name = mainBundle.objectForInfoDictionaryKey(bundleNameKey) as? String
         return displayName ?? name ?? "This App"
     }
     
@@ -918,8 +918,9 @@ public class Manager : ArmchairManager {
     private func _incrementCountForKeyType(incrementKeyType: ArmchairKey) {
         var incrementKey = keyForArmchairKeyType(incrementKeyType)
 
+        let bundleVersionKey = kCFBundleVersionKey as String
         // App's version. Not settable as the other ivars because that would be crazy.
-        let currentVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey) as? NSString
+        let currentVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(bundleVersionKey) as? String
         if currentVersion == nil {
             assertionFailure("Could not read kCFBundleVersionKey from InfoDictionary")
             return
@@ -1411,31 +1412,31 @@ public class Manager : ArmchairManager {
     private func setKey(key: NSString, armchairKeyType: ArmchairKey) {
         switch armchairKeyType {
         case .FirstUseDate:
-            armchairKeyFirstUseDate = key
+            armchairKeyFirstUseDate = key as String
         case .UseCount:
-            armchairKeyUseCount = key
+            armchairKeyUseCount = key as String
         case .SignificantEventCount:
-            armchairKeySignificantEventCount = key
+            armchairKeySignificantEventCount = key as String
         case .CurrentVersion:
-            armchairKeyCurrentVersion = key
+            armchairKeyCurrentVersion = key as String
         case .RatedCurrentVersion:
-            armchairKeyRatedCurrentVersion = key
+            armchairKeyRatedCurrentVersion = key as String
         case .DeclinedToRate:
-            armchairKeyDeclinedToRate = key
+            armchairKeyDeclinedToRate = key as String
         case .ReminderRequestDate:
-            armchairKeyReminderRequestDate = key
+            armchairKeyReminderRequestDate = key as String
         case .PreviousVersion:
-            armchairKeyPreviousVersion = key
+            armchairKeyPreviousVersion = key as String
         case .PreviousVersionRated:
-            armchairKeyPreviousVersionRated = key
+            armchairKeyPreviousVersionRated = key as String
         case .PreviousVersionDeclinedToRate:
-            armchairKeyPreviousVersionDeclinedToRate = key
+            armchairKeyPreviousVersionDeclinedToRate = key as String
         case .RatedAnyVersion:
-            armchairKeyRatedAnyVersion = key
+            armchairKeyRatedAnyVersion = key as String
         case .AppiraterMigrationCompleted:
-            armchairKeyAppiraterMigrationCompleted = key
+            armchairKeyAppiraterMigrationCompleted = key as String
         case .UAAppReviewManagerMigrationCompleted:
-            armchairKeyUAAppReviewManagerMigrationCompleted = key
+            armchairKeyUAAppReviewManagerMigrationCompleted = key as String
         }
     }
 
@@ -1465,7 +1466,7 @@ public class Manager : ArmchairManager {
     private func migrateAppiraterKeysIfNecessary() {
 
         let appiraterAlreadyCompletedKey: NSString = keyForArmchairKeyType(.AppiraterMigrationCompleted)
-        var appiraterMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appiraterAlreadyCompletedKey)
+        var appiraterMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appiraterAlreadyCompletedKey as String)
 
         if let completed = appiraterMigrationAlreadyCompleted {
             if completed {
@@ -1490,14 +1491,14 @@ public class Manager : ArmchairManager {
             }
         }
 
-        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appiraterAlreadyCompletedKey)
+        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appiraterAlreadyCompletedKey as String)
         userDefaultsObject?.synchronize()
     }
 
     // This only supports the default UAAppReviewManager keys. If you customized them, you will have to manually migrate your values over.
     private func migrateUAAppReviewManagerKeysIfNecessary() {
         let appReviewManagerAlreadyCompletedKey: NSString = keyForArmchairKeyType(.UAAppReviewManagerMigrationCompleted)
-        var appReviewManagerMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appReviewManagerAlreadyCompletedKey)
+        var appReviewManagerMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appReviewManagerAlreadyCompletedKey as String)
 
         if let completed = appReviewManagerMigrationAlreadyCompleted {
             if completed {
@@ -1525,7 +1526,7 @@ public class Manager : ArmchairManager {
             }
         }
 
-        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appReviewManagerAlreadyCompletedKey)
+        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appReviewManagerAlreadyCompletedKey as String)
         userDefaultsObject?.synchronize()
     }
 
