@@ -55,12 +55,12 @@ extension ViewController {
 
         // Only set it if we are using Armchair localizations
         if !Armchair.useMainAppBundleForLocalizations() {
-            var currentLocalization: NSString = NSBundle.mainBundle().preferredLocalizations[0] as NSString
+            var currentLocalization: NSString = NSBundle.mainBundle().preferredLocalizations[0] as! NSString
             // Only set it if we are using a different language than this apps development language
             if let developmentLocalization = NSBundle.mainBundle().developmentLocalization {
                 if currentLocalization != developmentLocalization {
-                    languageLabelText = currentLocalization
-                    if let displayName = NSLocale(localeIdentifier: currentLocalization).displayNameForKey(NSLocaleIdentifier, value:currentLocalization) {
+                    languageLabelText = currentLocalization as String
+                    if let displayName = NSLocale(localeIdentifier: currentLocalization as String).displayNameForKey(NSLocaleIdentifier, value:currentLocalization) {
                         languageLabelText = "\(displayName): \(currentLocalization)"
                     }
                 }

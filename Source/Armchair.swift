@@ -27,7 +27,7 @@ import SystemConfiguration
 #if os(iOS)
 import UIKit
 #elseif os(OSX)
-import Appkit
+import AppKit
 #else
     // Not yet supported
 #endif
