@@ -602,7 +602,7 @@ public class StandardUserDefaults: ArmchairDefaultsObject {
     @objc public func synchronize() -> Bool                                       { return defaults.synchronize() }
 }
 
-public enum ArmchairKey: String, Printable {
+public enum ArmchairKey: String, CustomStringConvertible {
     case FirstUseDate                           = "First Use Date"
     case UseCount                               = "Use Count"
     case SignificantEventCount                  = "Significant Event Count"
@@ -626,7 +626,7 @@ public enum ArmchairKey: String, Printable {
     }
 }
 
-public class ArmchairTrackingInfo: Printable {
+public class ArmchairTrackingInfo: CustomStringConvertible {
     public let info: Dictionary<ArmchairKey, AnyObject>
 
     init(info: Dictionary<ArmchairKey, AnyObject>) {
@@ -704,7 +704,7 @@ public class Manager : ArmchairManager {
             template = bundle.localizedStringForKey(template, value:"", table: "ArmchairLocalizable")
         }
 
-        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: nil, range: nil)
+        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
     }
 
     private lazy var reviewMessage: String = self.defaultReviewMessage()
@@ -715,7 +715,7 @@ public class Manager : ArmchairManager {
             template = bundle.localizedStringForKey(template, value:"", table: "ArmchairLocalizable")
         }
 
-        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: nil, range: nil)
+        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
     }
 
     private lazy var cancelButtonTitle: String = self.defaultCancelButtonTitle()
@@ -737,7 +737,7 @@ public class Manager : ArmchairManager {
             template = bundle.localizedStringForKey(template, value:"", table: "ArmchairLocalizable")
         }
 
-        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: nil, range: nil)
+        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
     }
 
     private lazy var remindButtonTitle: String? = self.defaultRemindButtonTitle()
@@ -1144,7 +1144,7 @@ public class Manager : ArmchairManager {
             if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
                     topController.presentViewController(alertView, animated: usesAnimation) {
-                        println("presentViewController() completed")
+                        print("presentViewController() completed")
                     }
                 }
             }
@@ -1302,7 +1302,7 @@ public class Manager : ArmchairManager {
 
             let storeViewController = SKStoreProductViewController()
 
-            var productParameters: [NSObject:AnyObject]! = [SKStoreProductParameterITunesItemIdentifier : appID]
+            var productParameters: [String:AnyObject]! = [SKStoreProductParameterITunesItemIdentifier : appID]
 
             if (operatingSystemVersion >= 8) {
                 productParameters[SKStoreProductParameterAffiliateToken] = affiliateCode
@@ -1543,17 +1543,19 @@ public class Manager : ArmchairManager {
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
 
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0)).takeRetainedValue()
-        }
-
-        var flags : SCNetworkReachabilityFlags = 0
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) == 0 {
+        guard let defaultRouteReachability = withUnsafePointer(&zeroAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }) else {
             return false
         }
 
-        let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        var flags : SCNetworkReachabilityFlags = []
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+
+        let isReachable = flags.contains(.Reachable)
+        let needsConnection = flags.contains(.ConnectionRequired)
         return (isReachable && !needsConnection)
     }
 
@@ -1581,7 +1583,7 @@ public class Manager : ArmchairManager {
     private func topMostViewController(controller: UIViewController?) -> UIViewController? {
         var isPresenting: Bool = false
         var topController: UIViewController? = controller
-        do {
+        repeat {
             // this path is called only on iOS 6+, so -presentedViewController is fine here.
             if let controller = topController {
                 var presented: UIViewController? = controller.presentedViewController
@@ -1723,7 +1725,7 @@ public class Manager : ArmchairManager {
     private func debugLog(log: String) {
         if debugEnabled {
             dispatch_sync(lockQueue, {
-                println("[Armchair] \(log)")
+                print("[Armchair] \(log)")
             })
         }
     }
