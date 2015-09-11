@@ -916,7 +916,7 @@ public class Manager : ArmchairManager {
     }
 
     private func _incrementCountForKeyType(incrementKeyType: ArmchairKey) {
-        var incrementKey = keyForArmchairKeyType(incrementKeyType)
+        let incrementKey = keyForArmchairKeyType(incrementKeyType)
 
         let bundleVersionKey = kCFBundleVersionKey as String
         // App's version. Not settable as the other ivars because that would be crazy.
@@ -927,11 +927,10 @@ public class Manager : ArmchairManager {
         }
 
         // Get the version number that we've been tracking thus far
-        var currentVersionKey = keyForArmchairKeyType(ArmchairKey.CurrentVersion)
+        let currentVersionKey = keyForArmchairKeyType(ArmchairKey.CurrentVersion)
         var trackingVersion: String? = userDefaultsObject?.stringForKey(currentVersionKey)
         // New install, or changed keys
-        if let version = trackingVersion {
-        } else {
+        if trackingVersion == nil {
             trackingVersion = currentVersion
             userDefaultsObject?.setObject(currentVersion, forKey: currentVersionKey)
         }
@@ -940,7 +939,7 @@ public class Manager : ArmchairManager {
 
         if trackingVersion == currentVersion {
             // Check if the first use date has been set. if not, set it.
-            var firstUseDateKey = keyForArmchairKeyType(ArmchairKey.FirstUseDate)
+            let firstUseDateKey = keyForArmchairKeyType(ArmchairKey.FirstUseDate)
             var timeInterval: Double? = userDefaultsObject?.doubleForKey(firstUseDateKey)
             if 0 == timeInterval {
                 timeInterval = NSDate().timeIntervalSince1970
@@ -1030,11 +1029,11 @@ public class Manager : ArmchairManager {
         }
 
         // check if the app has been used long enough
-        var timeIntervalOfFirstLaunch = userDefaultsObject?.doubleForKey(keyForArmchairKeyType(ArmchairKey.FirstUseDate))
+        let timeIntervalOfFirstLaunch = userDefaultsObject?.doubleForKey(keyForArmchairKeyType(ArmchairKey.FirstUseDate))
         if let timeInterval = timeIntervalOfFirstLaunch {
-            var dateOfFirstLaunch = NSDate(timeIntervalSince1970: timeInterval)
-            var timeSinceFirstLaunch = NSDate().timeIntervalSinceDate(dateOfFirstLaunch)
-            var timeUntilRate: NSTimeInterval = 60 * 60 * 24 * Double(daysUntilPrompt)
+            let dateOfFirstLaunch = NSDate(timeIntervalSince1970: timeInterval)
+            let timeSinceFirstLaunch = NSDate().timeIntervalSinceDate(dateOfFirstLaunch)
+            let timeUntilRate: NSTimeInterval = 60 * 60 * 24 * Double(daysUntilPrompt)
             if timeSinceFirstLaunch < timeUntilRate {
                 return false
             }
@@ -1043,7 +1042,7 @@ public class Manager : ArmchairManager {
         }
 
         // check if the app has been used enough times
-        var useCount = userDefaultsObject?.integerForKey(keyForArmchairKeyType(ArmchairKey.UseCount))
+        let useCount = userDefaultsObject?.integerForKey(keyForArmchairKeyType(ArmchairKey.UseCount))
         if let count = useCount {
             if UInt(count) <= usesUntilPrompt {
                 return false
@@ -1053,7 +1052,7 @@ public class Manager : ArmchairManager {
         }
 
         // check if the user has done enough significant events
-        var significantEventCount = userDefaultsObject?.integerForKey(keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
+        let significantEventCount = userDefaultsObject?.integerForKey(keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
         if let count = significantEventCount {
             if UInt(count) < significantEventsUntilPrompt {
                 return false
@@ -1073,11 +1072,11 @@ public class Manager : ArmchairManager {
         }
 
         // If the user wanted to be reminded later, has enough time passed?
-        var timeIntervalOfReminder = userDefaultsObject?.doubleForKey(keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
+        let timeIntervalOfReminder = userDefaultsObject?.doubleForKey(keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
         if let timeInterval = timeIntervalOfReminder {
-            var reminderRequestDate = NSDate(timeIntervalSince1970: timeInterval)
-            var timeSinceReminderRequest = NSDate().timeIntervalSinceDate(reminderRequestDate)
-            var timeUntilReminder: NSTimeInterval = 60 * 60 * 24 * Double(daysBeforeReminding)
+            let reminderRequestDate = NSDate(timeIntervalSince1970: timeInterval)
+            let timeSinceReminderRequest = NSDate().timeIntervalSinceDate(reminderRequestDate)
+            let timeUntilReminder: NSTimeInterval = 60 * 60 * 24 * Double(daysBeforeReminding)
             if timeSinceReminderRequest < timeUntilReminder {
                 return false
             }
@@ -1086,7 +1085,7 @@ public class Manager : ArmchairManager {
         }
 
         // if we have a global set to not show if the end-user has already rated once, and the developer has not opted out of displaying on minor updates
-        var ratedAnyVersion = userDefaultsObject?.boolForKey(keyForArmchairKeyType(ArmchairKey.RatedAnyVersion))
+        let ratedAnyVersion = userDefaultsObject?.boolForKey(keyForArmchairKeyType(ArmchairKey.RatedAnyVersion))
         if let ratedAlready = ratedAnyVersion {
             if (!shouldPromptIfRated && ratedAlready) {
                 return false
@@ -1113,18 +1112,14 @@ public class Manager : ArmchairManager {
     }
 
     private func showsRemindButton() -> Bool {
-        if let title = remindButtonTitle {
-            return true
-        } else {
-            return false
-        }
+        return (remindButtonTitle != nil)
     }
 
     private func showRatingAlert() {
 #if os(iOS)
         if operatingSystemVersion >= 8 && usesAlertController {
             /* iOS 8 uses new UIAlertController API*/
-            var alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
             alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.Cancel, handler: {
                 (alert: UIAlertAction!) in
                 self.dontRate()
@@ -1171,7 +1166,7 @@ public class Manager : ArmchairManager {
 
 #elseif os(OSX)
     
-        var alert: NSAlert = NSAlert()
+        let alert: NSAlert = NSAlert()
         alert.messageText = reviewTitle
         alert.informativeText = reviewMessage
         alert.addButtonWithTitle(rateButtonTitle)
@@ -1187,7 +1182,7 @@ public class Manager : ArmchairManager {
                 self.handleNSAlertReturnCode(response)
             }
         } else {
-            var returnCode = alert.runModal()
+            let returnCode = alert.runModal()
             handleNSAlertReturnCode(returnCode)
         }
         
@@ -1343,7 +1338,7 @@ public class Manager : ArmchairManager {
         }
 #elseif os(OSX)
         if let url = NSURL(string: reviewURLString()) {
-            var opened = NSWorkspace.sharedWorkspace().openURL(url)
+            let opened = NSWorkspace.sharedWorkspace().openURL(url)
             if !opened {
                 debugLog("Failed to open \(url)")
             }
@@ -1353,7 +1348,7 @@ public class Manager : ArmchairManager {
     }
 
     private func reviewURLString() -> String {
-        var template = reviewURLTemplate
+        let template = reviewURLTemplate
         var reviewURL = template.stringByReplacingOccurrencesOfString("APP_ID", withString: "\(appID)")
         reviewURL = reviewURL.stringByReplacingOccurrencesOfString("AFFILIATE_CODE", withString: "\(affiliateCode)")
         reviewURL = reviewURL.stringByReplacingOccurrencesOfString("AFFILIATE_CAMPAIGN_CODE", withString: "\(affiliateCampaignCode)")
@@ -1367,7 +1362,7 @@ public class Manager : ArmchairManager {
         var trackingInfo: Dictionary<ArmchairKey, AnyObject> = [:]
 
         for keyType in ArmchairKey.allValues {
-            var obj: AnyObject? = userDefaultsObject?.objectForKey(keyForArmchairKeyType(keyType))
+            let obj: AnyObject? = userDefaultsObject?.objectForKey(keyForArmchairKeyType(keyType))
             if let val = obj as? NSObject {
                 trackingInfo[keyType] = val
             } else {
@@ -1466,7 +1461,7 @@ public class Manager : ArmchairManager {
     private func migrateAppiraterKeysIfNecessary() {
 
         let appiraterAlreadyCompletedKey: NSString = keyForArmchairKeyType(.AppiraterMigrationCompleted)
-        var appiraterMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appiraterAlreadyCompletedKey as String)
+        let appiraterMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appiraterAlreadyCompletedKey as String)
 
         if let completed = appiraterMigrationAlreadyCompleted {
             if completed {
@@ -1474,7 +1469,7 @@ public class Manager : ArmchairManager {
             }
         }
 
-        var oldKeys: [String] = [AppiraterKey.FirstUseDate,
+        let oldKeys: [String] = [AppiraterKey.FirstUseDate,
                                  AppiraterKey.UseCount,
                                  AppiraterKey.SignificantEventCount,
                                  AppiraterKey.CurrentVersion,
@@ -1483,7 +1478,7 @@ public class Manager : ArmchairManager {
                                  AppiraterKey.DeclinedToRate,
                                  AppiraterKey.ReminderRequestDate]
         for oldKey in oldKeys {
-            var oldValue: NSObject? = userDefaultsObject?.objectForKey(oldKey) as? NSObject
+            let oldValue: NSObject? = userDefaultsObject?.objectForKey(oldKey) as? NSObject
             if let val = oldValue {
                 let newKey = armchairKeyForAppiraterKey(oldKey)
                 userDefaultsObject?.setObject(val, forKey: newKey)
@@ -1498,7 +1493,7 @@ public class Manager : ArmchairManager {
     // This only supports the default UAAppReviewManager keys. If you customized them, you will have to manually migrate your values over.
     private func migrateUAAppReviewManagerKeysIfNecessary() {
         let appReviewManagerAlreadyCompletedKey: NSString = keyForArmchairKeyType(.UAAppReviewManagerMigrationCompleted)
-        var appReviewManagerMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appReviewManagerAlreadyCompletedKey as String)
+        let appReviewManagerMigrationAlreadyCompleted = userDefaultsObject?.boolForKey(appReviewManagerAlreadyCompletedKey as String)
 
         if let completed = appReviewManagerMigrationAlreadyCompleted {
             if completed {
@@ -1507,7 +1502,7 @@ public class Manager : ArmchairManager {
         }
 
         // By default, UAAppReviewManager keys are in the format <appID>_UAAppReviewManagerKey<keyType>
-        var oldKeys: [String:ArmchairKey] = ["\(appID)_UAAppReviewManagerKeyFirstUseDate"                    : ArmchairKey.FirstUseDate,
+        let oldKeys: [String:ArmchairKey] = ["\(appID)_UAAppReviewManagerKeyFirstUseDate"                    : ArmchairKey.FirstUseDate,
                                             "\(appID)_UAAppReviewManagerKeyUseCount"                        : ArmchairKey.UseCount,
                                             "\(appID)_UAAppReviewManagerKeySignificantEventCount"           : ArmchairKey.SignificantEventCount,
                                             "\(appID)_UAAppReviewManagerKeyCurrentVersion"                  : ArmchairKey.CurrentVersion,
@@ -1519,7 +1514,7 @@ public class Manager : ArmchairManager {
                                             "\(appID)_UAAppReviewManagerKeyPreviousVersionDeclinedToRate"   : ArmchairKey.PreviousVersionDeclinedToRate,
                                             "\(appID)_UAAppReviewManagerKeyRatedAnyVersion"                 : ArmchairKey.RatedAnyVersion]
         for (oldKey, newKeyType) in oldKeys {
-            var oldValue: NSObject? = userDefaultsObject?.objectForKey(oldKey) as? NSObject
+            let oldValue: NSObject? = userDefaultsObject?.objectForKey(oldKey) as? NSObject
             if let val = oldValue {
                 userDefaultsObject?.setObject(val, forKey: keyForArmchairKeyType(newKeyType))
                 userDefaultsObject?.removeObjectForKey(oldKey)
@@ -1586,8 +1581,7 @@ public class Manager : ArmchairManager {
         repeat {
             // this path is called only on iOS 6+, so -presentedViewController is fine here.
             if let controller = topController {
-                var presented: UIViewController? = controller.presentedViewController
-                if let presentedController = presented {
+                if let presented = controller.presentedViewController {
                     isPresenting = true
                     topController = presented
                 } else {
@@ -1603,7 +1597,7 @@ public class Manager : ArmchairManager {
         if var window = UIApplication.sharedApplication().keyWindow {
 
             if window.windowLevel != UIWindowLevelNormal {
-                var windows: NSArray = UIApplication.sharedApplication().windows
+                let windows: NSArray = UIApplication.sharedApplication().windows
                 for candidateWindow in windows {
                     if let candidateWindow = candidateWindow as? UIWindow {
                         if candidateWindow.windowLevel == UIWindowLevelNormal {
@@ -1615,8 +1609,7 @@ public class Manager : ArmchairManager {
             }
 
             for subView in window.subviews {
-                var nextResponder: UIResponder? = subView.nextResponder()
-                if let responder = nextResponder {
+                if let responder = subView.nextResponder() {
                     if responder.isKindOfClass(UIViewController) {
                         return topMostViewController(responder as? UIViewController)
                     }
