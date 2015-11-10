@@ -391,6 +391,25 @@ public func resetDefaults() {
     public func opensInStoreKit(opensInStoreKit: Bool) {
         Manager.defaultManager.opensInStoreKit = opensInStoreKit
     }
+    
+    /**
+     Allows to sest custom ArmchairRatingPrompt which controls showing rating prompt.
+     If not set receiver will pick default rating prompt which will be either UIAlertView or
+     UIAlertController based on value of `usesAlertController` property.
+    */
+    public func ratingPrompt() -> ArmchairRatingPrompt {
+        return Manager.defaultManager.ratingPrompt
+    }
+    public func ratingPrompt(prompt: ArmchairRatingPrompt) {
+        Manager.defaultManager.ratingPrompt = prompt
+    }
+    
+    /**
+    Default delegate which should be assigned to custtom ArmchairRatingPrompt objects
+    */
+    public var defaultRatingPromptDelegate: ArmchairRatingPromptDelegate {
+        return Manager.defaultManager
+    }
 #endif
 
 // MARK: Events
@@ -666,6 +685,123 @@ public class ArmchairManager : NSObject, NSAlertDelegate { }
 // Untested, and currently unsupported
 #endif
 
+/// MARK: - Rating prompt controller
+
+#if os(iOS)
+public protocol ArmchairRatingPrompt {
+    func showInViewController(viewController: UIViewController, withManager manager: Manager)
+    func hide(animated: Bool)
+    var delegate: ArmchairRatingPromptDelegate { get set }
+}
+
+public protocol ArmchairRatingPromptDelegate {
+    func ratingControllerShouldRateApp(controller: ArmchairRatingPrompt)
+    func ratingControllerShouldRemindLater(controller: ArmchairRatingPrompt)
+    func ratingControllerShouldNotRate(controller: ArmchairRatingPrompt)
+}
+
+public class ArmchairAlertControllerBasedRatingPrompt : NSObject, ArmchairRatingPrompt {
+    
+    init(delegate: ArmchairRatingPromptDelegate) {
+        self.delegate = delegate
+    }
+    
+    private var presentingController: UIViewController?
+    
+    public var delegate: ArmchairRatingPromptDelegate
+    
+    public func showInViewController(viewController: UIViewController, withManager manager: Manager) {
+        presentingController = viewController
+        
+        let alertController : UIAlertController = UIAlertController(title: manager.reviewTitle, message: manager.reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: manager.cancelButtonTitle, style:UIAlertActionStyle.Cancel, handler: {
+            (alert: UIAlertAction!) in
+            self.delegate.ratingControllerShouldNotRate(self)
+        }))
+        if (manager.showsRemindButton()) {
+            alertController.addAction(UIAlertAction(title: manager.remindButtonTitle!, style:UIAlertActionStyle.Default, handler: {
+                (alert: UIAlertAction!) in
+                self.delegate.ratingControllerShouldRemindLater(self)
+            }))
+        }
+        alertController.addAction(UIAlertAction(title: manager.rateButtonTitle, style:UIAlertActionStyle.Default, handler: {
+            (alert: UIAlertAction!) in
+            self.delegate.ratingControllerShouldRateApp(self)
+        }))
+        
+        viewController.presentViewController(alertController, animated: manager.usesAnimation) {
+            print("presentViewController() completed")
+            if let closure = manager.didDisplayAlertClosure {
+                closure()
+            }
+        }
+    }
+    
+    public func hide(animated: Bool) {
+        if presentingController?.presentedViewController is UIAlertController {
+            presentingController?.dismissViewControllerAnimated(animated, completion: nil)
+        }
+    }
+}
+
+public class ArmchairAlertViewBasedRatingPrompt : NSObject, ArmchairRatingPrompt, UIAlertViewDelegate {
+    
+    init(delegate: ArmchairRatingPromptDelegate) {
+        self.delegate = delegate
+    }
+    
+    private var ratingManager: Manager?
+    private var ratingAlert: UIAlertView?
+    
+    public var delegate: ArmchairRatingPromptDelegate
+    
+    public func showInViewController(viewController: UIViewController, withManager manager: Manager) {
+        
+        self.ratingManager = manager
+        
+        var alertView: UIAlertView
+        if (manager.showsRemindButton()) {
+            alertView = UIAlertView(title: manager.reviewTitle, message: manager.reviewMessage, delegate: self, cancelButtonTitle: manager.cancelButtonTitle, otherButtonTitles: manager.remindButtonTitle!, manager.rateButtonTitle)
+        } else {
+            alertView = UIAlertView(title: manager.reviewTitle, message: manager.reviewMessage, delegate: self, cancelButtonTitle: manager.cancelButtonTitle, otherButtonTitles: manager.rateButtonTitle)
+        }
+        // If we have a remind button, show it first. Otherwise show the rate button
+        // If we have a remind button, show the rate button next. Otherwise stop adding buttons.
+        
+        alertView.cancelButtonIndex = -1
+        ratingAlert = alertView
+        alertView.show()
+    }
+    
+    public func hide(animated: Bool) {
+        if ratingAlert?.visible ?? false {
+            ratingAlert?.dismissWithClickedButtonIndex(ratingAlert!.cancelButtonIndex, animated: animated)
+        }
+        ratingAlert = nil
+    }
+    
+    // MARK: Alert View Delegate
+    
+    public func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+        
+        let showsRemindButton = ratingManager?.showsRemindButton() ?? Manager.defaultManager.showsRemindButton()
+        
+        // cancelButtonIndex is set to -1 to show the cancel button up top, but a tap on it ends up here with index 0
+        if (alertView.cancelButtonIndex == buttonIndex || 0 == buttonIndex) {
+            // they don't want to rate it
+            delegate.ratingControllerShouldNotRate(self)
+        } else if (showsRemindButton && 1 == buttonIndex) {
+            // remind them later
+            delegate.ratingControllerShouldRemindLater(self)
+        } else {
+            // they want to rate it
+            delegate.ratingControllerShouldRateApp(self)
+        }
+    }
+}
+#endif
+// MARK: - Manager
+
 public class Manager : ArmchairManager {
 
 #if os(iOS)
@@ -679,7 +815,7 @@ public class Manager : ArmchairManager {
     // MARK: Review Alert & Properties
 
 #if os(iOS)
-    private var ratingAlert: UIAlertView? = nil
+    //private var ratingAlert: UIAlertView? = nil // deprecated
     private let reviewURLTemplate  = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
 #elseif os(OSX)
     private var ratingAlert: NSAlert? = nil
@@ -846,6 +982,15 @@ public class Manager : ArmchairManager {
 #if os(iOS)
     var willPresentModalViewClosure: ArmchairAnimateClosure?
     var didDismissModalViewClosure: ArmchairAnimateClosure?
+    
+    lazy var ratingPrompt: ArmchairRatingPrompt = {
+        if self.operatingSystemVersion >= 8 && self.usesAlertController {
+            return ArmchairAlertControllerBasedRatingPrompt(delegate: self)
+        }
+        else {
+            return ArmchairAlertViewBasedRatingPrompt(delegate: self)
+        }
+    }()
 #endif
     var shouldPromptClosure: ArmchairShouldPromptClosure?
     var shouldIncrementUseCountClosure: ArmchairShouldIncrementClosure?
@@ -1116,54 +1261,17 @@ public class Manager : ArmchairManager {
     }
 
     private func showRatingAlert() {
+        
 #if os(iOS)
-        if operatingSystemVersion >= 8 && usesAlertController {
-            /* iOS 8 uses new UIAlertController API*/
-            let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.Cancel, handler: {
-                (alert: UIAlertAction!) in
-                self.dontRate()
-            }))
-            if (showsRemindButton()) {
-                alertView.addAction(UIAlertAction(title: remindButtonTitle!, style:UIAlertActionStyle.Default, handler: {
-                    (alert: UIAlertAction!) in
-                    self.remindMeLater()
-                }))
-            }
-            alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.Default, handler: {
-                (alert: UIAlertAction!) in
-                self._rateApp()
-            }))
-
-            // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
-                if let topController = topMostViewController(presentingController) {
-                    topController.presentViewController(alertView, animated: usesAnimation) {
-                        print("presentViewController() completed")
-                    }
+        if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            if let topController = topMostViewController(presentingController) {
+                ratingPrompt.showInViewController(topController, withManager: self)
+                
+                if let closure = didDisplayAlertClosure {
+                    closure()
                 }
             }
-
-        } else {
-            /* Otherwise we use UIAlertView still */
-            var alertView: UIAlertView
-            if (showsRemindButton()) {
-                alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: remindButtonTitle!, rateButtonTitle)
-            } else {
-                alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: rateButtonTitle)
-            }
-            // If we have a remind button, show it first. Otherwise show the rate button
-            // If we have a remind button, show the rate button next. Otherwise stop adding buttons.
-
-            alertView.cancelButtonIndex = -1
-            ratingAlert = alertView
-            alertView.show()
-
-            if let closure = didDisplayAlertClosure {
-                closure()
-            }
         }
-
 #elseif os(OSX)
     
         let alert: NSAlert = NSAlert()
@@ -1194,22 +1302,9 @@ public class Manager : ArmchairManager {
     }
 
     // MARK: -
-    // MARK: PRIVATE Alert View / StoreKit Delegate Methods
+    // MARK: PRIVATE StoreKit Delegate Methods
 
 #if os(iOS)
-    public func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        // cancelButtonIndex is set to -1 to show the cancel button up top, but a tap on it ends up here with index 0
-        if (alertView.cancelButtonIndex == buttonIndex || 0 == buttonIndex) {
-            // they don't want to rate it
-            dontRate()
-        } else if (showsRemindButton() && 1 == buttonIndex) {
-            // remind them later
-            remindMeLater()
-        } else {
-            // they want to rate it
-            _rateApp()
-        }
-    }
 
     //Delegate call from the StoreKit view.
     public func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
@@ -1623,21 +1718,19 @@ public class Manager : ArmchairManager {
 #endif
 
     private func hideRatingAlert() {
-        if let alert = ratingAlert {
-            debugLog("Hiding Alert")
+        
+        debugLog("Hiding Alert")
+        
 #if os(iOS)
-            if alert.visible {
-                alert.dismissWithClickedButtonIndex(alert.cancelButtonIndex, animated: false)
-            }
+        ratingPrompt.hide(false)
 #elseif os(OSX)
+        if let _ = ratingAlert {
             if let window = NSApplication.sharedApplication().keyWindow {
                 NSApp.endSheet(window)
             }
-    
-    #else
-#endif
-            ratingAlert = nil
         }
+        ratingAlert = nil
+#endif
     }
 
     private func defaultAffiliateCode() -> String {
@@ -1723,3 +1816,20 @@ public class Manager : ArmchairManager {
         }
     }
 }
+
+#if os(iOS)
+extension Manager: ArmchairRatingPromptDelegate {
+    
+    // MARK: - ArmchairRatingPromptDelegate
+    
+    public func ratingControllerShouldRateApp(controller: ArmchairRatingPrompt) {
+        self._rateApp()
+    }
+    public func ratingControllerShouldRemindLater(controller: ArmchairRatingPrompt) {
+        self.remindMeLater()
+    }
+    public func ratingControllerShouldNotRate(controller: ArmchairRatingPrompt) {
+        self.dontRate()
+    }
+}
+#endif
