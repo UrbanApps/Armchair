@@ -738,9 +738,6 @@ public class ArmchairAlertControllerBasedRatingPrompt : NSObject, ArmchairRating
         
         viewController.presentViewController(alertController, animated: manager.usesAnimation) {
             print("presentViewController() completed")
-            if let closure = manager.didDisplayAlertClosure {
-                closure()
-            }
         }
     }
     
