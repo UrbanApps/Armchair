@@ -40,7 +40,6 @@
 		E6A0AFAD19C9D1E800C3A7DC /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8D19C9D1E800C3A7DC /* zh-Hans.lproj */; };
 		E6A0AFAE19C9D1E800C3A7DC /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8E19C9D1E800C3A7DC /* zh-Hant.lproj */; };
 		E6D8B8F119C756A4001AD043 /* Armchair.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897FF4019AA800700AB5182 /* Armchair.swift */; };
-		E6D8B92D19C880A9001AD043 /* ArmchairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D8B92C19C880A9001AD043 /* ArmchairTests.swift */; };
 		E6F6157119C9FFDA00C0B51C /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7B19C9D1E800C3A7DC /* hu.lproj */; };
 		E6F6157219C9FFDA00C0B51C /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8319C9D1E800C3A7DC /* pl.lproj */; };
 		E6F6157319C9FFDA00C0B51C /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF8519C9D1E800C3A7DC /* pt.lproj */; };
@@ -75,16 +74,6 @@
 		E6F6159019C9FFDA00C0B51C /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E6A0AF7219C9D1E800C3A7DC /* cs.lproj */; };
 		F897FF4119AA800700AB5182 /* Armchair.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897FF4019AA800700AB5182 /* Armchair.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E6D8B93119C880AE001AD043 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8111E2A19A95C8B0040E7D1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = Armchair;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E6A0AF6519C9CFF400C3A7DC /* Armchair.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Armchair.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +112,6 @@
 		E6A0AF8E19C9D1E800C3A7DC /* zh-Hant.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-Hant.lproj"; path = "Localization/zh-Hant.lproj"; sourceTree = "<group>"; };
 		E6D8B8B519C7274F001AD043 /* Armchair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Armchair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D8B8F919C756A4001AD043 /* Armchair.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Armchair.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6D8B92819C880A9001AD043 /* ArmchairTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArmchairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D8B92B19C880A9001AD043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6D8B92C19C880A9001AD043 /* ArmchairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmchairTests.swift; sourceTree = "<group>"; };
 		E6F6159419C9FFDA00C0B51C /* Armchair.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Armchair.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,13 +129,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E6D8B8F219C756A4001AD043 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6D8B92519C880A9001AD043 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -235,7 +216,6 @@
 				E6D8B92919C880A9001AD043 /* Tests */,
 				E6D8B8B519C7274F001AD043 /* Armchair.framework */,
 				E6D8B8F919C756A4001AD043 /* Armchair.framework */,
-				E6D8B92819C880A9001AD043 /* ArmchairTests.xctest */,
 				E6A0AF6519C9CFF400C3A7DC /* Armchair.bundle */,
 				E6F6159419C9FFDA00C0B51C /* Armchair.bundle */,
 			);
@@ -297,24 +277,6 @@
 			productReference = E6D8B8F919C756A4001AD043 /* Armchair.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E6D8B92719C880A9001AD043 /* ArmchairTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E6D8B92E19C880A9001AD043 /* Build configuration list for PBXNativeTarget "ArmchairTests" */;
-			buildPhases = (
-				E6D8B92419C880A9001AD043 /* Sources */,
-				E6D8B92519C880A9001AD043 /* Frameworks */,
-				E6D8B92619C880A9001AD043 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E6D8B93219C880AE001AD043 /* PBXTargetDependency */,
-			);
-			name = ArmchairTests;
-			productName = ArmchairTests;
-			productReference = E6D8B92819C880A9001AD043 /* ArmchairTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E6F6156D19C9FFDA00C0B51C /* ArmchairLocalizableMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6F6159119C9FFDA00C0B51C /* Build configuration list for PBXNativeTarget "ArmchairLocalizableMac" */;
@@ -362,9 +324,6 @@
 					E6A0AF6419C9CFF400C3A7DC = {
 						CreatedOnToolsVersion = 6.0;
 					};
-					E6D8B92719C880A9001AD043 = {
-						CreatedOnToolsVersion = 6.0;
-					};
 					F8111E3219A95C8B0040E7D1 = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -386,7 +345,6 @@
 				E6D8B8EF19C756A4001AD043 /* ArmchairMac */,
 				E6A0AF6419C9CFF400C3A7DC /* ArmchairLocalizable */,
 				E6F6156D19C9FFDA00C0B51C /* ArmchairLocalizableMac */,
-				E6D8B92719C880A9001AD043 /* ArmchairTests */,
 			);
 		};
 /* End PBXProject section */
@@ -432,13 +390,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E6D8B8F519C756A4001AD043 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6D8B92619C880A9001AD043 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -509,14 +460,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E6D8B92419C880A9001AD043 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6D8B92D19C880A9001AD043 /* ArmchairTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E6F6156E19C9FFDA00C0B51C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -533,14 +476,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E6D8B93219C880AE001AD043 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F8111E3219A95C8B0040E7D1 /* Armchair */;
-			targetProxy = E6D8B93119C880AE001AD043 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E6A0AF6A19C9CFF500C3A7DC /* Debug */ = {
@@ -626,40 +561,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-			};
-			name = Release;
-		};
-		E6D8B92F19C880A9001AD043 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.armchair.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		E6D8B93019C880A9001AD043 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.armchair.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -847,15 +748,6 @@
 			buildConfigurations = (
 				E6D8B8F719C756A4001AD043 /* Debug */,
 				E6D8B8F819C756A4001AD043 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E6D8B92E19C880A9001AD043 /* Build configuration list for PBXNativeTarget "ArmchairTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E6D8B92F19C880A9001AD043 /* Debug */,
-				E6D8B93019C880A9001AD043 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
