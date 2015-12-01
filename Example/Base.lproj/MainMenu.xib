@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -675,7 +676,7 @@
         <window title="Mac Example" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES"/>
             <rect key="contentRect" x="335" y="390" width="400" height="368"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="368"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -692,7 +693,7 @@
                     </imageView>
                     <box autoresizesSubviews="NO" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0Gb-KD-yfU">
                         <rect key="frame" x="17" y="250" width="366" height="100"/>
-                        <view key="contentView">
+                        <view key="contentView" id="bbk-jP-boF">
                             <rect key="frame" x="1" y="1" width="364" height="98"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -750,13 +751,13 @@
                             </subviews>
                         </view>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="YED-uj-VLq" secondAttribute="centerX" id="0D2-Qc-szZ"/>
-                            <constraint firstItem="YED-uj-VLq" firstAttribute="top" secondItem="0Gb-KD-yfU" secondAttribute="top" constant="-13" id="0dP-ks-bhc"/>
-                            <constraint firstItem="yGG-Wr-1xP" firstAttribute="top" secondItem="YED-uj-VLq" secondAttribute="bottom" constant="-11" id="FTY-wK-gxK"/>
-                            <constraint firstItem="YED-uj-VLq" firstAttribute="leading" secondItem="jkm-ga-2sM" secondAttribute="leading" constant="-45" id="V7U-7Z-CIK"/>
-                            <constraint firstItem="jkm-ga-2sM" firstAttribute="bottom" secondItem="yGG-Wr-1xP" secondAttribute="bottom" id="WZR-Hf-JcJ"/>
+                            <constraint firstAttribute="centerX" secondItem="YED-uj-VLq" secondAttribute="centerX" id="D1u-uE-BYQ"/>
+                            <constraint firstItem="yGG-Wr-1xP" firstAttribute="top" secondItem="YED-uj-VLq" secondAttribute="bottom" constant="-11" id="HED-pQ-Syb"/>
+                            <constraint firstItem="YED-uj-VLq" firstAttribute="leading" secondItem="jkm-ga-2sM" secondAttribute="leading" constant="-45" id="Krx-CK-vgG"/>
+                            <constraint firstItem="YED-uj-VLq" firstAttribute="top" secondItem="0Gb-KD-yfU" secondAttribute="top" constant="-13" id="Yxh-EJ-Gft"/>
                             <constraint firstAttribute="height" constant="94" id="aN9-Sz-28k"/>
-                            <constraint firstItem="yGG-Wr-1xP" firstAttribute="trailing" secondItem="YED-uj-VLq" secondAttribute="trailing" constant="-30" id="iUR-We-Kf1"/>
+                            <constraint firstItem="yGG-Wr-1xP" firstAttribute="trailing" secondItem="YED-uj-VLq" secondAttribute="trailing" constant="-30" id="kVF-vs-OfD"/>
+                            <constraint firstItem="jkm-ga-2sM" firstAttribute="bottom" secondItem="yGG-Wr-1xP" secondAttribute="bottom" id="sDl-pK-HF9"/>
                         </constraints>
                         <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>

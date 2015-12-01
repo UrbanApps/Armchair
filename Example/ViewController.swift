@@ -55,7 +55,7 @@ extension ViewController {
 
         // Only set it if we are using Armchair localizations
         if !Armchair.useMainAppBundleForLocalizations() {
-            var currentLocalization: NSString = NSBundle.mainBundle().preferredLocalizations[0] as! NSString
+            let currentLocalization: NSString = NSBundle.mainBundle().preferredLocalizations[0] as NSString
             // Only set it if we are using a different language than this apps development language
             if let developmentLocalization = NSBundle.mainBundle().developmentLocalization {
                 if currentLocalization != developmentLocalization {
@@ -74,7 +74,7 @@ extension ViewController {
 #endif
     }
 
-    @IBAction func presentStandardPrompt(AnyObject) {
+    @IBAction func presentStandardPrompt(_: AnyObject) {
         resetAppReviewManager()
 
         // The AppID is the only required setup
@@ -92,7 +92,7 @@ extension ViewController {
         Armchair.userDidSignificantEvent(true)
     }
 
-    @IBAction func presentCustomizedPrompt(AnyObject) {
+    @IBAction func presentCustomizedPrompt(_: AnyObject) {
         resetAppReviewManager()
 
         // The AppID is the only required setup
@@ -150,23 +150,23 @@ extension ViewController {
         Armchair.affiliateCampaignCode("Armchair-ExampleApp")
 
         // Armchair is block based, so setup some blocks on events
-        Armchair.onDidDeclineToRate() { println("[Example App] The user just declined to rate") }
-        Armchair.onDidDisplayAlert() { println("[Example App] We just displayed the rating prompt") }
-        Armchair.onDidOptToRate() { println("[Example App] The user just opted to rate") }
-        Armchair.onDidOptToRemindLater({ println("[Example App] The user just opted to remind later") })
+        Armchair.onDidDeclineToRate() { print("[Example App] The user just declined to rate") }
+        Armchair.onDidDisplayAlert() { print("[Example App] We just displayed the rating prompt") }
+        Armchair.onDidOptToRate() { print("[Example App] The user just opted to rate") }
+        Armchair.onDidOptToRemindLater({ print("[Example App] The user just opted to remind later") })
 #if os(iOS)
-        Armchair.onWillPresentModalView({ println("[Example App] About to present the modal view. Animated: \($0)") })
-        Armchair.onDidDismissModalView({ println("[Example App] Just dismissed the modal view. Animated: \($0)") })
+        Armchair.onWillPresentModalView({ print("[Example App] About to present the modal view. Animated: \($0)") })
+        Armchair.onDidDismissModalView({ print("[Example App] Just dismissed the modal view. Animated: \($0)") })
 #endif
         // Armchair has sensible defaults for the NSUserDefault keys it uses, but you can customize that here
-        Armchair.setKey("kSettingsSignificantEventTally", ArmchairKey.SignificantEventCount)
+        Armchair.setKey("kSettingsSignificantEventTally", armchairKeyType: ArmchairKey.SignificantEventCount)
 
         // You can also call it with a block to circumvent any of Armchair should rate logic.
         Armchair.userDidSignificantEvent({
             (trackingInfo: ArmchairTrackingInfo) -> (Bool) in
             // the trackingInfo.info dictionary has all the keys/value Armchair uses to determine whether or not to show a prompt
 
-            println("[Example App] \(trackingInfo)")
+            print("[Example App] \(trackingInfo)")
 
             return true
         })
@@ -186,7 +186,7 @@ extension ViewController {
     }
     
 #if os(iOS)
-    @IBAction func presentStoreKitPrompt(AnyObject) {
+    @IBAction func presentStoreKitPrompt(_: AnyObject) {
         resetAppReviewManager()
 
         // The AppID is the only required setup
@@ -212,7 +212,7 @@ extension ViewController {
         Armchair.resetDefaults()
     }
     
-    @IBAction func openUrbanApps(AnyObject) {
+    @IBAction func openUrbanApps(_: AnyObject) {
         if let url = NSURL(string: "http://urbanapps.com") {
 #if os(iOS)
             UIApplication.sharedApplication().openURL(url)

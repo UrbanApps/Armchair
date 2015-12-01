@@ -66,22 +66,40 @@ Tweak the variables so that you don't annoy your customers, and you will enjoy t
 
 ## Requirements
 
-- Xcode 6.1
-- iOS 7.0+, Mac OS X 10.10+
+- Xcode 6.1+
+- iOS 8.0+, Mac OS X 10.10+
 
 ## Installation
 
-_The infrastructure and best practices for distributing Swift libraries is currently in flux during this beta period of the language and Xcode. In the meantime, you can simply grab the code, drag the `Armchair.xcodeproj` file into your Xcode project, and add the framework product as a dependency for your application's target. (This is how the example projects are structured)_
+> **Embedded frameworks require a minimum deployment target of iOS 8 or OS X Mavericks (10.9).**
+>
+> Armchair is no longer supported on iOS 7 due to the lack of support for frameworks. Without frameworks, running Travis-CI against iOS 7 would require a second duplicated test target. The separate test suite would need to import all the Swift files and the tests would need to be duplicated and re-written. This split would be too difficult to maintain to ensure the highest possible quality of the Armchair ecosystem.
 
-1. Add Armchair as a submodule by opening the Terminal, cd-ing into your top-level project directory, and entering the command git submodule add https://github.com/UrbanApps/Armchair.git
-2. Open the Armchair folder, and drag Armchair.xcodeproj into the file navigator of your app project.
-3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
-4. Ensure that the deployment target of Armchair.framework matches that of the application target.
-5. In the tab bar at the top of that window, open the "Build Phases" panel.
-6. Expand the "Target Dependencies" group, and add Armchair.framework.
-7. Click on the + button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add Armchair.framework.
+### CocoaPods
 
-For more detailed installation instructions, including a video, see [Basic Installation](https://github.com/UrbanApps/Armchair/wiki/Basic-Installation)
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+> CocoaPods 0.39.0+ is required to build Armchair.
+
+To integrate Armchair into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Armchair', '~> 0.1.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ## Usage
 

@@ -295,10 +295,10 @@ public func debugEnabled(debugEnabled: Bool) {
 #if Debug
     Manager.defaultManager.debugEnabled = debugEnabled
 #else
-    println("[Armchair] Debug is disabled on release builds.")
-    println("[Armchair]   If you really want to enable debug mode,")
-    println("[Armchair]   add \"-DDebug\" to your  Swift Compiler - Custom Flags")
-    println("[Armchair]   section in the target's build settings for release")
+    print("[Armchair] Debug is disabled on release builds.")
+    print("[Armchair]   If you really want to enable debug mode,")
+    print("[Armchair]   add \"-DDebug\" to your  Swift Compiler - Custom Flags")
+    print("[Armchair]   section in the target's build settings for release")
 #endif
 }
 
@@ -1534,7 +1534,7 @@ public class Manager : ArmchairManager {
     // MARK: Internet Connectivity
 
     private func connectedToNetwork() -> Bool {
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
 
@@ -1545,7 +1545,7 @@ public class Manager : ArmchairManager {
         }
 
         var flags : SCNetworkReachabilityFlags = []
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
             return false
         }
 
