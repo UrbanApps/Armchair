@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -676,7 +676,7 @@
         <window title="Mac Example" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES"/>
             <rect key="contentRect" x="335" y="390" width="400" height="368"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="2537"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="368"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -689,6 +689,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="Z1K-eP-EFI"/>
                             <constraint firstAttribute="width" constant="400" id="srN-Ty-yYG"/>
                         </constraints>
+                        <animations/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="armchair" id="cpa-BH-nca"/>
                     </imageView>
                     <box autoresizesSubviews="NO" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0Gb-KD-yfU">
@@ -702,6 +703,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="328" id="DsT-g1-qyE"/>
                                     </constraints>
+                                    <animations/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ARMCHAIR" id="44X-yy-TzG">
                                         <font key="font" size="58" name="AmericanTypewriter-Light"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -720,6 +722,7 @@
                                             </configuration>
                                         </ciFilter>
                                     </contentFilters>
+                                    <animations/>
                                     <buttonCell key="cell" type="bevel" title="Standard" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="V69-cn-Kgl">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" size="18" name="AmericanTypewriter"/>
@@ -740,6 +743,7 @@
                                             </configuration>
                                         </ciFilter>
                                     </contentFilters>
+                                    <animations/>
                                     <buttonCell key="cell" type="bevel" title="Customized" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="cV4-59-VPY">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" size="18" name="AmericanTypewriter"/>
@@ -749,6 +753,7 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <animations/>
                         </view>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="YED-uj-VLq" secondAttribute="centerX" id="D1u-uE-BYQ"/>
@@ -759,6 +764,7 @@
                             <constraint firstItem="yGG-Wr-1xP" firstAttribute="trailing" secondItem="YED-uj-VLq" secondAttribute="trailing" constant="-30" id="kVF-vs-OfD"/>
                             <constraint firstItem="jkm-ga-2sM" firstAttribute="bottom" secondItem="yGG-Wr-1xP" secondAttribute="bottom" id="sDl-pK-HF9"/>
                         </constraints>
+                        <animations/>
                         <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                     </box>
@@ -768,6 +774,7 @@
                             <constraint firstAttribute="height" constant="16" id="GCp-UZ-7Tt"/>
                             <constraint firstAttribute="width" constant="80" id="GXx-vv-2Cx"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="logo" imagePosition="only" alignment="center" alternateImage="logo" imageScaling="proportionallyDown" inset="2" id="vhG-ei-xnV">
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -778,6 +785,7 @@
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TMr-De-pos">
                         <rect key="frame" x="147" y="229" width="106" height="17"/>
+                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Languange Label" id="k5m-JC-DUG">
                             <font key="font" size="12" name="AmericanTypewriter"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -797,6 +805,7 @@
                     <constraint firstItem="0Gb-KD-yfU" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="SUA-nW-p1P"/>
                     <constraint firstItem="TMr-De-pos" firstAttribute="top" secondItem="0Gb-KD-yfU" secondAttribute="bottom" constant="8" id="b8y-Oh-srw"/>
                 </constraints>
+                <animations/>
             </view>
         </window>
     </objects>

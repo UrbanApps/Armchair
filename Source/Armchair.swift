@@ -1631,7 +1631,9 @@ public class Manager : ArmchairManager {
             }
 #elseif os(OSX)
             if let window = NSApplication.sharedApplication().keyWindow {
-                NSApp.endSheet(window)
+                if let parent = window.sheetParent {
+                    parent.endSheet(window)
+                }
             }
     
     #else
