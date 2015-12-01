@@ -90,9 +90,10 @@ To integrate Armchair into your Xcode project using CocoaPods, specify it in you
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
+platform :osx, '10.10'
 use_frameworks!
 
-pod 'Armchair', '~> 0.1.0'
+pod 'Armchair', '~> 0.1.1'
 ```
 
 Then, run the following command:
