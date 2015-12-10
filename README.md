@@ -102,6 +102,18 @@ Then, run the following command:
 $ pod install
 ```
 
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+Once you [install](https://github.com/Carthage/Carthage#installing-carthage) Carthage, you can integrate Armchair into your Xcode project by specifying it in your `Cartfile`:
+
+```ogdl
+github "UrbanApps/Armchair"
+```
+
+Run `carthage update` to build the framework and drag the built `Armchair.framework` into your Xcode project.
+
 ## Usage
 
 ### Simple 1-line Setup
