@@ -1567,7 +1567,7 @@ public class Manager : ArmchairManager {
             if let url = armchairBundleURL {
                 bundle = NSBundle(URL: url)
             } else {
-                bundle = NSBundle.mainBundle()
+                bundle = NSBundle(forClass: self.dynamicType)
             }
         }
 
