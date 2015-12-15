@@ -324,7 +324,7 @@ The `ArmchairShouldPromptClosure` passes you the keys and values Armchair used t
     Armchair.shouldPromptClosure(shouldPromptClosure: ArmchairShouldPromptClosure?)
 
 
-In addition to the global `shouldPromptClosure`, the Armchair functions that trigger the presentation of the prompt (`showPrompt(ifNecessary: Bool)` and `userDidSignificantEvent()`) have their own closure based variant that allows you to customize whether or not this is an appropriate time to display the prompt.
+In addition to the global `shouldPromptClosure`, the Armchair functions that trigger the presentation of the prompt (`showPromptIfNecessary` and `userDidSignificantEvent()`) have their own closure based variant that allows you to customize whether or not this is an appropriate time to display the prompt.
 
     Armchair.showPrompt(shouldPrompt: ArmchairShouldPromptClosure)
     Armchair.userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure)
