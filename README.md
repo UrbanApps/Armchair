@@ -234,6 +234,11 @@ The `debugEnabled` configuration is useful for testing how your review prompt po
 	GETTER: Armchair.debugEnabled() -> Bool
 	SETTER: Armchair.debugEnabled(debugEnabled: Bool)
 
+##### Logging
+  Armchair allows you to set a closure to capture debug log and to plug in the desired logging framework.
+
+	Armchair.logger(logger: ArmchairLogger)
+
 ##### iOS Only Configuration
 
 These configuration functions only make sense for iOS builds due to their dependency on iOS-only frameworks and functions.
