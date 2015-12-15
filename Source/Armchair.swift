@@ -563,6 +563,18 @@ public func shouldIncrementUseCountClosure(shouldIncrementUseCountClosure: Armch
     Manager.defaultManager.shouldIncrementUseCountClosure = shouldIncrementUseCountClosure
 }
 
+
+
+// MARK: Armchair Logger Protocol
+public typealias ArmchairLogger = (Manager, log: String, file: StaticString, function: StaticString, line: UInt) -> Void
+
+/*
+* Set a closure to capture debug log and to plug in the desired logging framework.
+*/
+public func logger(logger: ArmchairLogger) {
+    Manager.defaultManager.logger = logger
+}
+
 // MARK: -
 // MARK: Armchair Defaults Protocol
 
@@ -1714,8 +1726,6 @@ public class Manager : ArmchairManager {
 
     // MARK: -
     // MARK: Debug
-
-    public typealias ArmchairLogger = (Manager, log: String, file: StaticString, function: StaticString, line: UInt) -> Void
 
     let lockQueue = dispatch_queue_create("com.armchair.lockqueue", nil)
 
