@@ -1715,13 +1715,19 @@ public class Manager : ArmchairManager {
     // MARK: -
     // MARK: Debug
 
+    public typealias ArmchairLogger = (Manager, log: String, file: StaticString, function: StaticString, line: UInt) -> Void
+
     let lockQueue = dispatch_queue_create("com.armchair.lockqueue", nil)
 
-    private func debugLog(log: String) {
-        if debugEnabled {
-            dispatch_sync(lockQueue, {
+    public var logger: ArmchairLogger = { manager, log, file, function, line in
+        if manager.debugEnabled {
+            dispatch_sync(manager.lockQueue, {
                 print("[Armchair] \(log)")
             })
         }
     }
+    private func debugLog(log: String, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: UInt = __LINE__) {
+        logger(self, log: log, file: file, function: function, line: line)
+    }
+
 }
