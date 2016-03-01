@@ -329,7 +329,7 @@ public func resetDefaults() {
 
 #if os(iOS)
     Manager.defaultManager.usesAnimation                    = true
-    Manager.defaultManager.usesAlertController              = false
+    Manager.defaultManager.usesAlertController              = Manager.defaultManager.defaultUsesAlertController()
     Manager.defaultManager.opensInStoreKit                  = Manager.defaultManager.defaultOpensInStoreKit()
     Manager.defaultManager.willPresentModalViewClosure      = nil
     Manager.defaultManager.didDismissModalViewClosure       = nil
@@ -807,11 +807,14 @@ public class Manager : ArmchairManager {
 
 #if os(iOS)
     private var usesAnimation: Bool                     = true
-    private var usesAlertController: Bool               = false
+    private lazy var usesAlertController: Bool          = self.defaultUsesAlertController()
     private lazy var opensInStoreKit: Bool              = self.defaultOpensInStoreKit()
 
     private func defaultOpensInStoreKit() -> Bool {
         return operatingSystemVersion >= 8
+    }
+    private func defaultUsesAlertController() -> Bool {
+        return operatingSystemVersion >= 9
     }
 #endif
 
@@ -1136,7 +1139,7 @@ public class Manager : ArmchairManager {
 
     private func showRatingAlert() {
 #if os(iOS)
-        if operatingSystemVersion >= 8 && usesAlertController {
+        if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
             /* iOS 8 uses new UIAlertController API*/
             let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
             alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.Cancel, handler: {
