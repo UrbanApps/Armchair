@@ -969,10 +969,11 @@ public class Manager : ArmchairManager {
             }
 
             // Increment the key's count
-            var incrementKeyCount = userDefaultsObject?.integerForKey(incrementKey)
-            userDefaultsObject?.setInteger(++incrementKeyCount!, forKey:incrementKey)
+            var incrementKeyCount = userDefaultsObject?.integerForKey(incrementKey) ?? 0
+			incrementKeyCount += 1
+            userDefaultsObject?.setInteger(incrementKeyCount, forKey:incrementKey)
 
-            debugLog("Incremented \(incrementKeyType): \(incrementKeyCount!)")
+            debugLog("Incremented \(incrementKeyType): \(incrementKeyCount)")
 
         } else if tracksNewVersions {
             // it's a new version of the app, so restart tracking
@@ -1715,9 +1716,9 @@ public class Manager : ArmchairManager {
 
     private func setupNotifications() {
 #if os(iOS)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResignActive:",            name: UIApplicationWillResignActiveNotification,    object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:",  name: UIApplicationDidFinishLaunchingNotification,  object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Manager.appWillResignActive(_:)),            name: UIApplicationWillResignActiveNotification,    object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidFinishLaunching(_:)),  name: UIApplicationDidFinishLaunchingNotification,  object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: UIApplicationWillEnterForegroundNotification, object: nil)
 #elseif os(OSX)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResignActive:",            name: NSApplicationWillResignActiveNotification,    object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:",  name: NSApplicationDidFinishLaunchingNotification,  object: nil)
@@ -1746,7 +1747,7 @@ public class Manager : ArmchairManager {
             })
         }
     }
-    private func debugLog(log: String, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: UInt = __LINE__) {
+    private func debugLog(log: String, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
         logger(self, log: log, file: file, function: function, line: line)
     }
 
