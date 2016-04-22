@@ -1134,7 +1134,7 @@ public class Manager : ArmchairManager {
     }
 
     private func showsRemindButton() -> Bool {
-        return (remindButtonTitle != nil)
+        return (daysBeforeReminding > 0 && remindButtonTitle != nil)
     }
 
     private func showRatingAlert() {
