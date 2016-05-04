@@ -302,6 +302,16 @@ public func debugEnabled(debugEnabled: Bool) {
 #endif
 }
 
+/**
+ Reset all counters manually. This resets UseCount, SignificantEventCount and FirstUseDate (daysUntilPrompt)
+ */
+public func resetCounters() {
+    StandardUserDefaults().setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
+    StandardUserDefaults().setObject(NSNumber(integer: 1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
+    StandardUserDefaults().setObject(NSNumber(integer: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
+    StandardUserDefaults().synchronize()
+}
+
 /*
 *
 *
@@ -981,9 +991,7 @@ public class Manager : ArmchairManager {
             userDefaultsObject?.setObject(userDefaultsObject?.objectForKey(keyForArmchairKeyType(ArmchairKey.DeclinedToRate)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionDeclinedToRate))
 
             userDefaultsObject?.setObject(currentVersion, forKey: currentVersionKey)
-            userDefaultsObject?.setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
-            userDefaultsObject?.setObject(NSNumber(integer: 1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
-            userDefaultsObject?.setObject(NSNumber(integer: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
+            resetCounters()
             userDefaultsObject?.setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
             userDefaultsObject?.setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.DeclinedToRate))
             userDefaultsObject?.setObject(NSNumber(double: 0), forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
