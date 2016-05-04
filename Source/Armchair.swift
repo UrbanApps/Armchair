@@ -305,7 +305,7 @@ public func debugEnabled(debugEnabled: Bool) {
 /**
  Reset all counters manually. This resets UseCount, SignificantEventCount and FirstUseDate (daysUntilPrompt)
  */
-public func resetCounters() {
+public func resetUsageCounters() {
     StandardUserDefaults().setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
     StandardUserDefaults().setObject(NSNumber(integer: 1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
     StandardUserDefaults().setObject(NSNumber(integer: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
@@ -315,7 +315,7 @@ public func resetCounters() {
 /**
  Reset all values tracked by Armchair to initial state.
  */
-public func resetAll() {
+public func resetAllCounters() {
     let currentVersionKey = keyForArmchairKeyType(ArmchairKey.CurrentVersion)
     let trackingVersion: String? = StandardUserDefaults().stringForKey(currentVersionKey)
     let bundleVersionKey = kCFBundleVersionKey as String
@@ -325,7 +325,7 @@ public func resetAll() {
     StandardUserDefaults().setObject(StandardUserDefaults().objectForKey(keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionRated))
     StandardUserDefaults().setObject(StandardUserDefaults().objectForKey(keyForArmchairKeyType(ArmchairKey.DeclinedToRate)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionDeclinedToRate))
     StandardUserDefaults().setObject(currentVersion, forKey: currentVersionKey)
-    resetCounters()
+    resetUsageCounters()
     StandardUserDefaults().setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
     StandardUserDefaults().setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.DeclinedToRate))
     StandardUserDefaults().setObject(NSNumber(double: 0), forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
@@ -1006,7 +1006,7 @@ public class Manager : ArmchairManager {
 
         } else if tracksNewVersions {
             // it's a new version of the app, so restart tracking
-            resetAll()
+            resetAllCounters()
             debugLog("Reset Tracking Version to: \(trackingVersion!)")
         }
     
