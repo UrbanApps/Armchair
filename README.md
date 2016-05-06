@@ -404,7 +404,7 @@ Armchair.ratingConditionsHaveBeenMet() -> Bool
 Armchair.resetUsageCounters()
 ```
 
-`resetAllCounters()` resets all counters. Calling thid method resets every value tracked by Armachair.
+`resetAllCounters()` resets all counters. Calling this method resets every value tracked by Armchair.
 
 ```swift
 Armchair.resetAllCounters()
