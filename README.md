@@ -120,7 +120,9 @@ Run `carthage update` to build the framework and drag the built `Armchair.framew
 
 Armchair includes sensible defaults as well as reads data from your localized, or unlocalized `info.plist` to set itself up. While everything is configurable, the only **required** item to configure is your App Store ID. This call is the same for iOS and Mac apps, and should be made as part of your App Delegate's `initialize()` function
 
-    Armchair.appID("12345678")
+```swift
+Armchair.appID("12345678")
+```
 
 That's it to get started. Setting Armchair up with this line uses some sensible default criterion (detailed below) and will present a rating prompt whenever they are met.
 
@@ -128,116 +130,191 @@ That's it to get started. Setting Armchair up with this line uses some sensible 
 
 Optionally, if you are using significant events in your app to track when the user does something of significance, add this line to any place where this event happens, such as a `levelDidFinish` function, or `userDidUploadPhoto` function.
 
-    Armchair.userDidSignificantEvent(true)
+```swift
+Armchair.userDidSignificantEvent(true)
+```
 
 In order for this to mean anything to Armchair, you also have to set the threshold for significant events. Typically, this, and all other logic configuration settings, should be made as part of your App Delegate's `initialize()` function so it can get the notifications on app launch.
 
-    Armchair.significantEventsUntilPrompt(5)
+```swift
+Armchair.significantEventsUntilPrompt(5)
+```
 
 As mentioned above, the `appID` is the only required item to configure. It is used to generate the URL that will link to the page. Most often, this is configured to the App that is currently running, but there may be an instance where you want to set it to another app, such as in an App that reviews other Apps.
 
-    GETTER: Armchair.appID() -> String
-    SETTER: Armchair.appID(appID: String)
+```swift
+// GETTER
+Armchair.appID() -> String
+// SETTER
+Armchair.appID(appID: String)
+```
 
 ##### Display Strings
 
 The `appName` is used in several places on the review prompt popup. It can be configured here to customize your message without losing any of the default localizations. By default, Armchair will read the value from your localized, or unlocalized `info.plist`, but you can set it specifically if you want.
 
-    GETTER: Armchair.appName() -> String
-    SETTER: Armchair.appName(appName: String)
+```swift
+// GETTER
+Armchair.appName() -> String
+// SETTER
+Armchair.appName(appName: String)
+```
 
 The `reviewTitle` is the title to use on the review prompt popup. It's default value is a localized "Rate \<appName\>", but you can set it to anything you want.
 
-    GETTER: Armchair.reviewTitle() -> String
-    SETTER: Armchair.reviewTitle(reviewTitle: String)
+```swift
+// GETTER
+Armchair.reviewTitle() -> String
+// SETTER
+Armchair.reviewTitle(reviewTitle: String)
+```
 
 The `reviewMessage` is the message to use on the review prompt popup. It's default value is a localized "If you enjoy using \<appName\>, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", but you can change it specifically if you want. However, if you do change it, you will need to provide your own localization strings as shown farther down below.
 
-    GETTER: Armchair.reviewMessage() -> String
-    SETTER: Armchair.reviewMessage(reviewMessage: String)
+```swift
+// GETTER
+Armchair.reviewMessage() -> String
+// SETTER
+Armchair.reviewMessage(reviewMessage: String)
+```
 
 The `cancelButtonTitle` is the button title to use on the review prompt popup for the "Cancel" action. Its default value is a localized "No, Thanks"
 
-    GETTER: Armchair.cancelButtonTitle() -> String
-    SETTER: Armchair.cancelButtonTitle(cancelButtonTitle: String)
+```swift
+// GETTER
+Armchair.cancelButtonTitle() -> String
+// SETTER
+Armchair.cancelButtonTitle(cancelButtonTitle: String)
+```
 
 The `rateButtonTitle` is the button title to use on the review prompt popup for the "Rate" action. Its default value is a localized "Rate \<appName\>"
 
-    GETTER: Armchair.rateButtonTitle() -> String
-    SETTER: Armchair.rateButtonTitle(rateButtonTitle: String)
+```swift
+// GETTER
+Armchair.rateButtonTitle() -> String
+// SETTER
+Armchair.rateButtonTitle(rateButtonTitle: String)
+```
 
 The `remindButtonTitle` is the button title to use on the review prompt popup for the "Remind" action. Its default value is a localized "Remind me later"
 
-    GETTER: Armchair.remindButtonTitle() -> String
-    SETTER: Armchair.remindButtonTitle(remindButtonTitle: String)
+```swift
+// GETTER
+Armchair.remindButtonTitle() -> String
+// SETTER
+Armchair.remindButtonTitle(remindButtonTitle: String)
+```
 
 ##### Logic
 
 The `daysUntilPrompt` configuration determines how many days the users will need to have the same version of your App installed before they will be prompted to rate it. It's default is 30 days.
 
-    GETTER: Armchair.daysUntilPrompt() -> UInt
-    SETTER: Armchair.daysUntilPrompt(daysUntilPrompt: UInt)
+```swift
+// GETTER
+Armchair.daysUntilPrompt() -> UInt
+// SETTER
+Armchair.daysUntilPrompt(daysUntilPrompt: UInt)
+```
 
 The `usesUntilPrompt` configuration determines how many times the user will need to have 'used' the same version of you App before they will be prompted to rate it. Its default is 20 uses.
 
-	GETTER: Armchair.usesUntilPrompt() -> UInt
-	SETTER: Armchair.usesUntilPrompt(usesUntilPrompt: UInt)
+```swift
+// GETTER
+Armchair.usesUntilPrompt() -> UInt
+// SETTER
+Armchair.usesUntilPrompt(usesUntilPrompt: UInt)
+```
 
 An example of a 'use' would be if the user launched the app, or brings it to the foreground. Armchair keeps track of these internally by listening to UIApplication/NSApplication lifecycle notifications.
 
 As discussed briefly above, the `significantEventsUntilPrompt` configuration determines how many "significant events" the user will need to have before they will be prompted to rate the App. It defaults to 0 significant events.
 
-    GETTER: Armchair.significantEventsUntilPrompt() -> UInt
-    SETTER: Armchair.significantEventsUntilPrompt(significantEventsUntilPrompt: UInt)
+```swift
+// GETTER
+Armchair.significantEventsUntilPrompt() -> UInt
+// SETTER
+Armchair.significantEventsUntilPrompt(significantEventsUntilPrompt: UInt)
+```
 
 A significant event can be anything you want to be in your app. In a telephone app, a significant event might be placing or receiving a call. In a game, it might be beating a level or a boss. This is just another layer of filtering that can be used to make sure that only the most loyal of your users are being prompted to rate you on the app store. If you leave this at a value of 0 (default), then this won't be a criterion used for rating. To tell Armchair that the user has performed a significant event, call the function:
 
-    Armchair.userDidSignificantEvent(canPromptForRating: Bool)
+```swift
+Armchair.userDidSignificantEvent(canPromptForRating: Bool)
+```
 
 The `daysBeforeReminding` configuration determines how many days Armchair will wait before reminding the user to rate again, should they select the "Remind Me Later" option on the first alert. It defaults to 1 day. A value of 0 will remove the "Remind Me Later" button and disable this feature.
 
-	GETTER: Armchair.daysBeforeReminding() -> UInt
-	SETTER: Armchair.daysBeforeReminding(daysBeforeReminding: UInt)
+```swift
+// GETTER
+Armchair.daysBeforeReminding() -> UInt
+// SETTER
+Armchair.daysBeforeReminding(daysBeforeReminding: UInt)
+```
 
 The `tracksNewVersions` configuration determines whether or not Armchair should track a new app version if detected. By default, Armchair tracks **all** new bundle versions. When it detects a new version, it resets the values saved for usage, significant events, popup shown, user action etc... By setting this to `NO` Armchair will **only** track the version it was initialized with, or the one it last knew about. If this setting is set to `true`, Armchair will reset itself after each new version detection. Its default value is `true`.
 
-	GETTER: Armchair.tracksNewVersions() -> Bool
-	SETTER: Armchair.tracksNewVersions(tracksNewVersions: Bool)
+```swift
+// GETTER
+Armchair.tracksNewVersions() -> Bool
+// SETTER
+Armchair.tracksNewVersions(tracksNewVersions: Bool)
+```
 
 The `shouldPromptIfRated` configuration determines whether or not to show the review prompt to users who have rated the app once before. This setting is a little like the `tracksNewVersions` setting, but a little less nuclear. Setting this to `false` will cause new users of the app to get the popup, but won't ask users who have already been asked for a popup in the past. This is useful if you release small bug-fix versions and don't want to pester your existing users with popups for every minor version, but want to ensure new users get prompted for a review. For example, you might set this to false for every minor build, then when you push a major version upgrade, leave it as true to ask for a rating again. Its default value is `true`.
 
-    GETTER: Armchair.shouldPromptIfRated() -> Bool
-	SETTER: Armchair.shouldPromptIfRated(shouldPromptIfRated: Bool)
+```swift
+// GETTER
+Armchair.shouldPromptIfRated() -> Bool
+// SETTER
+Armchair.shouldPromptIfRated(shouldPromptIfRated: Bool)
+```
 
 The `useMainAppBundleForLocalizations` configuration is a way to tell Armchair that you are providing your own translations for the review prompt popup strings. This may be because you are just customizing them, or that you have set your own text for the popup. If set to `true`, the main bundle will always be used to load localized strings. If set to `false` Armchair will look in its own translation bundle for the translating strings. It's default value is `false`.
 
-	GETTER: Armchair.useMainAppBundleForLocalizations() -> Bool
-	SETTER: Armchair.useMainAppBundleForLocalizations(useMainAppBundleForLocalizations: Bool)
+```swift
+// GETTER
+Armchair.useMainAppBundleForLocalizations() -> Bool
+// SETTER
+Armchair.useMainAppBundleForLocalizations(useMainAppBundleForLocalizations: Bool)
+```
 
 ##### Affiliate Codes
 
 The `affiliateCode` configuration is optional and is used to configure with the review URL. If you are an Apple Affiliate, enter your code here. If none is set, the author's code will be used as it is better to be set as something rather than nothing. If you want to thank me for making Armchair, feel free to leave this value at it's default.
 
-
-	GETTER: Armchair.affiliateCode() -> String
-    SETTER: Armchair.affiliateCode(affiliateCode: String)
+```swift
+// GETTER
+Armchair.affiliateCode() -> String
+// SETTER
+Armchair.affiliateCode(affiliateCode: String)
+```
 
 The `affiliateCampaignCode` configuration is optional and is used to configure the review URL. It provides context to the affiliate code and defaults to "Armchair-\<appID\>".
 
-    GETTER: Armchair.affiliateCampaignCode() -> String
-    SETTER: Armchair.affiliateCampaignCode(affiliateCampaignCode: String)
+```swift
+// GETTER
+Armchair.affiliateCampaignCode() -> String
+// SETTER
+Armchair.affiliateCampaignCode(affiliateCampaignCode: String)
+```
 
 ##### Debug Mode
 
 The `debugEnabled` configuration is useful for testing how your review prompt popup looks and for testing. Setting it to `true` will show the Armchair alert every time by tricking the app into thinking the conditions for a prompt have been met. Calling this function in a production build (determined when `Debug` swift compiler flag is *not* defined) has no effect. In App Store builds, you don't have to worry about accidentally leaving debug on. The default value of `debugEnabled` is `false`.
 
-	GETTER: Armchair.debugEnabled() -> Bool
-	SETTER: Armchair.debugEnabled(debugEnabled: Bool)
+```swift
+// GETTER
+Armchair.debugEnabled() -> Bool
+// SETTER
+Armchair.debugEnabled(debugEnabled: Bool)
+```
 
 ##### Logging
   Armchair allows you to set a closure to capture debug log and to plug in the desired logging framework.
 
-	Armchair.logger(logger: ArmchairLogger)
+```swift
+Armchair.logger(logger: ArmchairLogger)
+```
 
 ##### iOS Only Configuration
 
@@ -245,18 +322,30 @@ These configuration functions only make sense for iOS builds due to their depend
 
 The `usesAnimation` configuration determines whether or not Armchair uses animation when presenting a modal `SKStoreProductViewController`. Its default value is `true`.
 
-    GETTER: Armchair.usesAnimation() -> Bool
-	SETTER: Armchair.usesAnimation(usesAnimation: Bool)
+```swift
+// GETTER
+Armchair.usesAnimation() -> Bool
+// SETTER
+Armchair.usesAnimation(usesAnimation: Bool)
+```
 
 The `usesAlertController` configuration determines whether or not Armchair uses a UIAlertController when presenting an alert on iOS 8. By default, we do not use it because the reordering of buttons is not possible in the alert controller as of iOS 8.0. It's default value is `false`. Changing this value does not affect iOS 7 at all.
 
-	GETTER: Armchair.usesAlertController() -> Bool
-	SETTER: Armchair.usesAlertController(usesAnimation: Bool)
+```swift
+// GETTER
+Armchair.usesAlertController() -> Bool
+// SETTER
+Armchair.usesAlertController(usesAnimation: Bool)
+```
 
 The `opensInStoreKit` configuration determines if Armchair will open the App Store link inside the App using a `SKStoreProductViewController`. By default, this is `false` on iOS 7, and `true` on iOS 8.
 
-    GETTER: Armchair.opensInStoreKit() -> Bool
-	SETTER: Armchair.opensInStoreKit(opensInStoreKit: Bool)
+```swift
+// GETTER
+Armchair.opensInStoreKit() -> Bool
+// SETTER
+Armchair.opensInStoreKit(opensInStoreKit: Bool)
+```
 
 There are 2 reasons why the default is `false` on iOS 7.
 
@@ -267,66 +356,91 @@ There are 2 reasons why the default is `false` on iOS 7.
 
 `userDidSignificantEvent(canPromptForRating: Bool)` tells Armchair that the user performed a significant event. A significant event is whatever you want it to be. If your app is used to make VoIP calls, then you might want to call this function whenever the user places a call. If it's a game, you might want to call this whenever the user beats a level boss. If the user has performed enough significant events and used the app enough, you can suppress the rating alert by passing `NO` for `canPromptForRating`. The rating alert will simply be postponed until it is called again with `true` for `canPromptForRating`. The rating alert can also be triggered by `appLaunched:` and `appEnteredForeground:` notifications.
 
-    Armchair.userDidSignificantEvent(canPromptForRating: Bool)
+```swift
+Armchair.userDidSignificantEvent(canPromptForRating: Bool)
+```
 
 In addition to the above functions that can trigger the presentation of the prompt, there is a closure based variant that allows you to customize whether or not this is an appropriate time to display the prompt.
 
-    Armchair.userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure)
+```swift
+Armchair.userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure)
+```
 
-Read more about these functions below in the [Should-Prompt Closure](#should-prompt-closure) section.    
-
+Read more about these functions below in the [Should-Prompt Closure](#should-prompt-closure) section.
 
 `showPrompt()` tells Armchair to show the review prompt alert. The prompt will be showed if there is an internet connection available, the user hasn't already declined to rate, hasn't rated the current version and you are tracking new versions. You could call to show the prompt regardless of Armchair settings, for instance, in the case of some special event in your app like positive feedback given.
 
-    Armchair.showPrompt()
+```swift
+Armchair.showPrompt()
+```
 
 `showPromptIfNecessary()` tells Armchair to show the review prompt alert if all restrictions have been met. The prompt will be shown if all restrictions are met, there is an internet connection available, the user hasn't declined to rate, hasn't rated current version, and you are tracking new versions. You could call to show the prompt, for instance, in the case of some special event in your app like a user login.
 
-    Armchair.showPromptIfNecessary()
+```swift
+Armchair.showPromptIfNecessary()
+```
 
 The `reviewURLString()` function is the review URL string, generated by substituting the `appID`, `affiliateCode` and `affiliateCampaignCode` into the template URL for the current platform.
 
-    Armchair.reviewURLString() -> String
+```swift
+Armchair.reviewURLString() -> String
+```
 
 `rateApp()` tells Armchair to open the App Store page where the user can specify a rating for the app. It also records the fact that this has happened, so the user won't be prompted again to rate the app for this version. The only case where you should call this directly is if your app has an explicit "Rate this app" command somewhere.  In all other cases, don't worry about calling this — instead, just call the other functions listed above, and let Armchair handle the bookkeeping of deciding when to ask the user whether to rate the app.
 
-    Armchair.rateApp()
+```swift
+Armchair.rateApp()
+```
 
 `ratingConditionsHaveBeenMet()` returns true when all of the setup conditions to display a prompt have been met.
 
-    Armchair.ratingConditionsHaveBeenMet() -> Bool
-    
+```swift
+Armchair.ratingConditionsHaveBeenMet() -> Bool
+```
+
 `resetUsageCounters()` resets app usage counters. Calling this method resets UseCount, SignificantEventCount and FirstUseDate (daysUntilPrompt).
 
-    Armchair.resetUsageCounters()
-    
-`resetAllCounters()` resets all counters. Calling thid method resets every value tracked by Armachair.
+```swift
+Armchair.resetUsageCounters()
+```
 
-    Armchair.resetAllCounters()
+`resetAllCounters()` resets all counters. Calling this method resets every value tracked by Armchair.
+
+```swift
+Armchair.resetAllCounters()
+```
 
 ##### iOS Only Functions
 
 `closeModalPanel()` tells Armchair to immediately close any open rating modal panels for instance, a `SKStoreProductViewController`.
 
-    Armchair.closeModalPanel()
+```swift
+Armchair.closeModalPanel()
+```
 
 ### Closures
 
 Armchair uses optional closures instead of delegate functions for callbacks. Default is nil for all of them.
 
-    Armchair.onDidDisplayAlert(didDisplayAlertClosure: ArmchairClosure?)
-    Armchair.onDidDeclineToRate(didDeclineToRateClosure: ArmchairClosure?)
-    Armchair.onDidOptToRate(didOptToRateClosure: ArmchairClosure?)
-    Armchair.onDidOptToRemindLater(didOptToRemindLaterClosure: ArmchairClosure?)    
+```swift
+Armchair.onDidDisplayAlert(didDisplayAlertClosure: ArmchairClosure?)
+Armchair.onDidDeclineToRate(didDeclineToRateClosure: ArmchairClosure?)
+Armchair.onDidOptToRate(didOptToRateClosure: ArmchairClosure?)
+Armchair.onDidOptToRemindLater(didOptToRemindLaterClosure: ArmchairClosure?)
+```
 
 ##### iOS Only Closures
 
-   	Armchair.onWillPresentModalView(willPresentModalViewClosure: ArmchairAnimateClosure?)
-   	Armchair.onDidDismissModalView(didDismissModalViewClosure: ArmchairAnimateClosure?)
+```swift
+Armchair.onWillPresentModalView(willPresentModalViewClosure: ArmchairAnimateClosure?)
+Armchair.onDidDismissModalView(didDismissModalViewClosure: ArmchairAnimateClosure?)
+```
 
 ##### Should-Increment Closure
 
-    Armchair.shouldIncrementUseCountClosure(shouldIncrementUseCountClosure: ArmchairShouldIncrementClosure?)
+```swift
+Armchair.shouldIncrementUseCountClosure(shouldIncrementUseCountClosure: ArmchairShouldIncrementClosure?)
+```
 
 By default Armchair increments the use count every time the app enters the foreground.  If you want to suppress  this behavior (i.e. not counting a foreground event caused by switching apps during a Facebook login) you can do so with a ArmchairShouldIncrementClosure that returns `false` to ignore a foreground event or `true` to count it as normal.
 
@@ -334,17 +448,22 @@ By default Armchair increments the use count every time the app enters the foreg
 
 Armchair allows you to set a closure that is called immediately preceding the display of the popup.
 
-	public typealias ArmchairShouldPromptClosure = (ArmchairTrackingInfo) -> Bool
+```swift
+public typealias ArmchairShouldPromptClosure = (ArmchairTrackingInfo) -> Bool
+```
 
 The `ArmchairShouldPromptClosure` passes you the keys and values Armchair used to determine that the prompt should be called (found in the ArmchairTrackingInfo's `info` dictionary), and expects a `Bool` return value on whether or not the prompt should still be displayed. This allows you to have one last chance to do any of your own custom logic to determine whether or not this is an appropriate time to display the prompt.
 
-    Armchair.shouldPromptClosure(shouldPromptClosure: ArmchairShouldPromptClosure?)
-
+```swift
+Armchair.shouldPromptClosure(shouldPromptClosure: ArmchairShouldPromptClosure?)
+```
 
 In addition to the global `shouldPromptClosure`, the Armchair functions that trigger the presentation of the prompt (`showPromptIfNecessary` and `userDidSignificantEvent()`) have their own closure based variant that allows you to customize whether or not this is an appropriate time to display the prompt.
 
-    Armchair.showPrompt(shouldPrompt: ArmchairShouldPromptClosure)
-    Armchair.userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure)
+```swift
+Armchair.showPrompt(shouldPrompt: ArmchairShouldPromptClosure)
+Armchair.userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure)
+```
 
 When using these functions instead of their `Bool` sister-functions, none of the internal Armchair logic is used to determine whether or not to display the prompt. **Only** your closure is used to decide whether or not it should be presented, based solely on the return value you pass back in the closure. This also means that even the global `shouldPromptClosure()` (if set) will not be called when using these functions.
 
@@ -354,43 +473,59 @@ When using these functions instead of their `Bool` sister-functions, none of the
 
 Armchair has sensible defaults for the `NSUserDefaults` keys it uses, but you can customize that here if you want. Get/Set the `NSUserDefaults` keys that store the usage data for Armchair. Default values are all in the form of "\<appID\>_Armchair\<Setting\>"
 
-    GETTER Armchair.keyForArmchairKeyType(keyType: ArmchairKey) -> String
-    SETTER Armchair.setKey(key: NSString, armchairKeyType: ArmchairKey)
+```swift
+// GETTER
+Armchair.keyForArmchairKeyType(keyType: ArmchairKey) -> String
+// SETTER
+Armchair.setKey(key: NSString, armchairKeyType: ArmchairKey)
+```
 
 You don't have to use NSUserDefaults as your Key/Value store, though Armchair defaults to using it. If you want to sync your ratings and usage stats across all of your User's devices, you may want to use the `NSUbiquitousKeyValueStore` instead. This will ensure that the user won't be prompted to rate the same version of the same app on separate devices.
 
-    GETTER Armchair.userDefaultsObject() -> ArmchairDefaultsObject?
-    SETTER Armchair.userDefaultsObject(userDefaultsObject: ArmchairDefaultsObject?)
+```swift
+// GETTER
+Armchair.userDefaultsObject() -> ArmchairDefaultsObject?
+// SETTER
+Armchair.userDefaultsObject(userDefaultsObject: ArmchairDefaultsObject?)
+```
 
 The `userDefaultsObject` can be any object that responds to the `ArmchairDefaultsObject` protocol — essentially a stripped-down version of the NSUserDefaults api:
 
-    @objc public protocol ArmchairDefaultsObject {
-    	func objectForKey(defaultName: String) -> AnyObject?
-    	func setObject(value: AnyObject?, forKey defaultName: String)
-    	func removeObjectForKey(defaultName: String)
+```swift
+@objc public protocol ArmchairDefaultsObject {
+    func objectForKey(defaultName: String) -> AnyObject?
+    func setObject(value: AnyObject?, forKey defaultName: String)
+    func removeObjectForKey(defaultName: String)
 
-    	func stringForKey(defaultName: String) -> String?
-    	func integerForKey(defaultName: String) -> Int
-    	func doubleForKey(defaultName: String) -> Double
-    	func boolForKey(defaultName: String) -> Bool
+    func stringForKey(defaultName: String) -> String?
+    func integerForKey(defaultName: String) -> Int
+    func doubleForKey(defaultName: String) -> Double
+    func boolForKey(defaultName: String) -> Bool
 
-    	func setInteger(value: Int, forKey defaultName: String)
-    	func setDouble(value: Double, forKey defaultName: String)
-    	func setBool(value: Bool, forKey defaultName: String)
+    func setInteger(value: Int, forKey defaultName: String)
+    func setDouble(value: Double, forKey defaultName: String)
+    func setBool(value: Bool, forKey defaultName: String)
 
-    	func synchronize() -> Bool
-	}
+    func synchronize() -> Bool
+}
+```
 
 So, to use it with iCloud and the `NSUbiquitousKeyValueStore`, set up like so:
 
-    Armchair.userDefaultsObject(NSUbiquitousKeyValueStoreSubclass.defaultStore())
+```swift
+Armchair.userDefaultsObject(NSUbiquitousKeyValueStoreSubclass.defaultStore())
+```
 
 ...where you have a subclass that conforms to the protocol.
 
 You can get/set the `keyPrefix` to the keys above that store the usage data for Armchair. The default value  is the `appID`, and it is prepended to the keys for key type. Setting a `keyPrefix` prevents different apps using a shared Key/Value store from overwriting each other.
 
-    GETTER Armchair.keyPrefix() -> String
-    SETTER Armchair.keyPrefix(keyPrefix: String)
+```swift
+// GETTER
+Armchair.keyPrefix() -> String
+// SETTER
+Armchair.keyPrefix(keyPrefix: String)
+```
 
 ### Configuration/Usage Examples
 
