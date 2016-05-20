@@ -43,7 +43,7 @@ If you are an iTunes Affiliate, you can easily setup Armchair to use your code a
 
 ##### Ready For Primetime
 
-Armchair is clean code, well documented and well organized. It is easy to understand the logic flow and the purpose of each function. It doesn't mix logic up randomly between Class functions and Instance functions. It's API is clean and predictable.
+Armchair is clean code, well documented and well organized. It is easy to understand the logic flow and the purpose of each function. It doesn't mix logic up randomly between Class functions and Instance functions. Its API is clean and predictable.
 
 ---
 
