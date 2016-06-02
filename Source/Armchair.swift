@@ -750,7 +750,9 @@ public class Manager : ArmchairManager {
         var template = "Rate %@"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            template = bundle.localizedStringForKey(template, value:"", table: "ArmchairLocalizable")
+            template = bundle.localizedStringForKey(template,
+                                                    value: bundle.localizedStringForKey(template, value:"", table: nil),
+                                                    table: "ArmchairLocalizable")
         }
 
         return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
@@ -761,7 +763,9 @@ public class Manager : ArmchairManager {
         var template = "If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            template = bundle.localizedStringForKey(template, value:"", table: "ArmchairLocalizable")
+            template = bundle.localizedStringForKey(template,
+                                                    value: bundle.localizedStringForKey(template, value:"", table: nil),
+                                                    table: "ArmchairLocalizable")
         }
 
         return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
@@ -772,7 +776,9 @@ public class Manager : ArmchairManager {
         var title = "No, Thanks"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            title = bundle.localizedStringForKey(title, value:"", table: "ArmchairLocalizable")
+            title = bundle.localizedStringForKey(title,
+                                                 value: bundle.localizedStringForKey(title, value:"", table: nil),
+                                                 table: "ArmchairLocalizable")
         }
 
         return title
@@ -783,7 +789,9 @@ public class Manager : ArmchairManager {
         var template = "Rate %@"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            template = bundle.localizedStringForKey(template, value:"", table: "ArmchairLocalizable")
+            template = bundle.localizedStringForKey(template,
+                                                    value: bundle.localizedStringForKey(template, value:"", table: nil),
+                                                    table: "ArmchairLocalizable")
         }
 
         return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
@@ -798,7 +806,9 @@ public class Manager : ArmchairManager {
         var title = "Remind me later"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            title = bundle.localizedStringForKey(title, value:"", table: "ArmchairLocalizable")
+            title = bundle.localizedStringForKey(title,
+                                                 value: bundle.localizedStringForKey(title, value:"", table: nil),
+                                                 table: "ArmchairLocalizable")
         }
 
         return title
