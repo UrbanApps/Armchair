@@ -1633,7 +1633,7 @@ public class Manager : ArmchairManager {
 
             for subView in window.subviews {
                 if let responder = subView.next() {
-                    if responder.isKind(UIViewController) {
+                    if responder.isKind(of: UIViewController) {
                         return topMostViewController(responder as? UIViewController)
                     }
 
