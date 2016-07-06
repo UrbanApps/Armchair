@@ -603,7 +603,7 @@ public func logger(_ logger: ArmchairLogger) {
 }
 
 public class StandardUserDefaults: ArmchairDefaultsObject {
-    let defaults = UserDefaults.standard()
+    let defaults = UserDefaults.standard
 
     @objc public func objectForKey(_ defaultName: String) -> AnyObject?             { return defaults.object(forKey: defaultName) }
     @objc public func setObject(_ value: AnyObject?, forKey defaultName: String)    { defaults.set(value, forKey: defaultName) }
@@ -708,7 +708,7 @@ public class Manager : ArmchairManager {
 
     private lazy var appName: String = self.defaultAppName()
     private func defaultAppName() -> String {
-        let mainBundle = Bundle.main()
+        let mainBundle = Bundle.main
         let displayName = mainBundle.objectForInfoDictionaryKey("CFBundleDisplayName") as? String
         let bundleNameKey = kCFBundleNameKey as String
         let name = mainBundle.objectForInfoDictionaryKey(bundleNameKey) as? String
@@ -942,7 +942,7 @@ public class Manager : ArmchairManager {
 
         let bundleVersionKey = kCFBundleVersionKey as String
         // App's version. Not settable as the other ivars because that would be crazy.
-        let currentVersion = Bundle.main().objectForInfoDictionaryKey(bundleVersionKey) as? String
+        let currentVersion = Bundle.main.objectForInfoDictionaryKey(bundleVersionKey) as? String
         if currentVersion == nil {
             assertionFailure("Could not read kCFBundleVersionKey from InfoDictionary")
             return
@@ -1000,7 +1000,7 @@ public class Manager : ArmchairManager {
             var shouldPrompt: Bool = true
             
             if let closure = shouldPromptClosure {
-                if Thread.isMainThread() {
+                if Thread.isMainThread {
                     shouldPrompt = closure(trackingInfo())
                 } else {
                     DispatchQueue.main.sync {
@@ -1020,7 +1020,7 @@ public class Manager : ArmchairManager {
     private func showPrompt(_ shouldPrompt: ArmchairShouldPromptClosure) {
         var shouldPromptVal = false
 
-        if Thread.isMainThread() {
+        if Thread.isMainThread {
             shouldPromptVal = shouldPrompt(trackingInfo())
         } else {
             DispatchQueue.main.sync {
@@ -1584,9 +1584,9 @@ public class Manager : ArmchairManager {
         var bundle: Bundle? = nil
         
         if useMainAppBundleForLocalizations {
-            bundle = Bundle.main()
+            bundle = Bundle.main
         } else {
-            let armchairBundleURL: URL? = Bundle.main().urlForResource("Armchair", withExtension: "bundle")
+            let armchairBundleURL: URL? = Bundle.main.urlForResource("Armchair", withExtension: "bundle")
             if let url = armchairBundleURL {
                 bundle = Bundle(url: url)
             } else {
@@ -1716,9 +1716,9 @@ public class Manager : ArmchairManager {
 
     private func setupNotifications() {
 #if os(iOS)
-        NotificationCenter.default().addObserver(self, selector: #selector(Manager.appWillResignActive(_:)),            name: NSNotification.Name.UIApplicationWillResignActive,    object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)),            name: NSNotification.Name.UIApplicationWillResignActive,    object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 #elseif os(OSX)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResignActive:",            name: NSApplicationWillResignActiveNotification,    object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:",  name: NSApplicationDidFinishLaunchingNotification,  object: nil)
