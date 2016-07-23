@@ -93,7 +93,7 @@ platform :ios, '8.0'
 platform :osx, '10.10'
 use_frameworks!
 
-pod 'Armchair', '~> 0.1'
+pod 'Armchair', '>= 0.1'
 ```
 
 Then, run the following command:
