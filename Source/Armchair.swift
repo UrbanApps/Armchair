@@ -688,7 +688,7 @@ public class ArmchairManager : NSObject, NSAlertDelegate { }
 public class Manager : ArmchairManager {
 
 #if os(iOS)
-    private var operatingSystemVersion = NSString(string: UIDevice.current().systemVersion).doubleValue
+    private var operatingSystemVersion = NSString(string: UIDevice.current.systemVersion).doubleValue
 #elseif os(OSX)
     private var operatingSystemVersion = Double(NSProcessInfo.processInfo().operatingSystemVersion.majorVersion)
 #else
@@ -709,9 +709,9 @@ public class Manager : ArmchairManager {
     private lazy var appName: String = self.defaultAppName()
     private func defaultAppName() -> String {
         let mainBundle = Bundle.main
-        let displayName = mainBundle.objectForInfoDictionaryKey("CFBundleDisplayName") as? String
+        let displayName = mainBundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
         let bundleNameKey = kCFBundleNameKey as String
-        let name = mainBundle.objectForInfoDictionaryKey(bundleNameKey) as? String
+        let name = mainBundle.object(forInfoDictionaryKey: bundleNameKey) as? String
         return displayName ?? name ?? "This App"
     }
     
@@ -876,7 +876,7 @@ public class Manager : ArmchairManager {
     private var modalPanelOpen: Bool = false
 #if os(iOS)
     private lazy var currentStatusBarStyle: UIStatusBarStyle = {
-        return UIApplication.shared().statusBarStyle
+        return UIApplication.shared.statusBarStyle
     }()
 #endif
 
@@ -884,13 +884,13 @@ public class Manager : ArmchairManager {
     // MARK: PRIVATE Methods
 
     private func userDidSignificantEvent(_ canPromptForRating: Bool) {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUtility).async {
+        DispatchQueue.global(qos: .utility).async {
             self.incrementSignificantEventAndRate(canPromptForRating)
         }
     }
 
     private func userDidSignificantEvent(_ shouldPrompt: ArmchairShouldPromptClosure) {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUtility).async {
+        DispatchQueue.global(qos: .utility).async {
             self.incrementSignificantEventAndRate(shouldPrompt)
         }
     }
@@ -942,7 +942,7 @@ public class Manager : ArmchairManager {
 
         let bundleVersionKey = kCFBundleVersionKey as String
         // App's version. Not settable as the other ivars because that would be crazy.
-        let currentVersion = Bundle.main.objectForInfoDictionaryKey(bundleVersionKey) as? String
+        let currentVersion = Bundle.main.object(forInfoDictionaryKey: bundleVersionKey) as? String
         if currentVersion == nil {
             assertionFailure("Could not read kCFBundleVersionKey from InfoDictionary")
             return
@@ -1159,7 +1159,7 @@ public class Manager : ArmchairManager {
             }))
 
             // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.shared().keyWindow?.rootViewController {
+            if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
                     topController.present(alertView, animated: usesAnimation) {
                         print("presentViewController() completed")
@@ -1242,12 +1242,12 @@ public class Manager : ArmchairManager {
     //Close the in-app rating (StoreKit) view and restore the previous status bar style.
     private func closeModalPanel() {
         if modalPanelOpen {
-            UIApplication.shared().setStatusBarStyle(currentStatusBarStyle, animated:usesAnimation)
+            UIApplication.shared.setStatusBarStyle(currentStatusBarStyle, animated:usesAnimation)
             let usedAnimation = usesAnimation
             modalPanelOpen = false
 
             // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.shared().keyWindow?.rootViewController {
+            if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
                     topController.dismiss(animated: usesAnimation) {
                         if let closure = self.didDismissModalViewClosure {
@@ -1340,19 +1340,19 @@ public class Manager : ArmchairManager {
                     self.modalPanelOpen = true
 
                     //Temporarily use a status bar to match the StoreKit view.
-                    self.currentStatusBarStyle = UIApplication.shared().statusBarStyle
-                    UIApplication.shared().setStatusBarStyle(UIStatusBarStyle.default, animated: self.usesAnimation)
+                    self.currentStatusBarStyle = UIApplication.shared.statusBarStyle
+                    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: self.usesAnimation)
                 }
             }
 
         //Use the standard openUrl method
         } else {
             if let url = URL(string: reviewURLString()) {
-                UIApplication.shared().openURL(url)
+                UIApplication.shared.openURL(url)
             }
         }
 
-        if UIDevice.current().model.range(of: "Simulator") != nil {
+        if UIDevice.current.model.range(of: "Simulator") != nil {
             debugLog("iTunes App Store is not supported on the iOS simulator.")
             debugLog(" - We would have went to \(reviewURLString()).")
             debugLog(" - Try running on a test-device")
@@ -1586,7 +1586,7 @@ public class Manager : ArmchairManager {
         if useMainAppBundleForLocalizations {
             bundle = Bundle.main
         } else {
-            let armchairBundleURL: URL? = Bundle.main.urlForResource("Armchair", withExtension: "bundle")
+            let armchairBundleURL: URL? = Bundle.main.url(forResource: "Armchair", withExtension: "bundle")
             if let url = armchairBundleURL {
                 bundle = Bundle(url: url)
             } else {
@@ -1617,10 +1617,10 @@ public class Manager : ArmchairManager {
     }
 
     private func getRootViewController() -> UIViewController? {
-        if var window = UIApplication.shared().keyWindow {
+        if var window = UIApplication.shared.keyWindow {
 
             if window.windowLevel != UIWindowLevelNormal {
-                let windows: NSArray = UIApplication.shared().windows
+                let windows: NSArray = UIApplication.shared.windows
                 for candidateWindow in windows {
                     if let candidateWindow = candidateWindow as? UIWindow {
                         if candidateWindow.windowLevel == UIWindowLevelNormal {
@@ -1632,7 +1632,7 @@ public class Manager : ArmchairManager {
             }
 
             for subView in window.subviews {
-                if let responder = subView.next() {
+                if let responder = subView.next {
                     if responder is UIViewController {
                         return topMostViewController(responder as? UIViewController)
                     }
@@ -1682,7 +1682,7 @@ public class Manager : ArmchairManager {
     }
 
     public func applicationDidFinishLaunching(_ notification: Notification) {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUtility).async {
+        DispatchQueue.global(qos: .utility).async {
             self.debugLog("applicationDidFinishLaunching:")
             self.migrateKeysIfNecessary()
             self.incrementUseCount()
@@ -1690,7 +1690,7 @@ public class Manager : ArmchairManager {
     }
 
     public func applicationWillEnterForeground(_ notification: Notification) {
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosUtility).async {
+        DispatchQueue.global(qos: .utility).async {
             self.debugLog("applicationWillEnterForeground:")
             self.migrateKeysIfNecessary()
             self.incrementUseCount()
