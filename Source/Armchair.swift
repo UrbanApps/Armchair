@@ -359,6 +359,7 @@ public func resetDefaults() {
 
 #if os(iOS)
     Manager.defaultManager.usesAnimation                    = true
+    Manager.defaultManager.tintColor                        = nil
     Manager.defaultManager.usesAlertController              = Manager.defaultManager.defaultUsesAlertController()
     Manager.defaultManager.opensInStoreKit                  = Manager.defaultManager.defaultOpensInStoreKit()
     Manager.defaultManager.willPresentModalViewClosure      = nil
@@ -394,7 +395,18 @@ public func resetDefaults() {
     public func usesAnimation(usesAnimation: Bool) {
         Manager.defaultManager.usesAnimation = usesAnimation
     }
-
+    
+    /*
+    * Set a tint color to apply to UIAlertController
+    * Default => nil (the default tint color is used)
+    */
+    public func tintColor() -> UIColor? {
+        return Manager.defaultManager.tintColor
+    }
+    public func tintColor(tintColor: UIColor?) {
+        Manager.defaultManager.tintColor = tintColor
+    }
+    
     /*
     * Set whether or not Armchair uses a UIAlertController when presenting on iOS 8
     * We prefer not to use it so that the Rate button can be on the bottom and the cancel button on the top,
@@ -847,6 +859,7 @@ public class Manager : ArmchairManager {
 
 #if os(iOS)
     private var usesAnimation: Bool                     = true
+    private var tintColor: UIColor?                     = nil
     private lazy var usesAlertController: Bool          = self.defaultUsesAlertController()
     private lazy var opensInStoreKit: Bool              = self.defaultOpensInStoreKit()
 
@@ -1192,6 +1205,8 @@ public class Manager : ArmchairManager {
                     topController.presentViewController(alertView, animated: usesAnimation) {
                         print("presentViewController() completed")
                     }
+                    // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
+                    alertView.view.tintColor = tintColor
                 }
             }
 
