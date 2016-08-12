@@ -141,6 +141,9 @@ extension ViewController {
         #if os(iOS)
             // Explicitly disable the storeKit as the default may be true if on iOS 8
             Armchair.opensInStoreKit(false)
+            
+            // This sets a custom tint color  (applies only to UIAlertController).
+            Armchair.tintColor(UIColor.brownColor())
         #endif
 
         // This sets the Affiliate code you want to use, but is not required.

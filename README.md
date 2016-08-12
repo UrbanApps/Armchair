@@ -329,6 +329,15 @@ Armchair.usesAnimation() -> Bool
 Armchair.usesAnimation(usesAnimation: Bool)
 ```
 
+The `tintColor` configuration specifies a tint color that is applied to UIAlertController when `usesAlertController` is true. Its default value is `nil`, which means that tint color is not customized.
+
+```swift
+// GETTER
+Armchair.tintColor() -> UIColor?
+// SETTER
+Armchair.tintColor(tintColor: UIColor?)
+```
+
 The `usesAlertController` configuration determines whether or not Armchair uses a UIAlertController when presenting an alert on iOS 8. By default, we do not use it because the reordering of buttons is not possible in the alert controller as of iOS 8.0. It's default value is `false`. Changing this value does not affect iOS 7 at all.
 
 ```swift
