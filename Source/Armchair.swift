@@ -42,7 +42,7 @@ import AppKit
 * This call needs to be first. No default.
 */
 public var appID: String = ""
-public func appID(appID: String) {
+public func appID(_ appID: String) {
     Armchair.appID = appID
     Manager.defaultManager.appID = appID
 }
@@ -54,7 +54,7 @@ public func appID(appID: String) {
 public func appName() -> String {
     return Manager.defaultManager.appName
 }
-public func appName(appName: String) {
+public func appName(_ appName: String) {
     Manager.defaultManager.appName = appName
 }
 
@@ -65,7 +65,7 @@ public func appName(appName: String) {
 public func reviewTitle() -> String {
     return Manager.defaultManager.reviewTitle
 }
-public func reviewTitle(reviewTitle: String) {
+public func reviewTitle(_ reviewTitle: String) {
     Manager.defaultManager.reviewTitle = reviewTitle
 }
 
@@ -77,7 +77,7 @@ public func reviewTitle(reviewTitle: String) {
 public func reviewMessage() -> String {
     return Manager.defaultManager.reviewMessage
 }
-public func reviewMessage(reviewMessage: String) {
+public func reviewMessage(_ reviewMessage: String) {
     Manager.defaultManager.reviewMessage = reviewMessage
 }
 
@@ -88,7 +88,7 @@ public func reviewMessage(reviewMessage: String) {
 public func cancelButtonTitle() -> String {
     return Manager.defaultManager.cancelButtonTitle
 }
-public func cancelButtonTitle(cancelButtonTitle: String) {
+public func cancelButtonTitle(_ cancelButtonTitle: String) {
     Manager.defaultManager.cancelButtonTitle = cancelButtonTitle
 }
 
@@ -99,7 +99,7 @@ public func cancelButtonTitle(cancelButtonTitle: String) {
 public func rateButtonTitle() -> String {
     return Manager.defaultManager.rateButtonTitle
 }
-public func rateButtonTitle(rateButtonTitle: String) {
+public func rateButtonTitle(_ rateButtonTitle: String) {
     Manager.defaultManager.rateButtonTitle = rateButtonTitle
 }
 
@@ -111,7 +111,7 @@ public func rateButtonTitle(rateButtonTitle: String) {
 public func remindButtonTitle() -> String? {
     return Manager.defaultManager.remindButtonTitle
 }
-public func remindButtonTitle(remindButtonTitle: String?) {
+public func remindButtonTitle(_ remindButtonTitle: String?) {
     Manager.defaultManager.remindButtonTitle = remindButtonTitle
 }
 
@@ -119,10 +119,10 @@ public func remindButtonTitle(remindButtonTitle: String?) {
 * Get/Set the NSUserDefault keys that store the usage data for Armchair
 * Default values are in the form of "<appID>_Armchair<Setting>"
 */
-public func keyForArmchairKeyType(keyType: ArmchairKey) -> String {
+public func keyForArmchairKeyType(_ keyType: ArmchairKey) -> String {
     return Manager.defaultManager.keyForArmchairKeyType(keyType)
 }
-public func setKey(key: NSString, armchairKeyType: ArmchairKey) {
+public func setKey(_ key: NSString, armchairKeyType: ArmchairKey) {
     Manager.defaultManager.setKey(key, armchairKeyType: armchairKeyType)
 }
 
@@ -134,7 +134,7 @@ public func setKey(key: NSString, armchairKeyType: ArmchairKey) {
 public func keyPrefix() -> String {
     return Manager.defaultManager.keyPrefix
 }
-public func keyPrefix(keyPrefix: String) {
+public func keyPrefix(_ keyPrefix: String) {
     Manager.defaultManager.keyPrefix = keyPrefix
 }
 
@@ -146,7 +146,7 @@ public func keyPrefix(keyPrefix: String) {
 public func userDefaultsObject() -> ArmchairDefaultsObject? {
     return Manager.defaultManager.userDefaultsObject
 }
-public func userDefaultsObject(userDefaultsObject: ArmchairDefaultsObject?) {
+public func userDefaultsObject(_ userDefaultsObject: ArmchairDefaultsObject?) {
     Manager.defaultManager.userDefaultsObject = userDefaultsObject
 }
 
@@ -158,7 +158,7 @@ public func userDefaultsObject(userDefaultsObject: ArmchairDefaultsObject?) {
 public func daysUntilPrompt() -> UInt {
     return Manager.defaultManager.daysUntilPrompt
 }
-public func daysUntilPrompt(daysUntilPrompt: UInt) {
+public func daysUntilPrompt(_ daysUntilPrompt: UInt) {
     Manager.defaultManager.daysUntilPrompt = daysUntilPrompt
 }
 
@@ -174,7 +174,7 @@ public func daysUntilPrompt(daysUntilPrompt: UInt) {
 public func usesUntilPrompt() -> UInt {
     return Manager.defaultManager.usesUntilPrompt
 }
-public func usesUntilPrompt(usesUntilPrompt: UInt) {
+public func usesUntilPrompt(_ usesUntilPrompt: UInt) {
     Manager.defaultManager.usesUntilPrompt = usesUntilPrompt
 }
 
@@ -194,7 +194,7 @@ public func usesUntilPrompt(usesUntilPrompt: UInt) {
 public func significantEventsUntilPrompt() -> UInt {
     return Manager.defaultManager.significantEventsUntilPrompt
 }
-public func significantEventsUntilPrompt(significantEventsUntilPrompt: UInt) {
+public func significantEventsUntilPrompt(_ significantEventsUntilPrompt: UInt) {
     Manager.defaultManager.significantEventsUntilPrompt = significantEventsUntilPrompt
 }
 
@@ -208,7 +208,7 @@ public func significantEventsUntilPrompt(significantEventsUntilPrompt: UInt) {
 public func daysBeforeReminding() -> UInt {
     return Manager.defaultManager.daysBeforeReminding
 }
-public func daysBeforeReminding(daysBeforeReminding: UInt) {
+public func daysBeforeReminding(_ daysBeforeReminding: UInt) {
     Manager.defaultManager.daysBeforeReminding = daysBeforeReminding
 }
 
@@ -224,7 +224,7 @@ public func daysBeforeReminding(daysBeforeReminding: UInt) {
 public func tracksNewVersions() -> Bool {
     return Manager.defaultManager.tracksNewVersions
 }
-public func tracksNewVersions(tracksNewVersions: Bool) {
+public func tracksNewVersions(_ tracksNewVersions: Bool) {
     Manager.defaultManager.tracksNewVersions = tracksNewVersions
 }
 
@@ -239,7 +239,7 @@ public func tracksNewVersions(tracksNewVersions: Bool) {
 public func shouldPromptIfRated() -> Bool {
     return Manager.defaultManager.shouldPromptIfRated
 }
-public func shouldPromptIfRated(shouldPromptIfRated: Bool) {
+public func shouldPromptIfRated(_ shouldPromptIfRated: Bool) {
     Manager.defaultManager.shouldPromptIfRated = shouldPromptIfRated
 }
 
@@ -252,7 +252,7 @@ public func shouldPromptIfRated(shouldPromptIfRated: Bool) {
 public func useMainAppBundleForLocalizations() -> Bool {
     return Manager.defaultManager.useMainAppBundleForLocalizations
 }
-public func useMainAppBundleForLocalizations(useMainAppBundleForLocalizations: Bool) {
+public func useMainAppBundleForLocalizations(_ useMainAppBundleForLocalizations: Bool) {
     Manager.defaultManager.useMainAppBundleForLocalizations = useMainAppBundleForLocalizations
 }
 
@@ -265,7 +265,7 @@ public func useMainAppBundleForLocalizations(useMainAppBundleForLocalizations: B
 public func affiliateCode() -> String {
     return Manager.defaultManager.affiliateCode
 }
-public func affiliateCode(affiliateCode: String) {
+public func affiliateCode(_ affiliateCode: String) {
     Manager.defaultManager.affiliateCode = affiliateCode
 }
 
@@ -276,7 +276,7 @@ public func affiliateCode(affiliateCode: String) {
 public func affiliateCampaignCode() -> String {
     return Manager.defaultManager.affiliateCampaignCode
 }
-public func affiliateCampaignCode(affiliateCampaignCode: String) {
+public func affiliateCampaignCode(_ affiliateCampaignCode: String) {
     Manager.defaultManager.affiliateCampaignCode = affiliateCampaignCode
 }
 
@@ -291,7 +291,7 @@ public func affiliateCampaignCode(affiliateCampaignCode: String) {
 public func debugEnabled() -> Bool {
     return Manager.defaultManager.debugEnabled
 }
-public func debugEnabled(debugEnabled: Bool) {
+public func debugEnabled(_ debugEnabled: Bool) {
 #if Debug
     Manager.defaultManager.debugEnabled = debugEnabled
 #else
@@ -300,36 +300,6 @@ public func debugEnabled(debugEnabled: Bool) {
     print("[Armchair]   add \"-DDebug\" to your  Swift Compiler - Custom Flags")
     print("[Armchair]   section in the target's build settings for release")
 #endif
-}
-
-/**
- Reset all counters manually. This resets UseCount, SignificantEventCount and FirstUseDate (daysUntilPrompt)
- */
-public func resetUsageCounters() {
-    StandardUserDefaults().setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
-    StandardUserDefaults().setObject(NSNumber(integer: 1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
-    StandardUserDefaults().setObject(NSNumber(integer: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
-    StandardUserDefaults().synchronize()
-}
-
-/**
- Reset all values tracked by Armchair to initial state.
- */
-public func resetAllCounters() {
-    let currentVersionKey = keyForArmchairKeyType(ArmchairKey.CurrentVersion)
-    let trackingVersion: String? = StandardUserDefaults().stringForKey(currentVersionKey)
-    let bundleVersionKey = kCFBundleVersionKey as String
-    let currentVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(bundleVersionKey) as? String
-    
-    StandardUserDefaults().setObject(trackingVersion, forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersion))
-    StandardUserDefaults().setObject(StandardUserDefaults().objectForKey(keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionRated))
-    StandardUserDefaults().setObject(StandardUserDefaults().objectForKey(keyForArmchairKeyType(ArmchairKey.DeclinedToRate)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionDeclinedToRate))
-    StandardUserDefaults().setObject(currentVersion, forKey: currentVersionKey)
-    resetUsageCounters()
-    StandardUserDefaults().setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
-    StandardUserDefaults().setObject(NSNumber(bool: false), forKey: keyForArmchairKeyType(ArmchairKey.DeclinedToRate))
-    StandardUserDefaults().setObject(NSNumber(double: 0), forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
-    StandardUserDefaults().synchronize()
 }
 
 /*
@@ -392,7 +362,7 @@ public func resetDefaults() {
     public func usesAnimation() -> Bool {
         return Manager.defaultManager.usesAnimation
     }
-    public func usesAnimation(usesAnimation: Bool) {
+    public func usesAnimation(_ usesAnimation: Bool) {
         Manager.defaultManager.usesAnimation = usesAnimation
     }
     
@@ -416,7 +386,7 @@ public func resetDefaults() {
     public func usesAlertController() -> Bool {
         return Manager.defaultManager.usesAlertController
     }
-    public func usesAlertController(usesAlertController: Bool) {
+    public func usesAlertController(_ usesAlertController: Bool) {
         Manager.defaultManager.usesAlertController = usesAlertController
     }
 
@@ -430,7 +400,7 @@ public func resetDefaults() {
     public func opensInStoreKit() -> Bool {
         return Manager.defaultManager.opensInStoreKit
     }
-    public func opensInStoreKit(opensInStoreKit: Bool) {
+    public func opensInStoreKit(_ opensInStoreKit: Bool) {
         Manager.defaultManager.opensInStoreKit = opensInStoreKit
     }
 #endif
@@ -449,7 +419,7 @@ public func resetDefaults() {
 * rating alert will simply be postponed until it is called again with true for
 * canPromptForRating.
 */
-public func userDidSignificantEvent(canPromptForRating: Bool) {
+public func userDidSignificantEvent(_ canPromptForRating: Bool) {
     Manager.defaultManager.userDidSignificantEvent(canPromptForRating)
 }
 
@@ -468,7 +438,7 @@ public func userDidSignificantEvent(canPromptForRating: Bool) {
 * The closure is run synchronous and on the main queue, so be sure to handle it appropriately.
 * Return true to proceed and show the prompt, return false to kill the pending presentation.
 */
-public func userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure) {
+public func userDidSignificantEvent(_ shouldPrompt: ArmchairShouldPromptClosure) {
     Manager.defaultManager.userDidSignificantEvent(shouldPrompt)
 }
 
@@ -510,7 +480,7 @@ public func showPromptIfNecessary() {
 * The closure is run synchronous and on the main queue, so be sure to handle it appropriately.
 * Return true to proceed and show the prompt, return false to kill the pending presentation.
 */
-public func showPrompt(shouldPrompt: ArmchairShouldPromptClosure) {
+public func showPrompt(_ shouldPrompt: ArmchairShouldPromptClosure) {
     Manager.defaultManager.showPrompt(shouldPrompt)
 }
 
@@ -566,24 +536,24 @@ public typealias ArmchairAnimateClosure = (Bool) -> ()
 public typealias ArmchairShouldPromptClosure = (ArmchairTrackingInfo) -> Bool
 public typealias ArmchairShouldIncrementClosure = () -> Bool
 
-public func onDidDisplayAlert(didDisplayAlertClosure: ArmchairClosure?) {
+public func onDidDisplayAlert(_ didDisplayAlertClosure: ArmchairClosure?) {
     Manager.defaultManager.didDisplayAlertClosure = didDisplayAlertClosure
 }
-public func onDidDeclineToRate(didDeclineToRateClosure: ArmchairClosure?) {
+public func onDidDeclineToRate(_ didDeclineToRateClosure: ArmchairClosure?) {
     Manager.defaultManager.didDeclineToRateClosure = didDeclineToRateClosure
 }
-public func onDidOptToRate(didOptToRateClosure: ArmchairClosure?) {
+public func onDidOptToRate(_ didOptToRateClosure: ArmchairClosure?) {
     Manager.defaultManager.didOptToRateClosure = didOptToRateClosure
 }
-public func onDidOptToRemindLater(didOptToRemindLaterClosure: ArmchairClosure?) {
+public func onDidOptToRemindLater(_ didOptToRemindLaterClosure: ArmchairClosure?) {
     Manager.defaultManager.didOptToRemindLaterClosure = didOptToRemindLaterClosure
 }
 
 #if os(iOS)
-    public func onWillPresentModalView(willPresentModalViewClosure: ArmchairAnimateClosure?) {
+    public func onWillPresentModalView(_ willPresentModalViewClosure: ArmchairAnimateClosure?) {
         Manager.defaultManager.willPresentModalViewClosure = willPresentModalViewClosure
     }
-    public func onDidDismissModalView(didDismissModalViewClosure: ArmchairAnimateClosure?) {
+    public func onDidDismissModalView(_ didDismissModalViewClosure: ArmchairAnimateClosure?) {
         Manager.defaultManager.didDismissModalViewClosure = didDismissModalViewClosure
     }
 #endif
@@ -598,7 +568,7 @@ public func onDidOptToRemindLater(didOptToRemindLaterClosure: ArmchairClosure?) 
 * to use this info and return a Bool on whether or not the prompt should be shown.
 * Return true to proceed and show the prompt, return false to kill the pending presentation.
 */
-public func shouldPromptClosure(shouldPromptClosure: ArmchairShouldPromptClosure?) {
+public func shouldPromptClosure(_ shouldPromptClosure: ArmchairShouldPromptClosure?) {
     Manager.defaultManager.shouldPromptClosure = shouldPromptClosure
 }
 
@@ -608,7 +578,7 @@ public func shouldPromptClosure(shouldPromptClosure: ArmchairShouldPromptClosure
 * where the app is backgrounded momentarily and the resultant enter foreground event should
 * not be considered another use.
 */
-public func shouldIncrementUseCountClosure(shouldIncrementUseCountClosure: ArmchairShouldIncrementClosure?) {
+public func shouldIncrementUseCountClosure(_ shouldIncrementUseCountClosure: ArmchairShouldIncrementClosure?) {
     Manager.defaultManager.shouldIncrementUseCountClosure = shouldIncrementUseCountClosure
 }
 
@@ -620,7 +590,7 @@ public typealias ArmchairLogger = (Manager, log: String, file: StaticString, fun
 /*
 * Set a closure to capture debug log and to plug in the desired logging framework.
 */
-public func logger(logger: ArmchairLogger) {
+public func logger(_ logger: ArmchairLogger) {
     Manager.defaultManager.logger = logger
 }
 
@@ -628,37 +598,37 @@ public func logger(logger: ArmchairLogger) {
 // MARK: Armchair Defaults Protocol
 
 @objc public protocol ArmchairDefaultsObject {
-    func objectForKey(defaultName: String) -> AnyObject?
-    func setObject(value: AnyObject?, forKey defaultName: String)
-    func removeObjectForKey(defaultName: String)
+    func objectForKey(_ defaultName: String) -> AnyObject?
+    func setObject(_ value: AnyObject?, forKey defaultName: String)
+    func removeObjectForKey(_ defaultName: String)
 
-    func stringForKey(defaultName: String) -> String?
-    func integerForKey(defaultName: String) -> Int
-    func doubleForKey(defaultName: String) -> Double
-    func boolForKey(defaultName: String) -> Bool
+    func stringForKey(_ defaultName: String) -> String?
+    func integerForKey(_ defaultName: String) -> Int
+    func doubleForKey(_ defaultName: String) -> Double
+    func boolForKey(_ defaultName: String) -> Bool
 
-    func setInteger(value: Int, forKey defaultName: String)
-    func setDouble(value: Double, forKey defaultName: String)
-    func setBool(value: Bool, forKey defaultName: String)
+    func setInteger(_ value: Int, forKey defaultName: String)
+    func setDouble(_ value: Double, forKey defaultName: String)
+    func setBool(_ value: Bool, forKey defaultName: String)
     
     func synchronize() -> Bool
 }
 
 public class StandardUserDefaults: ArmchairDefaultsObject {
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
 
-    @objc public func objectForKey(defaultName: String) -> AnyObject?             { return defaults.objectForKey(defaultName) }
-    @objc public func setObject(value: AnyObject?, forKey defaultName: String)    { defaults.setObject(value, forKey: defaultName) }
-    @objc public func removeObjectForKey(defaultName: String)                     { defaults.removeObjectForKey(defaultName) }
+    @objc public func objectForKey(_ defaultName: String) -> AnyObject?             { return defaults.object(forKey: defaultName) }
+    @objc public func setObject(_ value: AnyObject?, forKey defaultName: String)    { defaults.set(value, forKey: defaultName) }
+    @objc public func removeObjectForKey(_ defaultName: String)                     { defaults.removeObject(forKey: defaultName) }
 
-    @objc public func stringForKey(defaultName: String) -> String?                { return defaults.stringForKey(defaultName) }
-    @objc public func integerForKey(defaultName: String) -> Int                   { return defaults.integerForKey(defaultName) }
-    @objc public func doubleForKey(defaultName: String) -> Double                 { return defaults.doubleForKey(defaultName) }
-    @objc public func boolForKey(defaultName: String) -> Bool                     { return defaults.boolForKey(defaultName) }
+    @objc public func stringForKey(_ defaultName: String) -> String?                { return defaults.string(forKey: defaultName) }
+    @objc public func integerForKey(_ defaultName: String) -> Int                   { return defaults.integer(forKey: defaultName) }
+    @objc public func doubleForKey(_ defaultName: String) -> Double                 { return defaults.double(forKey: defaultName) }
+    @objc public func boolForKey(_ defaultName: String) -> Bool                     { return defaults.bool(forKey: defaultName) }
 
-    @objc public func setInteger(value: Int, forKey defaultName: String)          { defaults.setInteger(value, forKey: defaultName) }
-    @objc public func setDouble(value: Double, forKey defaultName: String)        { defaults.setDouble(value, forKey: defaultName) }
-    @objc public func setBool(value: Bool, forKey defaultName: String)            { defaults.setBool(value, forKey: defaultName) }
+    @objc public func setInteger(_ value: Int, forKey defaultName: String)          { defaults.set(value, forKey: defaultName) }
+    @objc public func setDouble(_ value: Double, forKey defaultName: String)        { defaults.set(value, forKey: defaultName) }
+    @objc public func setBool(_ value: Bool, forKey defaultName: String)            { defaults.set(value, forKey: defaultName) }
 
     @objc public func synchronize() -> Bool                                       { return defaults.synchronize() }
 }
@@ -730,7 +700,7 @@ public class ArmchairManager : NSObject, NSAlertDelegate { }
 public class Manager : ArmchairManager {
 
 #if os(iOS)
-    private var operatingSystemVersion = NSString(string: UIDevice.currentDevice().systemVersion).doubleValue
+    private var operatingSystemVersion = NSString(string: UIDevice.current.systemVersion).doubleValue
 #elseif os(OSX)
     private var operatingSystemVersion = Double(NSProcessInfo.processInfo().operatingSystemVersion.majorVersion)
 #else
@@ -750,10 +720,10 @@ public class Manager : ArmchairManager {
 
     private lazy var appName: String = self.defaultAppName()
     private func defaultAppName() -> String {
-        let mainBundle = NSBundle.mainBundle()
-        let displayName = mainBundle.objectForInfoDictionaryKey("CFBundleDisplayName") as? String
+        let mainBundle = Bundle.main
+        let displayName = mainBundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
         let bundleNameKey = kCFBundleNameKey as String
-        let name = mainBundle.objectForInfoDictionaryKey(bundleNameKey) as? String
+        let name = mainBundle.object(forInfoDictionaryKey: bundleNameKey) as? String
         return displayName ?? name ?? "This App"
     }
     
@@ -762,12 +732,10 @@ public class Manager : ArmchairManager {
         var template = "Rate %@"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            template = bundle.localizedStringForKey(template,
-                                                    value: bundle.localizedStringForKey(template, value:"", table: nil),
-                                                    table: "ArmchairLocalizable")
+            template = bundle.localizedString(forKey: template, value:"", table: "ArmchairLocalizable")
         }
 
-        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
+        return template.replacingOccurrences(of: "%@", with: "\(self.appName)", options: NSString.CompareOptions(rawValue: 0), range: nil)
     }
 
     private lazy var reviewMessage: String = self.defaultReviewMessage()
@@ -775,12 +743,10 @@ public class Manager : ArmchairManager {
         var template = "If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            template = bundle.localizedStringForKey(template,
-                                                    value: bundle.localizedStringForKey(template, value:"", table: nil),
-                                                    table: "ArmchairLocalizable")
+            template = bundle.localizedString(forKey: template, value:"", table: "ArmchairLocalizable")
         }
 
-        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
+        return template.replacingOccurrences(of: "%@", with: "\(self.appName)", options: NSString.CompareOptions(rawValue: 0), range: nil)
     }
 
     private lazy var cancelButtonTitle: String = self.defaultCancelButtonTitle()
@@ -788,9 +754,7 @@ public class Manager : ArmchairManager {
         var title = "No, Thanks"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            title = bundle.localizedStringForKey(title,
-                                                 value: bundle.localizedStringForKey(title, value:"", table: nil),
-                                                 table: "ArmchairLocalizable")
+            title = bundle.localizedString(forKey: title, value:"", table: "ArmchairLocalizable")
         }
 
         return title
@@ -801,12 +765,10 @@ public class Manager : ArmchairManager {
         var template = "Rate %@"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            template = bundle.localizedStringForKey(template,
-                                                    value: bundle.localizedStringForKey(template, value:"", table: nil),
-                                                    table: "ArmchairLocalizable")
+            template = bundle.localizedString(forKey: template, value:"", table: "ArmchairLocalizable")
         }
 
-        return template.stringByReplacingOccurrencesOfString("%@", withString: "\(self.appName)", options: NSStringCompareOptions(rawValue: 0), range: nil)
+        return template.replacingOccurrences(of: "%@", with: "\(self.appName)", options: NSString.CompareOptions(rawValue: 0), range: nil)
     }
 
     private lazy var remindButtonTitle: String? = self.defaultRemindButtonTitle()
@@ -818,9 +780,7 @@ public class Manager : ArmchairManager {
         var title = "Remind me later"
         // Check for a localized version of the default title
         if let bundle = self.bundle() {
-            title = bundle.localizedStringForKey(title,
-                                                 value: bundle.localizedStringForKey(title, value:"", table: nil),
-                                                 table: "ArmchairLocalizable")
+            title = bundle.localizedString(forKey: title, value:"", table: "ArmchairLocalizable")
         }
 
         return title
@@ -929,21 +889,21 @@ public class Manager : ArmchairManager {
     private var modalPanelOpen: Bool = false
 #if os(iOS)
     private lazy var currentStatusBarStyle: UIStatusBarStyle = {
-        return UIApplication.sharedApplication().statusBarStyle
+        return UIApplication.shared.statusBarStyle
     }()
 #endif
 
     // MARK: -
     // MARK: PRIVATE Methods
 
-    private func userDidSignificantEvent(canPromptForRating: Bool) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+    private func userDidSignificantEvent(_ canPromptForRating: Bool) {
+        DispatchQueue.global(qos: .utility).async {
             self.incrementSignificantEventAndRate(canPromptForRating)
         }
     }
 
-    private func userDidSignificantEvent(shouldPrompt: ArmchairShouldPromptClosure) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+    private func userDidSignificantEvent(_ shouldPrompt: ArmchairShouldPromptClosure) {
+        DispatchQueue.global(qos: .utility).async {
             self.incrementSignificantEventAndRate(shouldPrompt)
         }
     }
@@ -951,25 +911,25 @@ public class Manager : ArmchairManager {
     // MARK: -
     // MARK: PRIVATE Rating Helpers
 
-    private func incrementAndRate(canPromptForRating: Bool) {
+    private func incrementAndRate(_ canPromptForRating: Bool) {
         migrateKeysIfNecessary()
         incrementUseCount()
         showPrompt(ifNecessary: canPromptForRating)
     }
 
-    private func incrementAndRate(shouldPrompt: ArmchairShouldPromptClosure) {
+    private func incrementAndRate(_ shouldPrompt: ArmchairShouldPromptClosure) {
         migrateKeysIfNecessary()
         incrementUseCount()
         showPrompt(shouldPrompt)
     }
 
-    private func incrementSignificantEventAndRate(canPromptForRating: Bool) {
+    private func incrementSignificantEventAndRate(_ canPromptForRating: Bool) {
         migrateKeysIfNecessary()
         incrementSignificantEventCount()
         showPrompt(ifNecessary: canPromptForRating)
     }
 
-    private func incrementSignificantEventAndRate(shouldPrompt: ArmchairShouldPromptClosure) {
+    private func incrementSignificantEventAndRate(_ shouldPrompt: ArmchairShouldPromptClosure) {
         migrateKeysIfNecessary()
         incrementSignificantEventCount()
         showPrompt(shouldPrompt)
@@ -990,12 +950,12 @@ public class Manager : ArmchairManager {
         _incrementCountForKeyType(ArmchairKey.SignificantEventCount)
     }
 
-    private func _incrementCountForKeyType(incrementKeyType: ArmchairKey) {
+    private func _incrementCountForKeyType(_ incrementKeyType: ArmchairKey) {
         let incrementKey = keyForArmchairKeyType(incrementKeyType)
 
         let bundleVersionKey = kCFBundleVersionKey as String
         // App's version. Not settable as the other ivars because that would be crazy.
-        let currentVersion = NSBundle.mainBundle().objectForInfoDictionaryKey(bundleVersionKey) as? String
+        let currentVersion = Bundle.main.object(forInfoDictionaryKey: bundleVersionKey) as? String
         if currentVersion == nil {
             assertionFailure("Could not read kCFBundleVersionKey from InfoDictionary")
             return
@@ -1017,19 +977,31 @@ public class Manager : ArmchairManager {
             let firstUseDateKey = keyForArmchairKeyType(ArmchairKey.FirstUseDate)
             var timeInterval: Double? = userDefaultsObject?.doubleForKey(firstUseDateKey)
             if 0 == timeInterval {
-                timeInterval = NSDate().timeIntervalSince1970
-                userDefaultsObject?.setObject(NSNumber(double: timeInterval!), forKey: firstUseDateKey)
+                timeInterval = Date().timeIntervalSince1970
+                userDefaultsObject?.setObject(NSNumber(value: timeInterval!), forKey: firstUseDateKey)
             }
 
             // Increment the key's count
-            var incrementKeyCount = userDefaultsObject?.integerForKey(incrementKey)
-            userDefaultsObject?.setInteger(++incrementKeyCount!, forKey:incrementKey)
+            var incrementKeyCount = userDefaultsObject?.integerForKey(incrementKey) ?? 0
+			incrementKeyCount += 1
+            userDefaultsObject?.setInteger(incrementKeyCount, forKey:incrementKey)
 
-            debugLog("Incremented \(incrementKeyType): \(incrementKeyCount!)")
+            debugLog("Incremented \(incrementKeyType): \(incrementKeyCount)")
 
         } else if tracksNewVersions {
             // it's a new version of the app, so restart tracking
-            resetAllCounters()
+            userDefaultsObject?.setObject(trackingVersion, forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersion))
+            userDefaultsObject?.setObject(userDefaultsObject?.objectForKey(keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionRated))
+            userDefaultsObject?.setObject(userDefaultsObject?.objectForKey(keyForArmchairKeyType(ArmchairKey.DeclinedToRate)), forKey: keyForArmchairKeyType(ArmchairKey.PreviousVersionDeclinedToRate))
+
+            userDefaultsObject?.setObject(currentVersion, forKey: currentVersionKey)
+            userDefaultsObject?.setObject(NSNumber(value: Date().timeIntervalSince1970), forKey: keyForArmchairKeyType(ArmchairKey.FirstUseDate))
+            userDefaultsObject?.setObject(NSNumber(value: 1), forKey: keyForArmchairKeyType(ArmchairKey.UseCount))
+            userDefaultsObject?.setObject(NSNumber(value: 0), forKey: keyForArmchairKeyType(ArmchairKey.SignificantEventCount))
+            userDefaultsObject?.setObject(NSNumber(value: false), forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
+            userDefaultsObject?.setObject(NSNumber(value: false), forKey: keyForArmchairKeyType(ArmchairKey.DeclinedToRate))
+            userDefaultsObject?.setObject(NSNumber(value: 0), forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
+
             debugLog("Reset Tracking Version to: \(trackingVersion!)")
         }
     
@@ -1041,37 +1013,37 @@ public class Manager : ArmchairManager {
             var shouldPrompt: Bool = true
             
             if let closure = shouldPromptClosure {
-                if NSThread.isMainThread() {
+                if Thread.isMainThread {
                     shouldPrompt = closure(trackingInfo())
                 } else {
-                    dispatch_sync(dispatch_get_main_queue()) {
+                    DispatchQueue.main.sync {
                         shouldPrompt = closure(self.trackingInfo())
                     }
                 }
             }
 
             if shouldPrompt {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.showRatingAlert()
                 }
             }
         }
     }
 
-    private func showPrompt(shouldPrompt: ArmchairShouldPromptClosure) {
+    private func showPrompt(_ shouldPrompt: ArmchairShouldPromptClosure) {
         var shouldPromptVal = false
 
-        if NSThread.isMainThread() {
+        if Thread.isMainThread {
             shouldPromptVal = shouldPrompt(trackingInfo())
         } else {
-            dispatch_sync(dispatch_get_main_queue()) {
+            DispatchQueue.main.sync {
                 shouldPromptVal = shouldPrompt(self.trackingInfo())
             }
         }
 
 
         if (shouldPromptVal) {
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.showRatingAlert()
             }
         }
@@ -1095,9 +1067,9 @@ public class Manager : ArmchairManager {
         // check if the app has been used long enough
         let timeIntervalOfFirstLaunch = userDefaultsObject?.doubleForKey(keyForArmchairKeyType(ArmchairKey.FirstUseDate))
         if let timeInterval = timeIntervalOfFirstLaunch {
-            let dateOfFirstLaunch = NSDate(timeIntervalSince1970: timeInterval)
-            let timeSinceFirstLaunch = NSDate().timeIntervalSinceDate(dateOfFirstLaunch)
-            let timeUntilRate: NSTimeInterval = 60 * 60 * 24 * Double(daysUntilPrompt)
+            let dateOfFirstLaunch = Date(timeIntervalSince1970: timeInterval)
+            let timeSinceFirstLaunch = Date().timeIntervalSince(dateOfFirstLaunch)
+            let timeUntilRate: TimeInterval = 60 * 60 * 24 * Double(daysUntilPrompt)
             if timeSinceFirstLaunch < timeUntilRate {
                 return false
             }
@@ -1138,9 +1110,9 @@ public class Manager : ArmchairManager {
         // If the user wanted to be reminded later, has enough time passed?
         let timeIntervalOfReminder = userDefaultsObject?.doubleForKey(keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
         if let timeInterval = timeIntervalOfReminder {
-            let reminderRequestDate = NSDate(timeIntervalSince1970: timeInterval)
-            let timeSinceReminderRequest = NSDate().timeIntervalSinceDate(reminderRequestDate)
-            let timeUntilReminder: NSTimeInterval = 60 * 60 * 24 * Double(daysBeforeReminding)
+            let reminderRequestDate = Date(timeIntervalSince1970: timeInterval)
+            let timeSinceReminderRequest = Date().timeIntervalSince(reminderRequestDate)
+            let timeUntilReminder: TimeInterval = 60 * 60 * 24 * Double(daysBeforeReminding)
             if timeSinceReminderRequest < timeUntilReminder {
                 return false
             }
@@ -1176,33 +1148,33 @@ public class Manager : ArmchairManager {
     }
 
     private func showsRemindButton() -> Bool {
-        return (daysBeforeReminding > 0 && remindButtonTitle != nil)
+        return (remindButtonTitle != nil)
     }
 
     private func showRatingAlert() {
 #if os(iOS)
         if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
             /* iOS 8 uses new UIAlertController API*/
-            let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.Cancel, handler: {
+            let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
+            alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
                 (alert: UIAlertAction!) in
                 self.dontRate()
             }))
             if (showsRemindButton()) {
-                alertView.addAction(UIAlertAction(title: remindButtonTitle!, style:UIAlertActionStyle.Default, handler: {
+                alertView.addAction(UIAlertAction(title: remindButtonTitle!, style:UIAlertActionStyle.default, handler: {
                     (alert: UIAlertAction!) in
                     self.remindMeLater()
                 }))
             }
-            alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.Default, handler: {
+            alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.default, handler: {
                 (alert: UIAlertAction!) in
                 self._rateApp()
             }))
 
             // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
-                    topController.presentViewController(alertView, animated: usesAnimation) {
+                    topController.present(alertView, animated: usesAnimation) {
                         print("presentViewController() completed")
                     }
                     // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
@@ -1263,7 +1235,7 @@ public class Manager : ArmchairManager {
     // MARK: PRIVATE Alert View / StoreKit Delegate Methods
 
 #if os(iOS)
-    public func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
+    public func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
         // cancelButtonIndex is set to -1 to show the cancel button up top, but a tap on it ends up here with index 0
         if (alertView.cancelButtonIndex == buttonIndex || 0 == buttonIndex) {
             // they don't want to rate it
@@ -1278,26 +1250,26 @@ public class Manager : ArmchairManager {
     }
 
     //Delegate call from the StoreKit view.
-    public func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+    public func productViewControllerDidFinish(_ viewController: SKStoreProductViewController!) {
         closeModalPanel()
     }
 
     //Close the in-app rating (StoreKit) view and restore the previous status bar style.
     private func closeModalPanel() {
         if modalPanelOpen {
-            UIApplication.sharedApplication().setStatusBarStyle(currentStatusBarStyle, animated:usesAnimation)
+            UIApplication.shared.setStatusBarStyle(currentStatusBarStyle, animated:usesAnimation)
             let usedAnimation = usesAnimation
             modalPanelOpen = false
 
             // get the top most controller (= the StoreKit Controller) and dismiss it
-            if let presentingController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                 if let topController = topMostViewController(presentingController) {
-                    topController.dismissViewControllerAnimated(usesAnimation) {
+                    topController.dismiss(animated: usesAnimation) {
                         if let closure = self.didDismissModalViewClosure {
                             closure(usedAnimation)
                         }
                     }
-                    currentStatusBarStyle = UIStatusBarStyle.Default
+                    currentStatusBarStyle = UIStatusBarStyle.default
                 }
             }
         }
@@ -1337,7 +1309,7 @@ public class Manager : ArmchairManager {
     }
 
     private func remindMeLater() {
-        userDefaultsObject?.setDouble(NSDate().timeIntervalSince1970, forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
+        userDefaultsObject?.setDouble(Date().timeIntervalSince1970, forKey: keyForArmchairKeyType(ArmchairKey.ReminderRequestDate))
         userDefaultsObject?.synchronize()
         if let closure = didOptToRemindLaterClosure {
             closure()
@@ -1370,7 +1342,7 @@ public class Manager : ArmchairManager {
                 productParameters[SKStoreProductParameterCampaignToken] = affiliateCampaignCode
             }
 
-            storeViewController.loadProductWithParameters(productParameters, completionBlock: nil)
+            storeViewController.loadProduct(withParameters: productParameters, completionBlock: nil)
             storeViewController.delegate = self
 
             if let closure = willPresentModalViewClosure {
@@ -1379,27 +1351,27 @@ public class Manager : ArmchairManager {
 
 
             if let rootController = getRootViewController() {
-                rootController.presentViewController(storeViewController, animated: usesAnimation) {
+                rootController.present(storeViewController, animated: usesAnimation) {
                     self.modalPanelOpen = true
 
                     //Temporarily use a status bar to match the StoreKit view.
-                    self.currentStatusBarStyle = UIApplication.sharedApplication().statusBarStyle
-                    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: self.usesAnimation)
+                    self.currentStatusBarStyle = UIApplication.shared.statusBarStyle
+                    UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: self.usesAnimation)
                 }
             }
 
         //Use the standard openUrl method
         } else {
-            if let url = NSURL(string: reviewURLString()) {
-                UIApplication.sharedApplication().openURL(url)
+            if let url = URL(string: reviewURLString()) {
+                UIApplication.shared.openURL(url)
             }
         }
 
-        if UIDevice.currentDevice().model.rangeOfString("Simulator") != nil {
+        if UIDevice.current.model.range(of: "Simulator") != nil {
             debugLog("iTunes App Store is not supported on the iOS simulator.")
             debugLog(" - We would have went to \(reviewURLString()).")
             debugLog(" - Try running on a test-device")
-            let fakeURL = reviewURLString().stringByReplacingOccurrencesOfString("itms-apps", withString:"http")
+            let fakeURL = reviewURLString().replacingOccurrences(of: "itms-apps", with:"http")
             debugLog(" - Or try copy/pasting \(fakeURL) into a browser on your computer.")
         }
 #elseif os(OSX)
@@ -1415,9 +1387,9 @@ public class Manager : ArmchairManager {
 
     private func reviewURLString() -> String {
         let template = reviewURLTemplate
-        var reviewURL = template.stringByReplacingOccurrencesOfString("APP_ID", withString: "\(appID)")
-        reviewURL = reviewURL.stringByReplacingOccurrencesOfString("AFFILIATE_CODE", withString: "\(affiliateCode)")
-        reviewURL = reviewURL.stringByReplacingOccurrencesOfString("AFFILIATE_CAMPAIGN_CODE", withString: "\(affiliateCampaignCode)")
+        var reviewURL = template.replacingOccurrences(of: "APP_ID", with: "\(appID)")
+        reviewURL = reviewURL.replacingOccurrences(of: "AFFILIATE_CODE", with: "\(affiliateCode)")
+        reviewURL = reviewURL.replacingOccurrences(of: "AFFILIATE_CAMPAIGN_CODE", with: "\(affiliateCampaignCode)")
         return reviewURL
     }
 
@@ -1439,7 +1411,7 @@ public class Manager : ArmchairManager {
         return ArmchairTrackingInfo(info: trackingInfo)
     }
 
-    private func keyForArmchairKeyType(keyType: ArmchairKey) -> String {
+    private func keyForArmchairKeyType(_ keyType: ArmchairKey) -> String {
         switch (keyType) {
         case .FirstUseDate:
             return keyPrefix + armchairKeyFirstUseDate
@@ -1470,7 +1442,7 @@ public class Manager : ArmchairManager {
         }
     }
 
-    private func setKey(key: NSString, armchairKeyType: ArmchairKey) {
+    private func setKey(_ key: NSString, armchairKeyType: ArmchairKey) {
         switch armchairKeyType {
         case .FirstUseDate:
             armchairKeyFirstUseDate = key as String
@@ -1501,7 +1473,7 @@ public class Manager : ArmchairManager {
         }
     }
 
-    private func armchairKeyForAppiraterKey(appiraterKey: String) -> String {
+    private func armchairKeyForAppiraterKey(_ appiraterKey: String) -> String {
         switch appiraterKey {
         case AppiraterKey.FirstUseDate:
             return keyForArmchairKeyType(ArmchairKey.FirstUseDate)
@@ -1552,7 +1524,7 @@ public class Manager : ArmchairManager {
             }
         }
 
-        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appiraterAlreadyCompletedKey as String)
+        userDefaultsObject?.setObject(NSNumber(value: true), forKey: appiraterAlreadyCompletedKey as String)
         userDefaultsObject?.synchronize()
     }
 
@@ -1587,7 +1559,7 @@ public class Manager : ArmchairManager {
             }
         }
 
-        userDefaultsObject?.setObject(NSNumber(bool: true), forKey: appReviewManagerAlreadyCompletedKey as String)
+        userDefaultsObject?.setObject(NSNumber(value: true), forKey: appReviewManagerAlreadyCompletedKey as String)
         userDefaultsObject?.synchronize()
     }
 
@@ -1615,25 +1587,25 @@ public class Manager : ArmchairManager {
             return false
         }
 
-        let isReachable = flags.contains(.Reachable)
-        let needsConnection = flags.contains(.ConnectionRequired)
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
         return (isReachable && !needsConnection)
     }
 
     // MARK: -
     // MARK: PRIVATE Misc Helpers
 
-    private func bundle() -> NSBundle? {
-        var bundle: NSBundle? = nil
+    private func bundle() -> Bundle? {
+        var bundle: Bundle? = nil
         
         if useMainAppBundleForLocalizations {
-            bundle = NSBundle.mainBundle()
+            bundle = Bundle.main
         } else {
-            let armchairBundleURL: NSURL? = NSBundle.mainBundle().URLForResource("Armchair", withExtension: "bundle")
+            let armchairBundleURL: URL? = Bundle.main.url(forResource: "Armchair", withExtension: "bundle")
             if let url = armchairBundleURL {
-                bundle = NSBundle(URL: url)
+                bundle = Bundle(url: url)
             } else {
-                bundle = NSBundle(forClass: self.dynamicType)
+                bundle = Bundle(for: self.dynamicType)
             }
         }
 
@@ -1641,7 +1613,7 @@ public class Manager : ArmchairManager {
     }
 
 #if os(iOS)
-    private func topMostViewController(controller: UIViewController?) -> UIViewController? {
+    private func topMostViewController(_ controller: UIViewController?) -> UIViewController? {
         var isPresenting: Bool = false
         var topController: UIViewController? = controller
         repeat {
@@ -1660,10 +1632,10 @@ public class Manager : ArmchairManager {
     }
 
     private func getRootViewController() -> UIViewController? {
-        if var window = UIApplication.sharedApplication().keyWindow {
+        if var window = UIApplication.shared.keyWindow {
 
             if window.windowLevel != UIWindowLevelNormal {
-                let windows: NSArray = UIApplication.sharedApplication().windows
+                let windows: NSArray = UIApplication.shared.windows
                 for candidateWindow in windows {
                     if let candidateWindow = candidateWindow as? UIWindow {
                         if candidateWindow.windowLevel == UIWindowLevelNormal {
@@ -1675,8 +1647,8 @@ public class Manager : ArmchairManager {
             }
 
             for subView in window.subviews {
-                if let responder = subView.nextResponder() {
-                    if responder.isKindOfClass(UIViewController) {
+                if let responder = subView.next {
+                    if responder is UIViewController {
                         return topMostViewController(responder as? UIViewController)
                     }
 
@@ -1692,8 +1664,8 @@ public class Manager : ArmchairManager {
         if let alert = ratingAlert {
             debugLog("Hiding Alert")
 #if os(iOS)
-            if alert.visible {
-                alert.dismissWithClickedButtonIndex(alert.cancelButtonIndex, animated: false)
+            if alert.isVisible {
+                alert.dismiss(withClickedButtonIndex: alert.cancelButtonIndex, animated: false)
             }
 #elseif os(OSX)
             if let window = NSApplication.sharedApplication().keyWindow {
@@ -1719,21 +1691,21 @@ public class Manager : ArmchairManager {
     // MARK: -
     // MARK: Notification Handlers
 
-    public func appWillResignActive(notification: NSNotification) {
+    public func appWillResignActive(_ notification: Notification) {
         debugLog("appWillResignActive:")
         hideRatingAlert()
     }
 
-    public func applicationDidFinishLaunching(notification: NSNotification) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+    public func applicationDidFinishLaunching(_ notification: Notification) {
+        DispatchQueue.global(qos: .utility).async {
             self.debugLog("applicationDidFinishLaunching:")
             self.migrateKeysIfNecessary()
             self.incrementUseCount()
         }
     }
 
-    public func applicationWillEnterForeground(notification: NSNotification) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+    public func applicationWillEnterForeground(_ notification: Notification) {
+        DispatchQueue.global(qos: .utility).async {
             self.debugLog("applicationWillEnterForeground:")
             self.migrateKeysIfNecessary()
             self.incrementUseCount()
@@ -1759,9 +1731,9 @@ public class Manager : ArmchairManager {
 
     private func setupNotifications() {
 #if os(iOS)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResignActive:",            name: UIApplicationWillResignActiveNotification,    object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:",  name: UIApplicationDidFinishLaunchingNotification,  object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)),            name: NSNotification.Name.UIApplicationWillResignActive,    object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 #elseif os(OSX)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResignActive:",            name: NSApplicationWillResignActiveNotification,    object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:",  name: NSApplicationDidFinishLaunchingNotification,  object: nil)
@@ -1781,16 +1753,16 @@ public class Manager : ArmchairManager {
     // MARK: -
     // MARK: Debug
 
-    let lockQueue = dispatch_queue_create("com.armchair.lockqueue", nil)
+    let lockQueue = DispatchQueue(label: "com.armchair.lockqueue", attributes: [])
 
     public var logger: ArmchairLogger = { manager, log, file, function, line in
         if manager.debugEnabled {
-            dispatch_sync(manager.lockQueue, {
+            manager.lockQueue.sync(execute: {
                 print("[Armchair] \(log)")
             })
         }
     }
-    private func debugLog(log: String, file: StaticString = __FILE__, function: StaticString = __FUNCTION__, line: UInt = __LINE__) {
+    private func debugLog(_ log: String, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
         logger(self, log: log, file: file, function: function, line: line)
     }
 
