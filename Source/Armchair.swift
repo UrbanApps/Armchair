@@ -356,15 +356,16 @@ public func resetDefaults() {
     Manager.defaultManager.didDisplayAlertClosure           = nil
     Manager.defaultManager.didOptToRateClosure              = nil
     Manager.defaultManager.didOptToRemindLaterClosure       = nil
-    
-    #if os(iOS)
-        Manager.defaultManager.usesAnimation                    = true
-        Manager.defaultManager.usesAlertController              = Manager.defaultManager.defaultUsesAlertController()
-        Manager.defaultManager.opensInStoreKit                  = Manager.defaultManager.defaultOpensInStoreKit()
-        Manager.defaultManager.willPresentModalViewClosure      = nil
-        Manager.defaultManager.didDismissModalViewClosure       = nil
-    #endif
-    
+
+#if os(iOS)
+    Manager.defaultManager.usesAnimation                    = true
+    Manager.defaultManager.tintColor                        = nil
+    Manager.defaultManager.usesAlertController              = Manager.defaultManager.defaultUsesAlertController()
+    Manager.defaultManager.opensInStoreKit                  = Manager.defaultManager.defaultOpensInStoreKit()
+    Manager.defaultManager.willPresentModalViewClosure      = nil
+    Manager.defaultManager.didDismissModalViewClosure       = nil
+#endif
+
     Manager.defaultManager.armchairKeyFirstUseDate                           = Manager.defaultManager.defaultArmchairKeyFirstUseDate()
     Manager.defaultManager.armchairKeyUseCount                               = Manager.defaultManager.defaultArmchairKeyUseCount()
     Manager.defaultManager.armchairKeySignificantEventCount                  = Manager.defaultManager.defaultArmchairKeySignificantEventCount()
@@ -396,11 +397,22 @@ public func resetDefaults() {
     }
     
     /*
-     * Set whether or not Armchair uses a UIAlertController when presenting on iOS 8
-     * We prefer not to use it so that the Rate button can be on the bottom and the cancel button on the top,
-     * Something not possible as of iOS 8.0
-     * Default => false
-     */
+    * Set a tint color to apply to UIAlertController
+    * Default => nil (the default tint color is used)
+    */
+    public func tintColor() -> UIColor? {
+        return Manager.defaultManager.tintColor
+    }
+    public func tintColor(tintColor: UIColor?) {
+        Manager.defaultManager.tintColor = tintColor
+    }
+    
+    /*
+    * Set whether or not Armchair uses a UIAlertController when presenting on iOS 8
+    * We prefer not to use it so that the Rate button can be on the bottom and the cancel button on the top,
+    * Something not possible as of iOS 8.0
+    * Default => false
+    */
     public func usesAlertController() -> Bool {
         return Manager.defaultManager.usesAlertController
     }
@@ -846,12 +858,13 @@ open class Manager : ArmchairManager {
     // It is my affiliate code. It is better that somebody's code is used rather than nobody's.
     fileprivate var affiliateCode: String                   = "11l7j9"
     fileprivate var affiliateCampaignCode: String           = "Armchair"
-    
-    #if os(iOS)
+
+#if os(iOS)
     fileprivate var usesAnimation: Bool                     = true
+    fileprivate var tintColor: UIColor?                     = nil
     fileprivate lazy var usesAlertController: Bool          = self.defaultUsesAlertController()
     fileprivate lazy var opensInStoreKit: Bool              = self.defaultOpensInStoreKit()
-    
+
     fileprivate func defaultOpensInStoreKit() -> Bool {
         return operatingSystemVersion >= 8
     }
@@ -1197,6 +1210,8 @@ open class Manager : ArmchairManager {
                             print("presentViewController() completed")
                         }
                     }
+                    // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
+                    alertView.view.tintColor = tintColor
                 }
                 
             } else {
