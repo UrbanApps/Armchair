@@ -724,7 +724,7 @@ public struct AppiraterKey {
 #if os(iOS)
     open class ArmchairManager : NSObject, UIAlertViewDelegate, SKStoreProductViewControllerDelegate { }
 #elseif os(OSX)
-    public class ArmchairManager : NSObject, NSAlertDelegate { }
+    open class ArmchairManager : NSObject, NSAlertDelegate { }
 #else
     // Untested, and currently unsupported
 #endif
@@ -734,7 +734,7 @@ open class Manager : ArmchairManager {
     #if os(iOS)
     fileprivate var operatingSystemVersion = NSString(string: UIDevice.current.systemVersion).doubleValue
     #elseif os(OSX)
-    private var operatingSystemVersion = Double(NSProcessInfo.processInfo().operatingSystemVersion.majorVersion)
+    private var operatingSystemVersion = Double(ProcessInfo.processInfo.operatingSystemVersion.majorVersion)
     #else
     #endif
     
@@ -1239,21 +1239,21 @@ open class Manager : ArmchairManager {
             let alert: NSAlert = NSAlert()
             alert.messageText = reviewTitle
             alert.informativeText = reviewMessage
-            alert.addButtonWithTitle(rateButtonTitle)
+            alert.addButton(withTitle: rateButtonTitle)
             if showsRemindButton() {
-                alert.addButtonWithTitle(remindButtonTitle!)
+                alert.addButton(withTitle: remindButtonTitle!)
             }
-            alert.addButtonWithTitle(cancelButtonTitle)
+            alert.addButton(withTitle: cancelButtonTitle)
             ratingAlert = alert
             
-            if let window = NSApplication.sharedApplication().keyWindow {
-                alert.beginSheetModalForWindow(window) {
+            if let window = NSApplication.shared().keyWindow {
+                alert.beginSheetModal(for: window) {
                     (response: NSModalResponse) in
-                    self.handleNSAlertReturnCode(response)
+                    self.handleNSAlert(returnCode: response)
                 }
             } else {
                 let returnCode = alert.runModal()
-                handleNSAlertReturnCode(returnCode)
+                handleNSAlert(returnCode:returnCode)
             }
             
             if let closure = self.didDisplayAlertClosure {
@@ -1309,7 +1309,7 @@ open class Manager : ArmchairManager {
     
     #elseif os(OSX)
     
-    private func handleNSAlertReturnCode(returnCode: NSInteger) {
+    private func handleNSAlert(returnCode: NSInteger) {
     switch (returnCode) {
     case  NSAlertFirstButtonReturn:
     // they want to rate it
@@ -1407,8 +1407,8 @@ open class Manager : ArmchairManager {
                 debugLog(" - Or try copy/pasting \(fakeURL) into a browser on your computer.")
             }
         #elseif os(OSX)
-            if let url = NSURL(string: reviewURLString()) {
-                let opened = NSWorkspace.sharedWorkspace().openURL(url)
+            if let url = URL(string: reviewURLString()) {
+                let opened = NSWorkspace.shared().open(url)
                 if !opened {
                     debugLog("Failed to open \(url)")
                 }
@@ -1702,7 +1702,7 @@ open class Manager : ArmchairManager {
                     alert.dismiss(withClickedButtonIndex: alert.cancelButtonIndex, animated: false)
                 }
             #elseif os(OSX)
-                if let window = NSApplication.sharedApplication().keyWindow {
+                if let window = NSApplication.shared().keyWindow {
                     if let parent = window.sheetParent {
                         parent.endSheet(window)
                     }
@@ -1769,9 +1769,9 @@ open class Manager : ArmchairManager {
             NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         #elseif os(OSX)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResignActive:",            name: NSApplicationWillResignActiveNotification,    object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidFinishLaunching:",  name: NSApplicationDidFinishLaunchingNotification,  object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillEnterForeground:", name: NSApplicationWillBecomeActiveNotification,    object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)), name: NSNotification.Name.NSApplicationWillResignActive, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(NSApplicationDelegate.applicationDidFinishLaunching(_:)), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: NSNotification.Name.NSApplicationWillBecomeActive, object: nil)
         #else
         #endif
     }
