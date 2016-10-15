@@ -1399,13 +1399,15 @@ open class Manager : ArmchairManager {
                 }
             }
             
-            if UIDevice.current.model.range(of: "Simulator") != nil {
+            // Check for iOS simulator
+            #if (arch(i386) || arch(x86_64)) && os(iOS)
                 debugLog("iTunes App Store is not supported on the iOS simulator.")
                 debugLog(" - We would have went to \(reviewURLString()).")
                 debugLog(" - Try running on a test-device")
                 let fakeURL = reviewURLString().replacingOccurrences(of: "itms-apps", with:"http")
                 debugLog(" - Or try copy/pasting \(fakeURL) into a browser on your computer.")
-            }
+            #endif
+            
         #elseif os(OSX)
             if let url = URL(string: reviewURLString()) {
                 let opened = NSWorkspace.shared().open(url)
