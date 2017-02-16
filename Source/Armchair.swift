@@ -1030,7 +1030,7 @@ open class Manager : ArmchairManager {
             userDefaultsObject?.setInteger(incrementKeyCount, forKey:incrementKey)
             
             debugLog("Incremented \(incrementKeyType): \(incrementKeyCount)")
-            
+
         } else if tracksNewVersions {
             // it's a new version of the app, so restart tracking
             resetAllCounters()
@@ -1397,8 +1397,7 @@ open class Manager : ArmchairManager {
                 if let url = URL(string: reviewURLString()) {
                     UIApplication.shared.openURL(url)
                 }
-            }
-            
+            }  
             // Check for iOS simulator
             #if (arch(i386) || arch(x86_64)) && os(iOS)
                 debugLog("iTunes App Store is not supported on the iOS simulator.")
@@ -1414,6 +1413,7 @@ open class Manager : ArmchairManager {
                 if !opened {
                     debugLog("Failed to open \(url)")
                 }
+
             }
         #else
         #endif
@@ -1776,6 +1776,7 @@ open class Manager : ArmchairManager {
             NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: NSNotification.Name.NSApplicationWillBecomeActive, object: nil)
         #else
         #endif
+
     }
     
     // MARK: -
@@ -1800,6 +1801,7 @@ open class Manager : ArmchairManager {
     }
     fileprivate func debugLog(_ log: String, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
         logger(self, log, file, function, line)
+
     }
     
 }
