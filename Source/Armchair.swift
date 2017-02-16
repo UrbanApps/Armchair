@@ -356,6 +356,8 @@ public func resetDefaults() {
     Manager.defaultManager.didDisplayAlertClosure           = nil
     Manager.defaultManager.didOptToRateClosure              = nil
     Manager.defaultManager.didOptToRemindLaterClosure       = nil
+    
+    Manager.defaultManager.customAlertClosure               = nil
 
 #if os(iOS)
     Manager.defaultManager.usesAnimation                    = true
@@ -562,6 +564,7 @@ public func rateApp() {
  */
 
 public typealias ArmchairClosure = () -> ()
+public typealias ArmchairClosureCustomAlert = (_ rateAppClosure: ArmchairClosure, _ remindLaterClosure: ArmchairClosure, _ noThanksClosure: ArmchairClosure) -> ()
 public typealias ArmchairAnimateClosure = (Bool) -> ()
 public typealias ArmchairShouldPromptClosure = (ArmchairTrackingInfo) -> Bool
 public typealias ArmchairShouldIncrementClosure = () -> Bool
@@ -920,6 +923,8 @@ open class Manager : ArmchairManager {
     var didOptToRateClosure: ArmchairClosure?
     var didOptToRemindLaterClosure: ArmchairClosure?
     
+    var customAlertClosure: ArmchairClosureCustomAlert?
+    
     #if os(iOS)
     var willPresentModalViewClosure: ArmchairAnimateClosure?
     var didDismissModalViewClosure: ArmchairAnimateClosure?
@@ -1184,83 +1189,91 @@ open class Manager : ArmchairManager {
     }
     
     fileprivate func showRatingAlert() {
-        #if os(iOS)
-            if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
-                /* iOS 8 uses new UIAlertController API*/
-                let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
-                alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
-                    (alert: UIAlertAction!) in
-                    self.dontRate()
-                }))
-                if (showsRemindButton()) {
-                    alertView.addAction(UIAlertAction(title: remindButtonTitle!, style:UIAlertActionStyle.default, handler: {
-                        (alert: UIAlertAction!) in
-                        self.remindMeLater()
-                    }))
-                }
-                alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.default, handler: {
-                    (alert: UIAlertAction!) in
-                    self._rateApp()
-                }))
-                
-                // get the top most controller (= the StoreKit Controller) and dismiss it
-                if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
-                    if let topController = topMostViewController(presentingController) {
-                        topController.present(alertView, animated: usesAnimation) {
-                            print("presentViewController() completed")
-                        }
-                    }
-                    // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
-                    alertView.view.tintColor = tintColor
-                }
-                
-            } else {
-                /* Otherwise we use UIAlertView still */
-                var alertView: UIAlertView
-                if (showsRemindButton()) {
-                    alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: remindButtonTitle!, rateButtonTitle)
-                } else {
-                    alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: rateButtonTitle)
-                }
-                // If we have a remind button, show it first. Otherwise show the rate button
-                // If we have a remind button, show the rate button next. Otherwise stop adding buttons.
-                
-                alertView.cancelButtonIndex = -1
-                ratingAlert = alertView
-                alertView.show()
-                
-                if let closure = didDisplayAlertClosure {
-                    closure()
-                }
-            }
-            
-        #elseif os(OSX)
-            
-            let alert: NSAlert = NSAlert()
-            alert.messageText = reviewTitle
-            alert.informativeText = reviewMessage
-            alert.addButton(withTitle: rateButtonTitle)
-            if showsRemindButton() {
-                alert.addButton(withTitle: remindButtonTitle!)
-            }
-            alert.addButton(withTitle: cancelButtonTitle)
-            ratingAlert = alert
-            
-            if let window = NSApplication.shared().keyWindow {
-                alert.beginSheetModal(for: window) {
-                    (response: NSModalResponse) in
-                    self.handleNSAlert(returnCode: response)
-                }
-            } else {
-                let returnCode = alert.runModal()
-                handleNSAlert(returnCode:returnCode)
-            }
-            
+        if let customClosure = customAlertClosure {
+            customClosure({[weak self] in self?._rateApp()}, {[weak self] in self?.remindMeLater()}, {[weak self] in self?.dontRate()})
             if let closure = self.didDisplayAlertClosure {
                 closure()
             }
-        #else
-        #endif
+        } else {
+            #if os(iOS)
+                if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
+                    /* iOS 8 uses new UIAlertController API*/
+                    let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
+                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
+                        (alert: UIAlertAction!) in
+                        self.dontRate()
+                    }))
+                    if (showsRemindButton()) {
+                        alertView.addAction(UIAlertAction(title: remindButtonTitle!, style:UIAlertActionStyle.default, handler: {
+                            (alert: UIAlertAction!) in
+                            self.remindMeLater()
+                        }))
+                    }
+                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.default, handler: {
+                        (alert: UIAlertAction!) in
+                        self._rateApp()
+                    }))
+                    
+                    // get the top most controller (= the StoreKit Controller) and dismiss it
+                    if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
+                        if let topController = topMostViewController(presentingController) {
+                            topController.present(alertView, animated: usesAnimation) {
+                                print("presentViewController() completed")
+                            }
+                        }
+                        // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
+                        alertView.view.tintColor = tintColor
+                    }
+                    
+                } else {
+                    /* Otherwise we use UIAlertView still */
+                    var alertView: UIAlertView
+                    if (showsRemindButton()) {
+                        alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: remindButtonTitle!, rateButtonTitle)
+                    } else {
+                        alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: rateButtonTitle)
+                    }
+                    // If we have a remind button, show it first. Otherwise show the rate button
+                    // If we have a remind button, show the rate button next. Otherwise stop adding buttons.
+                    
+                    alertView.cancelButtonIndex = -1
+                    ratingAlert = alertView
+                    alertView.show()
+                    
+                    if let closure = didDisplayAlertClosure {
+                        closure()
+                    }
+                }
+                
+            #elseif os(OSX)
+                
+                let alert: NSAlert = NSAlert()
+                alert.messageText = reviewTitle
+                alert.informativeText = reviewMessage
+                alert.addButton(withTitle: rateButtonTitle)
+                if showsRemindButton() {
+                    alert.addButton(withTitle: remindButtonTitle!)
+                }
+                alert.addButton(withTitle: cancelButtonTitle)
+                ratingAlert = alert
+                
+                if let window = NSApplication.shared().keyWindow {
+                    alert.beginSheetModal(for: window) {
+                        (response: NSModalResponse) in
+                        self.handleNSAlert(returnCode: response)
+                    }
+                } else {
+                    let returnCode = alert.runModal()
+                    handleNSAlert(returnCode:returnCode)
+                }
+                
+                if let closure = self.didDisplayAlertClosure {
+                    closure()
+                }
+            #else
+            #endif
+        }
+        
     }
     
     // MARK: -
