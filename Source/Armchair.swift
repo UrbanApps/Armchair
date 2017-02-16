@@ -572,6 +572,9 @@ public typealias ArmchairShouldIncrementClosure = () -> Bool
 public func onDidDisplayAlert(_ didDisplayAlertClosure: ArmchairClosure?) {
     Manager.defaultManager.didDisplayAlertClosure = didDisplayAlertClosure
 }
+public func customAlertClosure(_ customAlertClosure: ArmchairClosureCustomAlert?) {
+    Manager.defaultManager.customAlertClosure = customAlertClosure
+}
 public func onDidDeclineToRate(_ didDeclineToRateClosure: ArmchairClosure?) {
     Manager.defaultManager.didDeclineToRateClosure = didDeclineToRateClosure
 }
