@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = "Armchair"
-  s.version               = "0.1.1"
+  s.version               = "0.3.0"
   s.summary               = "A simple yet powerful App Review Manager for iOS and OSX in Swift"
   s.description           = <<-DESC
                             A simple yet powerful App Review Manager for iOS and OSX in Swift.
@@ -28,5 +28,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
   s.requires_arc          = true
+
+  
   
 end

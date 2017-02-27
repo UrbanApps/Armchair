@@ -564,7 +564,7 @@ public func rateApp() {
  */
 
 public typealias ArmchairClosure = () -> ()
-public typealias ArmchairClosureCustomAlert = (_ rateAppClosure: ArmchairClosure, _ remindLaterClosure: ArmchairClosure, _ noThanksClosure: ArmchairClosure) -> ()
+public typealias ArmchairClosureCustomAlert = (_ rateAppClosure: @escaping ArmchairClosure, _ remindLaterClosure: @escaping ArmchairClosure, _ noThanksClosure: @escaping ArmchairClosure) -> ()
 public typealias ArmchairAnimateClosure = (Bool) -> ()
 public typealias ArmchairShouldPromptClosure = (ArmchairTrackingInfo) -> Bool
 public typealias ArmchairShouldIncrementClosure = () -> Bool
@@ -749,7 +749,7 @@ open class Manager : ArmchairManager {
     
     #if os(iOS)
     fileprivate var ratingAlert: UIAlertView? = nil
-    fileprivate let reviewURLTemplate  = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
+    fileprivate let reviewURLTemplate  = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE&action=write-review"
     #elseif os(OSX)
     private var ratingAlert: NSAlert? = nil
     private let reviewURLTemplate = "macappstore://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=12&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
