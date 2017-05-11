@@ -1214,6 +1214,10 @@ open class Manager : ArmchairManager {
             #if os(iOS)
                 if #available(iOS 10.3, *), useStoreKitReviewPrompt {
                     SKStoreReviewController.requestReview()
+                    // Assume this version is rated. There is no API to tell if the user actaully rated.
+                    userDefaultsObject?.setBool(true, forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
+                    userDefaultsObject?.setBool(true, forKey: keyForArmchairKeyType(ArmchairKey.RatedAnyVersion))
+                    userDefaultsObject?.synchronize()
                     return
                 }
                 if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
