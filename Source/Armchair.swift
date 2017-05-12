@@ -1241,7 +1241,10 @@ open class Manager : ArmchairManager {
                     // get the top most controller (= the StoreKit Controller) and dismiss it
                     if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                         if let topController = topMostViewController(presentingController) {
-                            topController.present(alertView, animated: usesAnimation) {
+                            topController.present(alertView, animated: usesAnimation) { [weak self] _ in
+                                if let closure = self?.didDisplayAlertClosure {
+                                    closure()
+                                }
                                 print("presentViewController() completed")
                             }
                         }
