@@ -1211,7 +1211,14 @@ open class Manager : ArmchairManager {
             }
         } else {
             #if os(iOS)
-
+                if #available(iOS 10.3, *), useStoreKitReviewPrompt {
+                    SKStoreReviewController.requestReview()
+                    // Assume this version is rated. There is no API to tell if the user actaully rated.
+                    userDefaultsObject?.setBool(true, forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
+                    userDefaultsObject?.setBool(true, forKey: keyForArmchairKeyType(ArmchairKey.RatedAnyVersion))
+                    userDefaultsObject?.synchronize()
+                    return
+                }
                     let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
                     alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
                         (alert: UIAlertAction!) in
