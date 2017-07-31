@@ -70,6 +70,18 @@ public func reviewTitle(_ reviewTitle: String) {
 }
 
 /*
+ * If set to true, use SKStoreReviewController's requestReview() prompt instead of the default prompt.
+ * If not on iOS 10.3+, reort to the default prompt.
+ * Default => false.
+ */
+public func useStoreKitReviewPrompt() -> Bool {
+    return Manager.defaultManager.useStoreKitReviewPrompt
+}
+public func useStoreKitReviewPrompt(_ useStoreKitReviewPrompt: Bool) {
+    Manager.defaultManager.useStoreKitReviewPrompt = useStoreKitReviewPrompt
+}
+
+/*
  * Get/Set the message to use on the review prompt.
  * Default value is a localized
  *  "If you enjoy using <appName>, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"
@@ -869,6 +881,7 @@ open class Manager : ArmchairManager {
     fileprivate var tintColor: UIColor?                     = nil
     fileprivate lazy var usesAlertController: Bool          = self.defaultUsesAlertController()
     fileprivate lazy var opensInStoreKit: Bool              = self.defaultOpensInStoreKit()
+    fileprivate var useStoreKitReviewPrompt: Bool           = false
 
     fileprivate func defaultOpensInStoreKit() -> Bool {
         return operatingSystemVersion >= 8
@@ -1198,7 +1211,7 @@ open class Manager : ArmchairManager {
             }
         } else {
             #if os(iOS)
-                /* iOS 8 uses new UIAlertController API*/
+
                     let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
                     alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
                         (alert: UIAlertAction!) in
@@ -1218,7 +1231,10 @@ open class Manager : ArmchairManager {
                     // get the top most controller (= the StoreKit Controller) and dismiss it
                     if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                         if let topController = topMostViewController(presentingController) {
-                            topController.present(alertView, animated: usesAnimation) {
+                            topController.present(alertView, animated: usesAnimation) { [weak self] _ in
+                                if let closure = self?.didDisplayAlertClosure {
+                                    closure()
+                                }
                                 print("presentViewController() completed")
                             }
                         }
