@@ -728,7 +728,7 @@ public struct AppiraterKey {
 // MARK: PRIVATE Interface
 
 #if os(iOS)
-    open class ArmchairManager : NSObject, UIAlertViewDelegate, SKStoreProductViewControllerDelegate { }
+    open class ArmchairManager : NSObject, SKStoreProductViewControllerDelegate { }
 #elseif os(OSX)
     open class ArmchairManager : NSObject, NSAlertDelegate { }
 #else
@@ -748,7 +748,6 @@ open class Manager : ArmchairManager {
     // MARK: Review Alert & Properties
     
     #if os(iOS)
-    fileprivate var ratingAlert: UIAlertView? = nil
     fileprivate let reviewURLTemplate  = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE&action=write-review"
     #elseif os(OSX)
     private var ratingAlert: NSAlert? = nil
@@ -1199,8 +1198,7 @@ open class Manager : ArmchairManager {
             }
         } else {
             #if os(iOS)
-                if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
-                    /* iOS 8 uses new UIAlertController API*/
+                /* iOS 8 uses new UIAlertController API*/
                     let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
                     alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
                         (alert: UIAlertAction!) in
@@ -1228,25 +1226,7 @@ open class Manager : ArmchairManager {
                         alertView.view.tintColor = tintColor
                     }
                     
-                } else {
-                    /* Otherwise we use UIAlertView still */
-                    var alertView: UIAlertView
-                    if (showsRemindButton()) {
-                        alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: remindButtonTitle!, rateButtonTitle)
-                    } else {
-                        alertView = UIAlertView(title: reviewTitle, message: reviewMessage, delegate: self, cancelButtonTitle: cancelButtonTitle, otherButtonTitles: rateButtonTitle)
-                    }
-                    // If we have a remind button, show it first. Otherwise show the rate button
-                    // If we have a remind button, show the rate button next. Otherwise stop adding buttons.
-                    
-                    alertView.cancelButtonIndex = -1
-                    ratingAlert = alertView
-                    alertView.show()
-                    
-                    if let closure = didDisplayAlertClosure {
-                        closure()
-                    }
-                }
+                
                 
             #elseif os(OSX)
                 
@@ -1283,19 +1263,6 @@ open class Manager : ArmchairManager {
     // MARK: PRIVATE Alert View / StoreKit Delegate Methods
     
     #if os(iOS)
-    open func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        // cancelButtonIndex is set to -1 to show the cancel button up top, but a tap on it ends up here with index 0
-        if (alertView.cancelButtonIndex == buttonIndex || 0 == buttonIndex) {
-            // they don't want to rate it
-            dontRate()
-        } else if (showsRemindButton() && 1 == buttonIndex) {
-            // remind them later
-            remindMeLater()
-        } else {
-            // they want to rate it
-            _rateApp()
-        }
-    }
     
     //Delegate call from the StoreKit view.
     open func productViewControllerDidFinish(_ viewController: SKStoreProductViewController!) {
