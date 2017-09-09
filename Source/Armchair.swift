@@ -1240,7 +1240,7 @@ open class Manager : ArmchairManager {
                     
                     // get the top most controller (= the StoreKit Controller) and dismiss it
                     if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
-                        if let topController = topMostViewController(presentingController) {
+                        if let topController = Manager.topMostViewController(presentingController) {
                             topController.present(alertView, animated: usesAnimation) { [weak self] _ in
                                 if let closure = self?.didDisplayAlertClosure {
                                     closure()
@@ -1335,7 +1335,7 @@ open class Manager : ArmchairManager {
             
             // get the top most controller (= the StoreKit Controller) and dismiss it
             if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
-                if let topController = topMostViewController(presentingController) {
+                if let topController = Manager.topMostViewController(presentingController) {
                     topController.dismiss(animated: usesAnimation) {
                         if let closure = self.didDismissModalViewClosure {
                             closure(usedAnimation)
@@ -1422,7 +1422,7 @@ open class Manager : ArmchairManager {
                 }
                 
                 
-                if let rootController = getRootViewController() {
+                if let rootController = Manager.getRootViewController() {
                     rootController.present(storeViewController, animated: usesAnimation) {
                         self.modalPanelOpen = true
                         
@@ -1689,7 +1689,7 @@ open class Manager : ArmchairManager {
     }
     
     #if os(iOS)
-    private func topMostViewController(_ controller: UIViewController?) -> UIViewController? {
+    private static func topMostViewController(_ controller: UIViewController?) -> UIViewController? {
         var isPresenting: Bool = false
         var topController: UIViewController? = controller
         repeat {
@@ -1707,7 +1707,7 @@ open class Manager : ArmchairManager {
         return topController
     }
     
-    private func getRootViewController() -> UIViewController? {
+    private static func getRootViewController() -> UIViewController? {
         if var window = UIApplication.shared.keyWindow {
             
             if window.windowLevel != UIWindowLevelNormal {
@@ -1722,20 +1722,30 @@ open class Manager : ArmchairManager {
                 }
             }
             
-            for subView in window.subviews {
-                if let responder = subView.next {
-                    if responder.isKind(of: UIViewController.self) {
-                        return topMostViewController(responder as? UIViewController)
-                    }
-                    
-                }
-            }
+            return iterateSubViewsForViewController(window)
         }
         
         return nil
     }
+
+    private static func iterateSubViewsForViewController(_ parentView: UIView) -> UIViewController? {
+        for subView in parentView.subviews {
+            if let responder = subView.next {
+                if responder.isKind(of: UIViewController.self) {
+                    return topMostViewController(responder as? UIViewController)
+                }
+            }
+
+            if let found = iterateSubViewsForViewController(subView) {
+                return found
+            }
+        }
+
+        return nil
+    }
+
     #endif
-    
+
     private func hideRatingAlert() {
         if let alert = ratingAlert {
             debugLog("Hiding Alert")
