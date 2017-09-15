@@ -78,7 +78,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -96,7 +96,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -193,7 +193,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -220,7 +220,7 @@ extension ViewController {
 #if os(iOS)
             UIApplication.shared.openURL(url)
 #elseif os(OSX)
-            NSWorkspace.sharedWorkspace().openURL(url)
+            NSWorkspace.shared.open(url)
 #else
 #endif
         }

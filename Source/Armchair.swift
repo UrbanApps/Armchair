@@ -70,18 +70,6 @@ public func reviewTitle(_ reviewTitle: String) {
 }
 
 /*
- * If set to true, use SKStoreReviewController's requestReview() prompt instead of the default prompt.
- * If not on iOS 10.3+, reort to the default prompt.
- * Default => false.
- */
-public func useStoreKitReviewPrompt() -> Bool {
-    return Manager.defaultManager.useStoreKitReviewPrompt
-}
-public func useStoreKitReviewPrompt(_ useStoreKitReviewPrompt: Bool) {
-    Manager.defaultManager.useStoreKitReviewPrompt = useStoreKitReviewPrompt
-}
-
-/*
  * Get/Set the message to use on the review prompt.
  * Default value is a localized
  *  "If you enjoy using <appName>, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"
@@ -291,6 +279,20 @@ public func affiliateCampaignCode() -> String {
 public func affiliateCampaignCode(_ affiliateCampaignCode: String) {
     Manager.defaultManager.affiliateCampaignCode = affiliateCampaignCode
 }
+
+#if os(iOS)
+    /*
+     * If set to true, use SKStoreReviewController's requestReview() prompt instead of the default prompt.
+     * If not on iOS 10.3+, reort to the default prompt.
+     * Default => false.
+     */
+    public func useStoreKitReviewPrompt() -> Bool {
+        return Manager.defaultManager.useStoreKitReviewPrompt
+    }
+    public func useStoreKitReviewPrompt(_ useStoreKitReviewPrompt: Bool) {
+        Manager.defaultManager.useStoreKitReviewPrompt = useStoreKitReviewPrompt
+    }
+#endif
 
 /*
  * 'true' will show the Armchair alert everytime. Useful for testing
@@ -1241,7 +1243,7 @@ open class Manager : ArmchairManager {
                     // get the top most controller (= the StoreKit Controller) and dismiss it
                     if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                         if let topController = Manager.topMostViewController(presentingController) {
-                            topController.present(alertView, animated: usesAnimation) { [weak self] _ in
+                            topController.present(alertView, animated: usesAnimation) { [weak self] in
                                 if let closure = self?.didDisplayAlertClosure {
                                     closure()
                                 }
@@ -1284,14 +1286,14 @@ open class Manager : ArmchairManager {
                 alert.addButton(withTitle: cancelButtonTitle)
                 ratingAlert = alert
                 
-                if let window = NSApplication.shared().keyWindow {
+                if let window = NSApplication.shared.keyWindow {
                     alert.beginSheetModal(for: window) {
-                        (response: NSModalResponse) in
-                        self.handleNSAlert(returnCode: response)
+                        (response: NSApplication.ModalResponse) in
+                        self.handleNSAlertResponse(response)
                     }
                 } else {
-                    let returnCode = alert.runModal()
-                    handleNSAlert(returnCode:returnCode)
+                    let response = alert.runModal()
+                    handleNSAlertResponse(response)
                 }
                 
                 if let closure = self.didDisplayAlertClosure {
@@ -1349,24 +1351,24 @@ open class Manager : ArmchairManager {
     
     #elseif os(OSX)
     
-    private func handleNSAlert(returnCode: NSInteger) {
-    switch (returnCode) {
-    case  NSAlertFirstButtonReturn:
-    // they want to rate it
-    _rateApp()
-    case  NSAlertSecondButtonReturn:
-    // remind them later or cancel
-    if showsRemindButton() {
-    remindMeLater()
-    } else {
-    dontRate()
-    }
-    case NSAlertThirdButtonReturn:
-    // they don't want to rate it
-    dontRate()
+    private func handleNSAlertResponse(_ response: NSApplication.ModalResponse) {
+    switch (response) {
+    case  .alertFirstButtonReturn:
+        // they want to rate it
+        _rateApp()
+    case  .alertSecondButtonReturn:
+        // remind them later or cancel
+        if showsRemindButton() {
+            remindMeLater()
+        } else {
+            dontRate()
+        }
+    case .alertThirdButtonReturn:
+        // they don't want to rate it
+        dontRate()
     default:
-    return
-    }
+        return
+        }
     }
     
     #else
@@ -1449,7 +1451,7 @@ open class Manager : ArmchairManager {
             
         #elseif os(OSX)
             if let url = URL(string: reviewURLString()) {
-                let opened = NSWorkspace.shared().open(url)
+                let opened = NSWorkspace.shared.open(url)
                 if !opened {
                     debugLog("Failed to open \(url)")
                 }
@@ -1754,7 +1756,7 @@ open class Manager : ArmchairManager {
                     alert.dismiss(withClickedButtonIndex: alert.cancelButtonIndex, animated: false)
                 }
             #elseif os(OSX)
-                if let window = NSApplication.shared().keyWindow {
+                if let window = NSApplication.shared.keyWindow {
                     if let parent = window.sheetParent {
                         parent.endSheet(window)
                     }
@@ -1777,12 +1779,12 @@ open class Manager : ArmchairManager {
     // MARK: -
     // MARK: Notification Handlers
     
-    public func appWillResignActive(_ notification: Notification) {
+    @objc public func appWillResignActive(_ notification: Notification) {
         debugLog("appWillResignActive:")
         hideRatingAlert()
     }
     
-    public func applicationDidFinishLaunching(_ notification: Notification) {
+    @objc public func applicationDidFinishLaunching(_ notification: Notification) {
         DispatchQueue.global(qos: .background).async {
             self.debugLog("applicationDidFinishLaunching:")
             self.migrateKeysIfNecessary()
@@ -1790,7 +1792,7 @@ open class Manager : ArmchairManager {
         }
     }
     
-    public func applicationWillEnterForeground(_ notification: Notification) {
+    @objc public func applicationWillEnterForeground(_ notification: Notification) {
         DispatchQueue.global(qos: .background).async {
             self.debugLog("applicationWillEnterForeground:")
             self.migrateKeysIfNecessary()
@@ -1818,12 +1820,12 @@ open class Manager : ArmchairManager {
     fileprivate func setupNotifications() {
         #if os(iOS)
             NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)),            name: NSNotification.Name.UIApplicationWillResignActive,    object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         #elseif os(OSX)
-            NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)), name: NSNotification.Name.NSApplicationWillResignActive, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(NSApplicationDelegate.applicationDidFinishLaunching(_:)), name: NSNotification.Name.NSApplicationDidFinishLaunching, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: NSNotification.Name.NSApplicationWillBecomeActive, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)), name: NSApplication.willResignActiveNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationDidFinishLaunching(_:)), name: NSApplication.didFinishLaunchingNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: NSApplication.willBecomeActiveNotification, object: nil)
         #else
         #endif
 
