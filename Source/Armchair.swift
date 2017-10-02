@@ -1225,7 +1225,7 @@ open class Manager : ArmchairManager {
                 if (operatingSystemVersion >= 8 && usesAlertController) || operatingSystemVersion >= 9 {
                     /* iOS 8 uses new UIAlertController API*/
                     let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
-                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
+                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.default, handler: {
                         (alert: UIAlertAction!) in
                         self.dontRate()
                     }))
@@ -1235,7 +1235,7 @@ open class Manager : ArmchairManager {
                             self.remindMeLater()
                         }))
                     }
-                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.default, handler: {
+                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.cancel, handler: {
                         (alert: UIAlertAction!) in
                         self._rateApp()
                     }))
