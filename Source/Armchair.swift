@@ -1463,7 +1463,12 @@ open class Manager : ArmchairManager {
     }
     
     fileprivate func reviewURLString() -> String {
-        let template = operatingSystemVersion >= 11 ? reviewURLTemplateiOS11 : reviewURLTemplate
+        #if os(iOS)
+            let template = operatingSystemVersion >= 11 ? reviewURLTemplateiOS11 : reviewURLTemplate
+        #elseif os(OSX)
+            let template = reviewURLTemplate
+        #else
+        #endif
         var reviewURL = template.replacingOccurrences(of: "APP_ID", with: "\(appID)")
         reviewURL = reviewURL.replacingOccurrences(of: "AFFILIATE_CODE", with: "\(affiliateCode)")
         reviewURL = reviewURL.replacingOccurrences(of: "AFFILIATE_CAMPAIGN_CODE", with: "\(affiliateCampaignCode)")
