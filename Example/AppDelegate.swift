@@ -28,12 +28,13 @@
     class AppDelegate: UIResponder, UIApplicationDelegate {
         var window: UIWindow?
         
-        func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+            AppDelegate.setupArmchair()
             return true
         }
     }
     
-    let Pages = "361309726" // Pages iOS
+    let appID = "361309726" // Pages iOS
     
 #elseif os(OSX)
     
@@ -43,9 +44,12 @@
     class AppDelegate: NSObject, NSApplicationDelegate {
         @IBOutlet weak var window: NSWindow!
         
+        override init() {
+            AppDelegate.setupArmchair()
+        }
     }
     
-    let Pages = "409201541" // Pages Mac
+    let appID = "409201541" // Pages Mac
     
 #else
 #endif
@@ -53,10 +57,6 @@
 import Armchair
 
 extension AppDelegate {
-
-    override class func initialize() {
-        AppDelegate.setupArmchair()
-    }
 
     class func setupArmchair() {
         // Normally, all the setup would be here.
@@ -68,7 +68,7 @@ extension AppDelegate {
         // because it needs to receive application life-cycle notifications
         //
         // NOTE: The appID call always has to go before any other Armchair calls
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
         Armchair.debugEnabled(true)
     }
 }

@@ -55,12 +55,12 @@ extension ViewController {
 
         // Only set it if we are using Armchair localizations
         if !Armchair.useMainAppBundleForLocalizations() {
-            let currentLocalization: NSString = NSBundle.mainBundle().preferredLocalizations[0] as NSString
+            let currentLocalization: NSString = Bundle.main.preferredLocalizations[0] as NSString
             // Only set it if we are using a different language than this apps development language
-            if let developmentLocalization = NSBundle.mainBundle().developmentLocalization {
-                if currentLocalization != developmentLocalization {
+            if let developmentLocalization = Bundle.main.developmentLocalization {
+                if currentLocalization as String != developmentLocalization {
                     languageLabelText = currentLocalization as String
-                    if let displayName = NSLocale(localeIdentifier: currentLocalization as String).displayNameForKey(NSLocaleIdentifier, value:currentLocalization) {
+                    if let displayName = (Locale(identifier: currentLocalization as String) as NSLocale).displayName(forKey: NSLocale.Key.identifier, value:currentLocalization) {
                         languageLabelText = "\(displayName): \(currentLocalization)"
                     }
                 }
@@ -78,7 +78,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -96,7 +96,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -143,7 +143,7 @@ extension ViewController {
             Armchair.opensInStoreKit(false)
             
             // This sets a custom tint color  (applies only to UIAlertController).
-            Armchair.tintColor(UIColor.brownColor())
+            Armchair.tintColor(tintColor: UIColor.brown)
         #endif
 
         // This sets the Affiliate code you want to use, but is not required.
@@ -193,7 +193,7 @@ extension ViewController {
         resetAppReviewManager()
 
         // The AppID is the only required setup
-        Armchair.appID(Pages)
+        Armchair.appID(appID)
 
         // Debug means that it will popup on the next available change
         Armchair.debugEnabled(true)
@@ -216,11 +216,11 @@ extension ViewController {
     }
     
     @IBAction func openUrbanApps(_: AnyObject) {
-        if let url = NSURL(string: "http://urbanapps.com") {
+        if let url = URL(string: "http://urbanapps.com") {
 #if os(iOS)
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.shared.openURL(url)
 #elseif os(OSX)
-            NSWorkspace.sharedWorkspace().openURL(url)
+            NSWorkspace.shared.open(url)
 #else
 #endif
         }
