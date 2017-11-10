@@ -284,6 +284,14 @@ Armchair.shouldPromptIfRated() -> Bool
 Armchair.shouldPromptIfRated(shouldPromptIfRated: Bool)
 ```
 
+The `useStoreKitReviewPrompt` configuration determines wether or not to try showing the SKStoreReviewController's requestReview() prompt instead of the default prompt. This setting has some effects only on iOS version >= 10.3. It's default value is `false`.
+```swift
+// GETTER
+Armchair.useStoreKitReviewPrompt() -> Bool
+// SETTER
+Armchair.useStoreKitReviewPrompt(useStoreKitReviewPrompt: Bool)
+```
+
 The `useMainAppBundleForLocalizations` configuration is a way to tell Armchair that you are providing your own translations for the review prompt popup strings. This may be because you are just customizing them, or that you have set your own text for the popup. If set to `true`, the main bundle will always be used to load localized strings. You have to include the translations either in a file called `ArmchairLocalizable.strings` or the standard `Localizable.strings`. If set to `false` Armchair will look in its own translation bundle for the translating strings. It's default value is `false`.
 
 ```swift
