@@ -769,7 +769,7 @@ open class Manager : ArmchairManager {
     // MARK: Review Alert & Properties
     
     #if os(iOS)
-    fileprivate var ratingAlert: UIAlertView? = nil
+    fileprivate var ratingAlert: UIAlertController? = nil
     fileprivate let reviewURLTemplate = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE&action=write-review"
     fileprivate let reviewURLTemplateiOS11 = "https://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=8&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE&action=write-review"
     #elseif os(OSX)
@@ -1269,7 +1269,9 @@ open class Manager : ArmchairManager {
                         (alert: UIAlertAction!) in
                         self._rateApp()
                     }))
-                    
+
+                    ratingAlert = alertView
+
                     // get the top most controller (= the StoreKit Controller) and dismiss it
                     if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
                         if let topController = Manager.topMostViewController(presentingController) {
@@ -1752,17 +1754,26 @@ open class Manager : ArmchairManager {
     #endif
 
     private func hideRatingAlert() {
-        #if os(OSX)
         if let alert = ratingAlert {
             debugLog("Hiding Alert")
-            if let window = NSApplication.shared().keyWindow {
-                if let parent = window.sheetParent {
-                    parent.endSheet(window)
+            #if os(iOS)
+                let isAlertVisible = alert.isViewLoaded && alert.view.window != nil
+                if isAlertVisible {
+                    alert.dismiss(animated: false, completion: {
+                        self.dontRate()
+                    })
                 }
-            }
+            #elseif os(OSX)
+                if let window = NSApplication.shared.keyWindow {
+                    if let parent = window.sheetParent {
+                        parent.endSheet(window)
+                    }
+                }
+
+            #else
+            #endif
             ratingAlert = nil
         }
-        #endif
     }
     
     fileprivate func defaultAffiliateCode() -> String {
