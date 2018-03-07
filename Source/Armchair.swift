@@ -1362,41 +1362,8 @@ open class Manager : ArmchairManager {
         userDefaultsObject?.synchronize()
         
         #if os(iOS)
-            // Use the in-app StoreKit view if set, available (iOS 7+) and imported. This works in the simulator.
-            if opensInStoreKit {
-                
-                let storeViewController = SKStoreProductViewController()
-                
-                var productParameters: [String:AnyObject]! = [SKStoreProductParameterITunesItemIdentifier : appID as AnyObject]
-                
-                if (operatingSystemVersion >= 8) {
-                    productParameters[SKStoreProductParameterAffiliateToken] = affiliateCode as AnyObject?
-                    productParameters[SKStoreProductParameterCampaignToken] = affiliateCampaignCode as AnyObject?
-                }
-                
-                storeViewController.loadProduct(withParameters: productParameters, completionBlock: nil)
-                storeViewController.delegate = self
-                
-                if let closure = willPresentModalViewClosure {
-                    closure(usesAnimation)
-                }
-                
-                
-                if let rootController = getRootViewController() {
-                    rootController.present(storeViewController, animated: usesAnimation) {
-                        self.modalPanelOpen = true
-                        
-                        //Temporarily use a status bar to match the StoreKit view.
-                        self.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-                        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: self.usesAnimation)
-                    }
-                }
-                
-                //Use the standard openUrl method
-            } else {
-                if let url = URL(string: reviewURLString()) {
-                    UIApplication.shared.openURL(url)
-                }
+            if let url = URL(string: reviewURLString()) {
+                UIApplication.shared.openURL(url)
             }
             
             // Check for iOS simulator
