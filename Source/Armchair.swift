@@ -1447,8 +1447,8 @@ open class Manager : ArmchairManager {
                     UIApplication.shared.openURL(url)
                 }
             }  
-            // Check for iOS simulator
-            #if (arch(i386) || arch(x86_64)) && os(iOS)
+
+            #if targetEnvironment(simulator)
                 debugLog("iTunes App Store is not supported on the iOS simulator.")
                 debugLog(" - We would have went to \(reviewURLString()).")
                 debugLog(" - Try running on a test-device")
