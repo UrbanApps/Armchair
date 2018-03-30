@@ -1215,11 +1215,17 @@ open class Manager : ArmchairManager {
     }
     
     public var shouldTryStoreKitReviewPrompt : Bool {
-        if #available(iOS 10.3, *), useStoreKitReviewPrompt { return true }
+        #if os(iOS)
+            if #available(iOS 10.3, *), useStoreKitReviewPrompt {
+                return true
+            }
+        #endif
+
         return false
     }
     
     fileprivate func requestStoreKitReviewPrompt() -> Bool {
+        #if os(iOS)
         if #available(iOS 10.3, *), useStoreKitReviewPrompt {
             SKStoreReviewController.requestReview()
             // Assume this version is rated. There is no API to tell if the user actaully rated.
@@ -1230,6 +1236,7 @@ open class Manager : ArmchairManager {
             closeModalPanel()
             return true
         }
+        #endif
         return false
     }
     
