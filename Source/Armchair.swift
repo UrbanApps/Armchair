@@ -1262,7 +1262,7 @@ open class Manager : ArmchairManager {
                 } else {
                     /// Didn't show storekit prompt, present app store manually
                     let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
-                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.cancel, handler: {
+                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.default, handler: {
                         (alert: UIAlertAction!) in
                         self._rateApp()
                     }))
