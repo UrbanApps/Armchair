@@ -1261,18 +1261,18 @@ open class Manager : ArmchairManager {
                     
                 } else {
                     /// Didn't show storekit prompt, present app store manually
-                    let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: UIAlertControllerStyle.alert)
-                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style:UIAlertActionStyle.default, handler: {
+                    let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: .alert)
+                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style: .default, handler: {
                         (alert: UIAlertAction!) in
                         self._rateApp()
                     }))
                     if (showsRemindButton()) {
-                        alertView.addAction(UIAlertAction(title: remindButtonTitle!, style:UIAlertActionStyle.default, handler: {
+                        alertView.addAction(UIAlertAction(title: remindButtonTitle!, style: .default, handler: {
                             (alert: UIAlertAction!) in
                             self.remindMeLater()
                         }))
                     }
-                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style:UIAlertActionStyle.cancel, handler: {
+                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: {
                         (alert: UIAlertAction!) in
                         self.dontRate()
                     }))
@@ -1724,11 +1724,11 @@ open class Manager : ArmchairManager {
     private static func getRootViewController() -> UIViewController? {
         if var window = UIApplication.shared.keyWindow {
             
-            if window.windowLevel != UIWindowLevelNormal {
+            if window.windowLevel != .normal {
                 let windows: NSArray = UIApplication.shared.windows as NSArray
                 for candidateWindow in windows {
                     if let candidateWindow = candidateWindow as? UIWindow {
-                        if candidateWindow.windowLevel == UIWindowLevelNormal {
+                        if candidateWindow.windowLevel == .normal {
                             window = candidateWindow
                             break
                         }
@@ -1834,9 +1834,9 @@ open class Manager : ArmchairManager {
     
     fileprivate func setupNotifications() {
         #if os(iOS)
-            NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)),            name: NSNotification.Name.UIApplicationWillResignActive,    object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationDidFinishLaunching(_:)),  name: NSNotification.Name.UIApplicationDidFinishLaunching,  object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)), name: UIApplication.willResignActiveNotification,    object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationDidFinishLaunching(_:)),  name: UIApplication.didFinishLaunchingNotification,  object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         #elseif os(OSX)
             NotificationCenter.default.addObserver(self, selector: #selector(Manager.appWillResignActive(_:)), name: NSApplication.willResignActiveNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(Manager.applicationDidFinishLaunching(_:)), name: NSApplication.didFinishLaunchingNotification, object: nil)
