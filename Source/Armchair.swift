@@ -717,7 +717,7 @@ public enum ArmchairKey: String, CustomStringConvertible {
 }
 
 open class ArmchairTrackingInfo: CustomStringConvertible {
-    open let info: Dictionary<ArmchairKey, AnyObject>
+    public let info: Dictionary<ArmchairKey, AnyObject>
     
     init(info: Dictionary<ArmchairKey, AnyObject>) {
         self.info = info
