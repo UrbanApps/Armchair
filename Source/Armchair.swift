@@ -287,19 +287,17 @@ public func affiliateCampaignCode(_ affiliateCampaignCode: String) {
     Manager.defaultManager.affiliateCampaignCode = affiliateCampaignCode
 }
 
-#if os(iOS)
-    /*
-     * If set to true, use SKStoreReviewController's requestReview() prompt instead of the default prompt.
-     * If not on iOS 10.3+, reort to the default prompt.
-     * Default => false.
-     */
-    public func useStoreKitReviewPrompt() -> Bool {
-        return Manager.defaultManager.useStoreKitReviewPrompt
-    }
-    public func useStoreKitReviewPrompt(_ useStoreKitReviewPrompt: Bool) {
-        Manager.defaultManager.useStoreKitReviewPrompt = useStoreKitReviewPrompt
-    }
-#endif
+/*
+ * If set to true, use SKStoreReviewController's requestReview() prompt instead of the default prompt.
+ * If not on iOS 10.3+ or macOS 10.4+, resort to the default prompt.
+ * Default => false.
+ */
+public func useStoreKitReviewPrompt() -> Bool {
+    return Manager.defaultManager.useStoreKitReviewPrompt
+}
+public func useStoreKitReviewPrompt(_ useStoreKitReviewPrompt: Bool) {
+    Manager.defaultManager.useStoreKitReviewPrompt = useStoreKitReviewPrompt
+}
 
 /*
  * 'true' will show the Armchair alert everytime. Useful for testing
@@ -886,13 +884,13 @@ open class Manager : ArmchairManager {
     // It is my affiliate code. It is better that somebody's code is used rather than nobody's.
     fileprivate var affiliateCode: String                   = "11l7j9"
     fileprivate var affiliateCampaignCode: String           = "Armchair"
+    fileprivate var useStoreKitReviewPrompt: Bool           = false
 
 #if os(iOS)
     fileprivate var usesAnimation: Bool                     = true
     fileprivate var tintColor: UIColor?                     = nil
     fileprivate lazy var usesAlertController: Bool          = self.defaultUsesAlertController()
     fileprivate lazy var opensInStoreKit: Bool              = self.defaultOpensInStoreKit()
-    fileprivate var useStoreKitReviewPrompt: Bool           = false
 
     fileprivate func defaultOpensInStoreKit() -> Bool {
         return operatingSystemVersion >= 8
@@ -1225,18 +1223,19 @@ open class Manager : ArmchairManager {
     }
     
     fileprivate func requestStoreKitReviewPrompt() -> Bool {
-        #if os(iOS)
-        if #available(iOS 10.3, *), useStoreKitReviewPrompt {
+        if #available(iOS 10.3, OSX 10.14, *), useStoreKitReviewPrompt {
             SKStoreReviewController.requestReview()
             // Assume this version is rated. There is no API to tell if the user actaully rated.
             userDefaultsObject?.setBool(true, forKey: keyForArmchairKeyType(ArmchairKey.RatedCurrentVersion))
             userDefaultsObject?.setBool(true, forKey: keyForArmchairKeyType(ArmchairKey.RatedAnyVersion))
             userDefaultsObject?.synchronize()
-            
-            closeModalPanel()
+
+            #if os(iOS)
+                closeModalPanel()
+            #endif
+
             return true
         }
-        #endif
         return false
     }
     
@@ -1255,45 +1254,45 @@ open class Manager : ArmchairManager {
                 closure()
             }
         } else {
+            if requestStoreKitReviewPrompt() {
+                ///Showed storekit prompt, all done
+                return
+            }
+            
             #if os(iOS)
-                if requestStoreKitReviewPrompt() {
-                    ///Showed storekit prompt, all done
-                    
-                } else {
-                    /// Didn't show storekit prompt, present app store manually
-                    let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: .alert)
-                    alertView.addAction(UIAlertAction(title: rateButtonTitle, style: .default, handler: {
+                /// Didn't show storekit prompt, present app store manually
+                let alertView : UIAlertController = UIAlertController(title: reviewTitle, message: reviewMessage, preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: rateButtonTitle, style: .default, handler: {
+                    (alert: UIAlertAction!) in
+                    self._rateApp()
+                }))
+                if (showsRemindButton()) {
+                    alertView.addAction(UIAlertAction(title: remindButtonTitle!, style: .default, handler: {
                         (alert: UIAlertAction!) in
-                        self._rateApp()
+                        self.remindMeLater()
                     }))
-                    if (showsRemindButton()) {
-                        alertView.addAction(UIAlertAction(title: remindButtonTitle!, style: .default, handler: {
-                            (alert: UIAlertAction!) in
-                            self.remindMeLater()
-                        }))
-                    }
-                    alertView.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: {
-                        (alert: UIAlertAction!) in
-                        self.dontRate()
-                    }))
-
-                    ratingAlert = alertView
-
-                    // get the top most controller (= the StoreKit Controller) and dismiss it
-                    if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
-                        if let topController = Manager.topMostViewController(presentingController) {
-                            topController.present(alertView, animated: usesAnimation) { [weak self] in
-                                if let closure = self?.didDisplayAlertClosure {
-                                    closure()
-                                }
-                                print("presentViewController() completed")
-                            }
-                        }
-                        // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
-                        alertView.view.tintColor = tintColor
-                    }
                 }
-                
+                alertView.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: {
+                    (alert: UIAlertAction!) in
+                    self.dontRate()
+                }))
+
+                ratingAlert = alertView
+
+                // get the top most controller (= the StoreKit Controller) and dismiss it
+                if let presentingController = UIApplication.shared.keyWindow?.rootViewController {
+                    if let topController = Manager.topMostViewController(presentingController) {
+                        topController.present(alertView, animated: usesAnimation) { [weak self] in
+                            if let closure = self?.didDisplayAlertClosure {
+                                closure()
+                            }
+                            print("presentViewController() completed")
+                        }
+                    }
+                    // note that tint color has to be set after the controller is presented in order to take effect (last checked in iOS 9.3)
+                    alertView.view.tintColor = tintColor
+                }
+
             #elseif os(OSX)
                 
                 let alert: NSAlert = NSAlert()
