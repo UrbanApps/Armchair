@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = "Armchair"
-  s.version               = "0.3.6"
+  s.version               = "0.3.7"
   s.summary               = "A simple yet powerful App Review Manager for iOS and OSX in Swift"
   s.description           = <<-DESC
                             A simple yet powerful App Review Manager for iOS and OSX in Swift.
