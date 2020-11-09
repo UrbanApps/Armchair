@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
 
   s.source_files          = "Source/*.{h,swift}"
   s.resources             = "Localization/*.lproj"
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.10'
   s.requires_arc          = true
   s.swift_version         = '5.0'
