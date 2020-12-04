@@ -277,7 +277,7 @@ public func affiliateCode(_ affiliateCode: String) {
 }
 
 /*
- * If you are an Apple Affiliate, enter your campaign code here.
+ * If you are an Apple Affiliate, enter your campaign code here. (DEPRECATED)
  * Default => "Armchair-<appID>"
  */
 public func affiliateCampaignCode() -> String {
@@ -769,10 +769,10 @@ open class Manager : ArmchairManager {
     #if os(iOS)
     fileprivate var ratingAlert: UIAlertController? = nil
     fileprivate let reviewURLTemplate = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&id=APP_ID&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE&action=write-review"
-    fileprivate let reviewURLTemplateiOS11 = "https://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=8&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE&action=write-review"
+    fileprivate let reviewURLTemplateiOS11 = "https://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=8&at=AFFILIATE_CODE&action=write-review"
     #elseif os(OSX)
     private var ratingAlert: NSAlert? = nil
-    private let reviewURLTemplate = "macappstore://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=12&at=AFFILIATE_CODE&ct=AFFILIATE_CAMPAIGN_CODE"
+    private let reviewURLTemplate = "macappstore://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=12&at=AFFILIATE_CODE"
     #else
     #endif
     
@@ -1476,7 +1476,6 @@ open class Manager : ArmchairManager {
         #endif
         var reviewURL = template.replacingOccurrences(of: "APP_ID", with: "\(appID)")
         reviewURL = reviewURL.replacingOccurrences(of: "AFFILIATE_CODE", with: "\(affiliateCode)")
-        reviewURL = reviewURL.replacingOccurrences(of: "AFFILIATE_CAMPAIGN_CODE", with: "\(affiliateCampaignCode)")
         return reviewURL
     }
     
