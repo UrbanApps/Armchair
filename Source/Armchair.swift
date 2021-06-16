@@ -772,7 +772,7 @@ open class Manager : ArmchairManager {
     fileprivate let reviewURLTemplateiOS11 = "https://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=8&at=AFFILIATE_CODE&action=write-review"
     #elseif os(OSX)
     private var ratingAlert: NSAlert? = nil
-    private let reviewURLTemplate = "macappstore://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=12&at=AFFILIATE_CODE"
+    private let reviewURLTemplate = "macappstore://itunes.apple.com/us/app/idAPP_ID?ls=1&mt=12&at=AFFILIATE_CODE&action=write-review"
     #else
     #endif
     
