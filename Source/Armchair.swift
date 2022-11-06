@@ -1689,12 +1689,17 @@ open class Manager : ArmchairManager {
         if useMainAppBundleForLocalizations {
             bundle = Bundle.main
         } else {
+
+            #if SWIFT_PACKAGE
+            bundle = Bundle.module
+            #else
             let armchairBundleURL: URL? = Bundle.main.url(forResource: "Armchair", withExtension: "bundle")
             if let url = armchairBundleURL {
                 bundle = Bundle(url: url)
             } else {
                 bundle = Bundle(for: type(of: self))
             }
+            #endif
         }
         
         return bundle
